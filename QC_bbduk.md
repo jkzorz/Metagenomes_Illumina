@@ -35,6 +35,7 @@ cd /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/bbduk/
 
 ###### Run your script ######
 
+#step 1
 for f in /work/ebg_lab/gm/Metagenomes_2022/GAPP2/JZ*/*R1_001.fastq.gz;  
 do 
 	R1=$f
@@ -53,6 +54,15 @@ do
 	
 	#step4
 	~/bbmap/bbduk.sh in=${sample}_${base}_R1_dec.fastq in2=${sample}_${base}_R2_dec.fastq out=${sample}_${base}_R1_qc.fastq out2=${sample}_${base}_R2_qc.fastq qtrim=rl trimq=15 minlength=30 entropy=0.5;
+
+	#remove inbetween files 
+	rm ${sample}_${base}_R1_lastbase_rm.fastq
+	rm ${sample}_${base}_R2_lastbase_rm.fastq
+	rm ${sample}_${base}_R1_adapter_rm.fastq
+	rm ${sample}_${base}_R2_adapter_rm.fastq
+	rm ${sample}_${base}_R1_dec.fastq
+	rm ${sample}_${base}_R2_dec.fastq
+
 done
 
 ###
