@@ -68,6 +68,17 @@ done
 ###
 ```
 
+## Concatenate resulting 4 qc files into one large file per sample (R1, R2) 
+
+```
+#for concatenating qc'ed reads - R1
+for i in JZ*L001_R1_qc.fastq; do cat $i $(basename $i L001_R1_qc.fastq)L00{2,3,4}_R1_qc.fastq  > cat_qc/$(basename $i L001_R1_qc.fastq)R1_QC.fastq; done
+
+#for concatenating qc'ed reads - R2
+for i in JZ*L001_R2_qc.fastq; do cat $i $(basename $i L001_R2_qc.fastq)L00{2,3,4}_R2_qc.fastq  > cat_qc/$(basename $i L001_R2_qc.fastq)R2_QC.fastq; done
+```
+
+
 ## Version: 
 
 ```
