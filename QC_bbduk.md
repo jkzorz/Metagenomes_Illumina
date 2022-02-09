@@ -68,5 +68,11 @@ done
 ###
 ```
 
+## Version: 
 
+```
+(bbtools) bash-4.4$ bbduk.sh -version
+java -Djava.library.path=/home/jacqueline.zorz/software/miniconda3/envs/bbtools/bbtools/lib/jni/ -ea -Xmx41364m -Xms41364m -cp /home/jacqueline.zorz/software/miniconda3/envs/bbtools/bbtools/lib/current/ jgi.BBDukF -version
+BBMap version 37.62
+```
 
