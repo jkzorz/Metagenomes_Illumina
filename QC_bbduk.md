@@ -71,6 +71,18 @@ done
 ## Concatenate resulting 4 qc files into one large file per sample (R1, R2) 
 
 ```
+#!/bin/bash
+###### Reserve computing resources ######
+#SBATCH --mail-user=jacqueline.zorz@ucalgary.ca
+#SBATCH --mail-type=ALL
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=30
+#SBATCH --mem=100GB
+#SBATCH --time=12:00:00
+#SBATCH --partition=bigmem,cpu2019,cpu2021,cpu2021-bf24
+
+
 #for concatenating qc'ed reads - R1
 for i in JZ*L001_R1_qc.fastq; do cat $i $(basename $i L001_R1_qc.fastq)L00{2,3,4}_R1_qc.fastq  > cat_qc/$(basename $i L001_R1_qc.fastq)R1_QC.fastq; done
 
