@@ -44,9 +44,10 @@ source /home/jacqueline.zorz/software/miniconda3/etc/profile.d/conda.sh
 conda activate megahit
 cd /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/megahit/
 
-for f in /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/bbduk/cat_qc/*R1_QC.fastq; 
 
 #do the assembly using quality controlled reads
+for f in /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/bbduk/cat_qc/*R1_QC.fastq; 
+
 do 	
 	megahit -1 $f -2 $(dirname $f)/$(basename $f R1_QC.fastq)R2_QC.fastq -t 40 -o megahit_$(basename $f _R1_QC.fastq) --min-contig-len 500;
 done
