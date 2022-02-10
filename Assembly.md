@@ -21,3 +21,35 @@ Comparative review on metagenome assembly: https://journals.plos.org/plosone/art
 Skip read merging with bbmerge? 
 
 
+## Assembly with Megahit
+
+Assemble each sample separately with Megahit 
+
+```
+#!/bin/bash
+###### Reserve computing resources ######
+#SBATCH --mail-user=jacqueline.zorz@ucalgary.ca
+#SBATCH --mail-type=ALL
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=40
+#SBATCH --mem=180GB
+#SBATCH --time=168:00:00
+#SBATCH --partition=cpu2019,cpu2021
+
+
+###### Set environment variables ######
+echo "Starting run at : 'date'"
+source /home/jacqueline.zorz/software/miniconda3/etc/profile.d/conda.sh 
+conda activate megahit
+cd /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/megahit/
+
+for f in /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/bbduk/cat_qc/*R1_QC.fastq; 
+
+#do the assembly using quality controlled reads
+do 	
+	megahit -1 $f -2 $(dirname $f)/$(basename $f R1_QC.fastq)R2_QC.fastq -t 40 -o megahit_$(basename $f _R1_QC.fastq) --min-contig-len 500;
+done
+```
+
+
