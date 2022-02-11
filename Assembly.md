@@ -20,6 +20,7 @@ Comparative review on metagenome assembly: https://journals.plos.org/plosone/art
 
 Skip read merging with bbmerge? 
 
+2A-1 ("The Hole") 12-16cm sample: Megahit assembly took ~5-7 hours, Metaspades assembly took 19 hours. 
 
 ## Assembly with Megahit
 
