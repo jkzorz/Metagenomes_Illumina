@@ -49,7 +49,7 @@ do
 		scafstats="${sam::-4}_scafstats.txt"
 
 		#step1 - mapping and sam file creation 
-		bbmap.sh ref=$contig in=$R1 in2=$R2 out=$sam covstats=$covstats scafstats=$scafstats threads=38
+		bbmap.sh ref=$contig in=$R1 in2=$R2 outm=$sam covstats=$covstats scafstats=$scafstats threads=38
 
 
 		##Step2 sam to bam
