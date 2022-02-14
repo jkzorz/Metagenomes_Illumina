@@ -4,6 +4,8 @@ For now, splitting samples into hydrocarbon positive (2A1, 2A2, 2B1) and hydroca
 
 There are 19 hydrocarbon positive samples, so 19 x 19 = 361 resulting bam files... 
 
+Chose minid=0.9 to speed up process. 
+
 ```
 #!/bin/bash
 ###### Reserve computing resources ######
