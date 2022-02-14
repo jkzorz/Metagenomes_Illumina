@@ -2,9 +2,9 @@
 
 For now, splitting samples into hydrocarbon positive (2A1, 2A2, 2B1) and hydrocarbon negative (BG15, 2AT). Mapping reads from all hydrocarbon positive samples to all hydrocarbon positive contigs, and reads from all hydrocarbon negative samples to all hydrocarbon negative contigs.  
 
-There are 19 hydrocarbon positive samples, so 19 x 19 = 361 resulting bam files... 
+There are 19 hydrocarbon positive samples, so 19 reads x 19 contigs = 361 resulting bam files... 
 
-Chose minid=0.9 to speed up process. 
+Chose minid=0.9 to speed up process. Added 'if' statements so that command could be run multiple times without overwriting existing files. 
 
 ```
 #!/bin/bash
