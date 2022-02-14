@@ -48,14 +48,16 @@ do
 		covstats="${sam::-4}_covstats.txt"
 		scafstats="${sam::-4}_scafstats.txt"
 
+		if [ -e "$covstats" ]; then
+			continue    # the output file already exists, so skip re-creating it
+		fi
+
 		#step1 - mapping and sam file creation 
-		bbmap.sh ref=$contig in=$R1 in2=$R2 outm=$sam covstats=$covstats scafstats=$scafstats threads=38
+		bbmap.sh ref=$contig in=$R1 in2=$R2 outm=$sam covstats=$covstats scafstats=$scafstats threads=40 minid=0.9
 
 
 		##Step2 sam to bam
 		samtools view -b $sam | samtools sort -o $sorted_bam
-
-
 
 
 		###Step3 indexing sorted bam file
