@@ -50,6 +50,10 @@ do
 		covstats="${sam::-4}_covstats.txt"
 		scafstats="${sam::-4}_scafstats.txt"
 
+		if [ -e "$sam" ]; then
+			continue    # the output file already exists, so skip re-creating it
+		fi
+
 		if [ -e "$covstats" ]; then
 			continue    # the output file already exists, so skip re-creating it
 		fi
