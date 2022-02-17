@@ -20,3 +20,16 @@ e.g.
 Sample 2A-1 "The Hole" 12-16 cm
 No depth file: 39 bins, 3 "good" bins (>90% completeness, <5% contamination)
 Depth file from 37 samples mapping: 131 bins, 19 "good" bins (>90% completeness, <5% contamination)
+
+
+### Storage space
+
+(base) bash-4.4$ cd /work/ebg_lab/eb/sodalakes/
+(base) bash-4.4$ du -sh
+1.9T    .
+(base) bash-4.4$ cd ../autofermentation/
+(base) bash-4.4$ du -sh
+1.8T    .
+(base) bash-4.4$ cd ../../gm/gapp/jzorz/
+(base) bash-4.4$ du -sh
+7.1T    .
