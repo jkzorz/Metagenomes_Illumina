@@ -102,3 +102,19 @@ Use barrnap to grab rRNA genes from bins
 ```
 for i in *.fa; do barrnap $i --outseq barrnap/'rrna_'$i; done
 ```
+
+
+
+## dRep 
+
+Test with bins from 3 samples. Need to put locations of each bin separately into a text file 
+
+```
+#e.g. make list of bin locations 
+ls Test_Hole_04_depth/*.fa > bin_locations.txt
+ls Test_Hole_1216_depth/*.fa >> bin_locations.txt
+
+conda activate drep 
+
+dRep dereplicate drep_test/ -g bin_locations.txt
+```
