@@ -119,3 +119,11 @@ conda activate drep
 
 dRep dereplicate drep_test/ -g bin_locations.txt
 ```
+
+didn't work because of issues with checkm and drep python versions? Can alternatively supply checkM info in a csv:
+--genomeInfo GENOMEINFO
+                        location of .csv file containing quality information on the genomes. Must contain:
+                       "genome"(basename of .fasta file of that genome), "completeness"(0-100 value for completeness of
+                        the genome), "contamination"(0-100 value of the contamination of the genome) (default: None)
+
+
