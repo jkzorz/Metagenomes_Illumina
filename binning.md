@@ -113,6 +113,7 @@ Test with bins from 3 samples. Need to put locations of each bin separately into
 #e.g. make list of bin locations 
 ls Test_Hole_04_depth/*.fa > bin_locations.txt
 ls Test_Hole_1216_depth/*.fa >> bin_locations.txt
+ls Test_Hole_2428_depth/*.fa >> bin_locations.txt
 
 conda activate drep 
 
