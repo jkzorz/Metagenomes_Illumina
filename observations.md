@@ -24,12 +24,16 @@ Depth file from 37 samples mapping: 131 bins, 19 "good" bins (>90% completeness,
 
 ### Storage space
 
+```
 (base) bash-4.4$ cd /work/ebg_lab/eb/sodalakes/
 (base) bash-4.4$ du -sh
 1.9T    .
+
 (base) bash-4.4$ cd ../autofermentation/
 (base) bash-4.4$ du -sh
 1.8T    .
+
 (base) bash-4.4$ cd ../../gm/gapp/jzorz/
 (base) bash-4.4$ du -sh
 7.1T    .
+```
