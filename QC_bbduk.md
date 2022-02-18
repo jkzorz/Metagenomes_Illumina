@@ -91,6 +91,40 @@ for i in JZ*L001_R2_qc.fastq; do cat $i $(basename $i L001_R2_qc.fastq)L00{2,3,4
 ```
 
 
+
+## Trying different methods to improve downstream assembly and binning
+
+Trying different methods like subsampling and normalization of read coverage to improve downstream assembly and binning. 
+
+### Subsampling
+
+Subsampled reads to 10% of original
+```
+conda activate bbtools
+
+#subsample
+reformat.sh in=cat_qc/JZ-Condor-2B1-PurplePatch-A54-0-4_Li32225_S1_R1_QC.fastq in2=cat_qc/JZ-Condor-2B1-PurplePatch-A54-0-4_Li32225_S1_R2_QC.fastq out=JZ-Condor-2B1-PurplePatch-A54-0-4_Li32225_S1_R1_QC_subsample10pc.fastq out2=JZ-Condor-2B1-PurplePatch-A54-0-4_Li32225_S1_R2_QC_subsample10pc.fastq samplerate=0.1
+
+```
+Output: 
+```
+Input is being processed as paired
+Input:                          225676410 reads                 31544289481 bases
+Processed:                      22569544 reads                  3154567908 bases
+Output:                         22569544 reads (10.00%)         3154567908 bases (10.00%)
+
+Time:                           302.843 seconds.
+Reads Processed:      22569k    74.53k reads/sec
+Bases Processed:       3154m    10.42m bases/sec
+
+```
+
+
+
+
+
+
+
 ## Version: 
 
 ```
