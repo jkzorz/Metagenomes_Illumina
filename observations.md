@@ -1,3 +1,7 @@
+## Assembly 
+The assembly with MegaHit has generally been poor for individual samples (e.g. N50 <1000 bp, < 10% of reads assembled? - need to check this stat), and there are very few abundant species making high quality bins. The metagenomes from this study (https://www.nature.com/articles/s41396-019-0448-2#Sec2) were sequenced using a MiSeq sequencer. Only 5-15M reads obtained, but they managed to get 3 high quality Atribacteria bins. They also had a very high percentage of reads that assembled. They used metaspades and Maxbin for assembly and binning, respectively. 
+
+
 ## Mapping
 
 Samples that are same depth (i.e. 0-4cm) have much higher mapping percentage than samples from same core but different depths (in some instances). 
