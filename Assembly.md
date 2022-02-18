@@ -54,4 +54,29 @@ do
 done
 ```
 
+## Megahit with subsampled reads
 
+Using megahit to assemble reads subsampled to 10% of original metagenome: ~10M paired reads. 
+
+```
+#!/bin/bash
+###### Reserve computing resources ######
+#SBATCH --mail-user=jacqueline.zorz@ucalgary.ca
+#SBATCH --mail-type=ALL
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=30
+#SBATCH --mem=150GB
+#SBATCH --time=24:00:00
+#SBATCH --partition=bigmem,cpu2019,cpu2021
+
+
+###### Set environment variables ######
+echo "Starting run at : 'date'"
+source /home/jacqueline.zorz/software/miniconda3/etc/profile.d/conda.sh 
+conda activate megahit
+
+
+#do the assembly using quality controlled reads
+megahit -1 /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/bbduk/JZ-Condor-2B1-PurplePatch-A54-0-4_Li32225_S1_R1_QC_subsample10pc.fastq -2 /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/bbduk/JZ-Condor-2B1-PurplePatch-A54-0-4_Li32225_S1_R2_QC_subsample10pc.fastq -t 25 -o megahit_JZ-Condor-2B1-PurplePatch-A54-0-4_subsample10pc --min-contig-len 500
+```
