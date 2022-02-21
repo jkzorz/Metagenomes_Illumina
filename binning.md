@@ -133,3 +133,8 @@ Ended up copying bin files over to new directory. Will delete later (~4GB)
  for i in *_depth/bin*.fa;do cp $i bins_hc_positive/; done
 ```
 
+Created a consolidated checkM file so dRep doesn't have to run CheckM again: 
+
+```
+for i in *_depth/CheckM*.txt; do echo $i; awk '$1 ~/^bin/ {print $1 "," $13 "," $14}' $i >> checkm_consolidated_drep.csv; done
+```
