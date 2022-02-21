@@ -127,3 +127,9 @@ didn't work because of issues with checkm and drep python versions? Can alternat
                         the genome), "contamination"(0-100 value of the contamination of the genome) (default: None)
 
 
+Ended up copying bin files over to new directory. Will delete later (~4GB)
+
+```
+ for i in *_depth/bin*.fa;do cp $i bins_hc_positive/; done
+```
+
