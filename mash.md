@@ -74,8 +74,11 @@ data.scores$sample = row.names(data.scores)
 data.scores2 =  data.scores %>% separate(sample, c("Site", "Subsite", "Core", "Depth1", "Depth2"), sep = "-")
 data.scores2$Depth2 = gsub(pattern = "_.*", replacement = "", data.scores2$Depth2)
 
-#plot
+#plot sites
 gg = ggplot(data.scores2, aes(x = NMDS1, y = NMDS2)) + geom_point(aes(colour = Site, size = as.numeric(Depth1))) + theme(panel.background = element_blank(), panel.border = element_rect(fill = NA, colour = "grey40"), legend.key = element_blank()) + labs(size = "Depth (cmbsf)") + scale_colour_manual(values = c("#ED315D", "#F78C6B", "#049F76", "#FCC088", "#83D483")) + scale_radius(range = c(2,6), breaks = c(0,12,24))
+
+#plot subsites
+gg = ggplot(data.scores2, aes(x = NMDS1, y = NMDS2)) + geom_point(aes(colour = Subsite, size = as.numeric(Depth1))) + theme(panel.background = element_blank(), panel.border = element_rect(fill = NA, colour = "grey40"), legend.key = element_blank()) + labs(size = "Depth (cmbsf)") + scale_radius(range = c(2.5,6), breaks = c(0,12,24)) + scale_colour_manual(values = c("#2B193D", "#585285", "#4E61A6", "#8993BD", "#ced0db", "#C5979D", "#293E3C", "#547856", "#71A352", "#bfd1b4"))+ guides(colour = guide_legend(override.aes = list(size=4)))
 
 ```
 
