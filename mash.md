@@ -33,9 +33,50 @@ Then ran mash sketch and dist by copying and pasting locations from contigs_list
 ~/mash-Linux64-v2.3/mash sketch -o contigs
 
 #dist
-~/mash-Linux64-v2.3/mash dist contigs.msh
+~/mash-Linux64-v2.3/mash dist contigs.msh ... > contigs.mash
 ```
 
+Clean up results file to remove paths and file suffixes
 
+```
+sed 's/\/work\/ebg_lab\/gm\/gapp\/jzorz\/Metagenomes_Illumina\/megahit\/megahit_hc_positive\/megahit_JZ-Condor-//g' contigs_mash.txt > contigs_mash2.txt
+sed 's/\/work\/ebg_lab\/gm\/gapp\/jzorz\/Metagenomes_Illumina\/megahit\/megahit_hc_negative\/megahit_JZ-Condor-//g' contigs_mash2.txt > contigs_mash3.txt
+
+sed 's/\/final\.contigs\.fa//g' contigs_mash3.txt > contigs_mash4.txt
+```
+
+### NMDS in R 
+
+Brought contigs_mash4.txt to local computer. Deleted p-value and Matching-hashes columns and saved as csv. Ran the following commands in R to make an NMDS plot of the data 
+
+```
+library(tidyverse)
+library(vegan)
+setwd("~/University of Calgary/PostDoc/Metagenomes")
+
+mash = read.csv("contigs_mash4.csv", header = FALSE)
+
+#turn back into wide matrix
+mash2 = mash %>% pivot_wider(values_from = V3, names_from = V2)
+
+#turn into distance matrix object
+mash3 = as.matrix(mash2[,-1])
+dish = as.dist(mash3)
+
+#nmds of dish matrix 
+nmds = metaMDS(dish)
+
+#extract scores
+data.scores = as.data.frame(scores(nmds))
+
+#add columns
+data.scores$sample = row.names(data.scores)
+data.scores2 =  data.scores %>% separate(sample, c("Site", "Subsite", "Core", "Depth1", "Depth2"), sep = "-")
+data.scores2$Depth2 = gsub(pattern = "_.*", replacement = "", data.scores2$Depth2)
+
+#plot
+gg = ggplot(data.scores2, aes(x = NMDS1, y = NMDS2)) + geom_point(aes(colour = Site, size = as.numeric(Depth1))) + theme(panel.background = element_blank(), panel.border = element_rect(fill = NA, colour = "grey40"), legend.key = element_blank()) + labs(size = "Depth (cmbsf)") + scale_colour_manual(values = c("#ED315D", "#F78C6B", "#049F76", "#FCC088", "#83D483")) + scale_radius(range = c(2,6), breaks = c(0,12,24))
+
+```
 
 
