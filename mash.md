@@ -15,4 +15,27 @@ No dependencies, so just downloaded and transferred over to home drive on server
 
 Headers of tab-delimited output are: Reference-ID, Query-ID, Mash-distance, P-value, and Matching-hashes
 
+### Contigs
+
+First ran Mash on contig files. Needed to gather locations of all megahit contig files: 
+
+```
+#list contig file locations 
+for i in /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/megahit/megahit_hc_positive/megahit_JZ-Condor*/final.contigs.fa; do printf $i' '; done > contigs_list.txt
+for i in /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/megahit/megahit_hc_negative/megahit_JZ-Condor*/final.contigs.fa; do printf $i' '; done >> contigs_list.txt
+
+```
+
+Then ran mash sketch and dist by copying and pasting locations from contigs_list.txt to end of following commands: 
+
+```
+#sketch
+~/mash-Linux64-v2.3/mash sketch -o contigs
+
+#dist
+~/mash-Linux64-v2.3/mash dist contigs.msh
+```
+
+
+
 
