@@ -5,6 +5,10 @@ No dependencies, so just downloaded and transferred over to home drive on server
 
 
 ```
- ~/mash-Linux64-v2.3/mash sketch -o test /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/megahit/megahit_hc_negative/megahit_JZ-Condor-2AT-175NW-E46-0-4_Li32302_S78/final.contigs.fa /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/megahit/megahit_hc_negative/megahit_JZ-Condor-2AT-175NW-E46-12-16_Li32320_S96/final.contigs.fa
+#create sketch 
+~/mash-Linux64-v2.3/mash sketch -o test /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/megahit/megahit_hc_negative/megahit_JZ-Condor-2AT-175NW-E46-0-4_Li32302_S78/final.contigs.fa /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/megahit/megahit_hc_negative/megahit_JZ-Condor-2AT-175NW-E46-12-16_Li32320_S96/final.contigs.fa
+
+#find distances between contigs 
+ ~/mash-Linux64-v2.3/mash dist test.msh /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/megahit/megahit_hc_negative/megahit_JZ-Condor-2AT-700NW-B7-0-4_Li32307_S83/final.contigs.fa
 
 ```
