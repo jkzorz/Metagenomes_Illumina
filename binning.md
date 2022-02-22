@@ -58,6 +58,11 @@ cd /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/
 checkm lineage_wf -f /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/PurpleHaze_04_depth/CheckM_PurpleHaze_04.txt -t 10 -x fa /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/PurpleHaze_04_depth/ /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/PurpleHaze_04_depth/
 ```
 
+Example checkm coverage: 
+```
+checkm coverage -x fa . coverage_PurplePatch_04.tsv ../../mapping/mapping_hc_positive/reads_2A1-TheHole-C54-0-4_contig_2B1-PurplePatch-A54-0-4_sorted.bam 
+```
+
 
 ## Gtdbtk
 Example Gtdbtk script 
