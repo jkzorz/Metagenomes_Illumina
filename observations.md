@@ -26,6 +26,18 @@ No depth file: 39 bins, 3 "good" bins (>90% completeness, <5% contamination)
 Depth file from 37 samples mapping: 131 bins, 19 "good" bins (>90% completeness, <5% contamination)
 
 
+Most contigs aren't binning still... 
+Example from Purple Patch 0-4 cm 
+
+**Unbinned:** 
+1749417 contigs
+
+**Total:**
+1852709 contigs 
+
+Only ~6% of contigs (103,292) binned. 
+
+
 ### Storage space
 
 ```
