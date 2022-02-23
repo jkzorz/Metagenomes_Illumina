@@ -80,3 +80,13 @@ conda activate megahit
 #do the assembly using quality controlled reads
 megahit -1 /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/bbduk/JZ-Condor-2B1-PurplePatch-A54-0-4_Li32225_S1_R1_QC_subsample10pc.fastq -2 /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/bbduk/JZ-Condor-2B1-PurplePatch-A54-0-4_Li32225_S1_R2_QC_subsample10pc.fastq -t 25 -o megahit_JZ-Condor-2B1-PurplePatch-A54-0-4_subsample10pc --min-contig-len 500
 ```
+
+## Quality of Assembly with MetaQuast
+
+Example: 
+
+```
+metaquast.py --fast -m 500 -t 20 -o metaquast -l megahit final.contigs.fa
+```
+
+
