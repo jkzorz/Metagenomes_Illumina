@@ -53,6 +53,7 @@ Brought contigs_mash4.txt to local computer. Deleted p-value and Matching-hashes
 library(tidyverse)
 library(vegan)
 setwd("~/University of Calgary/PostDoc/Metagenomes")
+set.seed(123)
 
 mash = read.csv("contigs_mash4.csv", header = FALSE)
 
