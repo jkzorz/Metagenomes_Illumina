@@ -135,7 +135,7 @@ didn't work because of issues with checkm and drep python versions? Can alternat
 Ended up copying bin files over to new directory. Will delete later (~4GB)
 
 ```
- for i in *_depth/bin*.fa;do cp $i bins_hc_positive/; done
+ for i in *_depth/bin*.fa;do cp $i bins_all/; done
 ```
 
 Created a consolidated checkM file so dRep doesn't have to run CheckM again: 
