@@ -147,3 +147,30 @@ for i in *_depth/CheckM*.txt; do echo $i; awk '$1 ~/^bin/ {print $1 ".fa," $13 "
 sed -i '1s/^/genome,completeness,contamination\n/' checkm_consolidated_drep.csv
 
 ```
+
+dRep script: 
+
+```
+#!/bin/bash
+###### Reserve computing resources ######
+#SBATCH --mail-user=jacqueline.zorz@ucalgary.ca
+#SBATCH --mail-type=ALL
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=30
+#SBATCH --mem=180GB
+#SBATCH --time=20:00:00
+#SBATCH --partition=bigmem,cpu2019,cpu2021
+
+###### Set environment variables ######
+echo "Starting run at : 'date'"
+source /home/jacqueline.zorz/software/miniconda3/etc/profile.d/conda.sh 
+conda activate drep
+
+cd /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/
+
+
+#run drep 
+dRep dereplicate drep_out/ -p 25 -g /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/bins_all/*.fa --genomeInfo /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/checkm_consolidated_drep.csv
+```
+
