@@ -36,6 +36,14 @@ DRAM.py annotate -i '/work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/dr
 
 ```
 
+## Barrnap 
+Use barrnap to grab rRNA genes from bins 
+
+```
+for i in *.fa; do barrnap $i --outseq barrnap_16S/'rrna_'$i; done
+```
+
+
 
 
 ## CANT-HYD HMMs
