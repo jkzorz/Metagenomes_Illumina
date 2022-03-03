@@ -20,6 +20,9 @@ porechop -i seqs.fastq -o seqs_trimmed.fastq -t 8
 ```
 
 
+## Assembly usingn nanopore and Illumina reads
+
+Unicycler? (https://github.com/rrwick/Unicycler#installation)
 
 
 
