@@ -36,6 +36,13 @@ DRAM.py annotate -i '/work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/dr
 
 ```
 
+DRAM annotation of all bins won't finish in less than 24 hours (max time allowed with bigmem server cluster). Thus will need to use workaround to get through all bins in "good" bins directory: 
+
+From: https://github.com/WrightonLabCSU/DRAM/issues/54
+"Easiest way is to figure out which MAGs that DRAM completed for, move the output somewhere else, move the completed inputs somewhere else, then re-run DRAM on the MAGs that DRAM had not started/completed. The final DRAM outputs are just a cat of the tRNA, rRNA and annotation.tsv files from each individual MAG"
+
+Can then use concatenated tRNA, rRNA, and annotation.tsv files from each MAG as input for DRAM.py distill 
+
 ## Barrnap 
 Use barrnap to grab rRNA genes from bins 
 
