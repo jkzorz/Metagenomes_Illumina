@@ -167,6 +167,35 @@ cd /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/
 dRep dereplicate drep_out/ -p 25 -g /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/bins_all/*.fa --genomeInfo /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/checkm_consolidated_drep.csv
 ```
 
+## CheckM coverage of good bins 
+
+Using checkM coverage to estimate abundance of bins in community. (First moved all .bam and .bam.bai files to one folder)
+
+```
+#!/bin/bash
+###### Reserve computing resources ######
+#SBATCH --mail-user=jacqueline.zorz@ucalgary.ca
+#SBATCH --mail-type=ALL
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=20
+#SBATCH --mem=180GB
+#SBATCH --time=96:00:00
+#SBATCH --partition=cpu2019,cpu2021
+
+###### Set environment variables ######
+echo "Starting run at : 'date'"
+source /home/jacqueline.zorz/software/miniconda3/etc/profile.d/conda.sh 
+conda activate checkm
+
+cd /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/drep_out/
+
+#script 
+
+checkm coverage -t 20 -x fa /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/drep_out/dereplicated_genomes/good_bins/ coverage.goodbins.tsv /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/mapping/mapping_bam/*.bam 
+
+```
+
 
 ## Testing vamb
 
