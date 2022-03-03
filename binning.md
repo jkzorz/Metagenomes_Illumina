@@ -101,13 +101,6 @@ echo "Job finished with exit code $? at: 'date'"
 
 ```
 
-## barrnap 
-
-Use barrnap to grab rRNA genes from bins 
-```
-for i in *.fa; do barrnap $i --outseq barrnap/'rrna_'$i; done
-```
-
 
 
 ## dRep 
