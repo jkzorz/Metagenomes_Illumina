@@ -24,3 +24,6 @@ porechop -i seqs.fastq -o seqs_trimmed.fastq -t 8
 
 
 
+
+
+
