@@ -184,6 +184,22 @@ minimap2 -ax map-ont Medaka_polish/consensus.fasta 2B3_D53_2428_seqs_trimmed.fas
 
 ```
 
+Sort and index sam/bam files and create depth file 
 
+```
+conda activate samtools 
+
+samtools view -b 2B3_D53_2428.sam -o 2B3_D53_2428.bam
+
+samtools sort -o 2B3_D53_2428_sort.bam 2B3_D53_2428.bam
+
+samtools index 2B3_D53_2428_sort.bam
+
+#metabat
+conda activate metabat
+#create depth file
+jgi_summarize_bam_contig_depths --outputDepth depth.txt *sort.bam
+
+```
 
 
