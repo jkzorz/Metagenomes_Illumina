@@ -139,3 +139,28 @@ echo "Job finished with exit code $? at: 'date'"
 ##
 ```
 
+Final round of polishing with medaka: 
+
+```
+#!/bin/bash
+###### Reserve computing resources ######
+#SBATCH --mail-user=jacqueline.zorz@ucalgary.ca
+#SBATCH --mail-type=ALL
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=30
+#SBATCH --mem=100GB
+#SBATCH --time=3:00:00
+#SBATCH --partition=cpu2019,apophis-bf,pawson-bf,razi-bf,cpu2021,cpu2021-bf24,cpu2019-bf05
+
+
+###### Set environment variables ######
+source /home/jacqueline.zorz/software/miniconda3/etc/profile.d/conda.sh 
+conda activate medaka
+
+
+
+
+medaka_consensus -i /work/ebg_lab/gm/gapp/jzorz/2B3_2428_D53_fastq_pass/2B3_D53_2428_seqs_trimmed.fastq.gz -d racon4.mod.fasta -t 25 -m r941_min_high_g303 -o Medaka_polish
+
+```
