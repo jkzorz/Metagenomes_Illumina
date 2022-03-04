@@ -159,8 +159,31 @@ source /home/jacqueline.zorz/software/miniconda3/etc/profile.d/conda.sh
 conda activate medaka
 
 
-
-
 medaka_consensus -i /work/ebg_lab/gm/gapp/jzorz/2B3_2428_D53_fastq_pass/2B3_D53_2428_seqs_trimmed.fastq.gz -d racon4.mod.fasta -t 25 -m r941_min_high_g303 -o Medaka_polish
 
 ```
+
+Map reads to polished contigs with minimap
+
+```
+minimap2 -ax map-ont Medaka_polish/consensus.fasta 2B3_D53_2428_seqs_trimmed.fastq.gz > 2B3_D53_2428.sam
+
+###Output:
+
+2428_seqs_trimmed.fastq.gz > 2B3_D53_2428.sam
+[M::mm_idx_gen::0.124*0.88] collected minimizers
+[M::mm_idx_gen::0.146*1.19] sorted minimizers
+[M::main::0.146*1.19] loaded/built the index for 190 target sequence(s)
+[M::mm_mapopt_update::0.155*1.18] mid_occ = 23
+[M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 190
+[M::mm_idx_stat::0.161*1.17] distinct minimizers: 611337 (97.89% are singletons); average occurrences: 1.052; average spacing: 5.334; total length: 3428912
+[M::worker_pipeline::16.099*2.01] mapped 303815 sequences
+[M::main] Version: 2.22-r1101
+[M::main] CMD: minimap2 -ax map-ont Medaka_polish/consensus.fasta 2B3_D53_2428_seqs_trimmed.fastq.gz
+[M::main] Real time: 16.110 sec; CPU: 32.312 sec; Peak RSS: 1.160 GB
+
+```
+
+
+
+
