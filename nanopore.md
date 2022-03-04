@@ -60,6 +60,7 @@ metaspades.py -1 /work/ebg_lab/gm/gapp/jzorz/2015-nanopore/JZ-Condor-BG15-Backgr
 
 For assembly of long reads independently: 
 
+Start by trimming adapters: 
 ```
 #trim adapters
 cat *.fastq.gz > 2B3_D53_2428_seqs.fastq.gz
@@ -67,7 +68,11 @@ conda activate porechop
 porechop -i 2B3_D53_2428_seqs.fastq.gz -o 2B3_D53_2428_seqs_trimmed.fastq.gz -t 20
 
 ```
+Perform assembly of long reads with flye: 
 
+```
+flye --nano-raw 2B3_D53_2428_seqs_trimmed.fastq.gz --meta --genome-size 4m --out-dir flye_assembly -i 0 -t 20
+```
 
 
 
