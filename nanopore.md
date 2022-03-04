@@ -74,5 +74,68 @@ Perform assembly of long reads with flye:
 flye --nano-raw 2B3_D53_2428_seqs_trimmed.fastq.gz --meta --genome-size 4m --out-dir flye_assembly -i 0 -t 20
 ```
 
+Four rounds of mapping and polishing with bwa and racon 
+```
+#!/bin/bash
+###### Reserve computing resources ######
+#SBATCH --mail-user=jacqueline.zorz@ucalgary.ca
+#SBATCH --mail-type=ALL
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=30
+#SBATCH --mem=50GB
+#SBATCH --time=3:00:00
+#SBATCH --partition=cpu2019,apophis-bf,pawson-bf,razi-bf
 
+ASSEMBLY=${1?Error: missing assembly location}
+SEQS=${2?Error: missing fastq sequence location}
+
+###### Set environment variables ######
+source /home/jacqueline.zorz/software/miniconda3/etc/profile.d/conda.sh 
+conda activate racon
+
+###### Set environment variables ######
+echo "Starting run at : 'date'"
+#step 1
+/work/ebg_lab/gm/gapp/jzorz/bwa/bwa index $ASSEMBLY
+
+
+/work/ebg_lab/gm/gapp/jzorz/bwa/bwa mem -t 10 -x ont2d $ASSEMBLY $SEQS -o assembly.mapping.sam
+
+
+/work/ebg_lab/gm/gapp/jzorz/racon/build/bin/racon -t 10 $SEQS assembly.mapping.sam $ASSEMBLY > racon1.fasta
+
+sed -n '/^>/,$p' racon1.fasta | sed 's/\s.*$//g' > racon1.mod.fasta
+
+#step 2
+/work/ebg_lab/gm/gapp/jzorz/bwa/bwa index racon1.mod.fasta
+
+/work/ebg_lab/gm/gapp/jzorz/bwa/bwa mem -t 10 -x ont2d racon1.mod.fasta $SEQS -o racon1.mapping.sam
+
+/work/ebg_lab/gm/gapp/jzorz/racon/build/bin/racon -t 10 $SEQS racon1.mapping.sam racon1.mod.fasta > racon2.fasta
+
+sed -n '/^>/,$p' racon2.fasta | sed 's/\s.*$//g' > racon2.mod.fasta
+
+#step 3
+/work/ebg_lab/gm/gapp/jzorz/bwa/bwa index racon2.mod.fasta
+
+/work/ebg_lab/gm/gapp/jzorz/bwa/bwa mem -t 10 -x ont2d racon2.mod.fasta $SEQS -o racon2.mapping.sam
+
+/work/ebg_lab/gm/gapp/jzorz/racon/build/bin/racon -t 10 $SEQS racon2.mapping.sam racon2.mod.fasta > racon3.fasta
+
+sed -n '/^>/,$p' racon3.fasta | sed 's/\s.*$//g' > racon3.mod.fasta
+
+#step 4 
+/work/ebg_lab/gm/gapp/jzorz/bwa/bwa index racon3.mod.fasta
+
+/work/ebg_lab/gm/gapp/jzorz/bwa/bwa mem -t 10 -x ont2d racon3.mod.fasta $SEQS -o racon3.mapping.sam
+
+/work/ebg_lab/gm/gapp/jzorz/racon/build/bin/racon -t 10 $SEQS racon3.mapping.sam racon3.mod.fasta > racon4.fasta
+
+sed -n '/^>/,$p' racon4.fasta | sed 's/\s.*$//g' > racon4.mod.fasta
+
+##
+echo "Job finished with exit code $? at: 'date'"
+##
+```
 
