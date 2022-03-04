@@ -56,6 +56,18 @@ metaspades.py -1 /work/ebg_lab/gm/gapp/jzorz/2015-nanopore/JZ-Condor-BG15-Backgr
 
 
 
+## Long read assembly
+
+For assembly of long reads independently: 
+
+```
+#trim adapters
+cat *.fastq.gz > 2B3_D53_2428_seqs.fastq.gz
+conda activate porechop
+porechop -i 2B3_D53_2428_seqs.fastq.gz -o 2B3_D53_2428_seqs_trimmed.fastq.gz -t 20
+
+```
+
 
 
 
