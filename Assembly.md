@@ -90,3 +90,13 @@ metaquast.py --fast -m 500 -t 20 -o metaquast -l megahit final.contigs.fa
 ```
 
 
+## Stats.sh bbtools
+
+Use stats.sh to get quick overview of assembly statistics 
+```
+conda activate bbtools
+
+stats.sh in=/work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/megahit/megahit_JZ-Condor-2B1-PurplePatch-A54-0-4_norm100/final.contigs.fa
+```
+
+
