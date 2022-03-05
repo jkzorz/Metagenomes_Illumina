@@ -43,6 +43,11 @@ From: https://github.com/WrightonLabCSU/DRAM/issues/54
 
 Can then use concatenated tRNA, rRNA, and annotation.tsv files from each MAG as input for DRAM.py distill 
 
+Example command for concatenating files from all dram output folders: 
+```
+for i in good_bin_annotations*/annotations.tsv; do cat $i >> all_annotations.tsv; done
+```
+
 ## Barrnap 
 Use barrnap to grab rRNA genes from bins 
 
