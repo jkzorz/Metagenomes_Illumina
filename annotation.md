@@ -46,6 +46,11 @@ Can then use concatenated tRNA, rRNA, and annotation.tsv files from each MAG as 
 Example command for concatenating files from all dram output folders: 
 ```
 for i in good_bin_annotations*/annotations.tsv; do cat $i >> all_annotations.tsv; done
+for i in good_bin_annotations*/trnas.tsv; do cat $i >> all_trnas.tsv; done
+for i in good_bin_annotations*/rrnas.tsv; do cat $i >> all_rrnas.tsv; done
+
+#distill
+DRAM.py distill -i all_annotations.tsv -o genome_summaries --trna_path all_trnas.tsv --rrna_path all_rrnas.tsv
 ```
 
 ## Barrnap 
