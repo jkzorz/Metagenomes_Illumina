@@ -2,7 +2,7 @@
 The assembly with MegaHit has generally been poor for individual samples (e.g. N50 <1000 bp, < 10% of reads assembled? - need to check this stat), and there are very few abundant species making high quality bins. The metagenomes from this study (https://www.nature.com/articles/s41396-019-0448-2#Sec2) were sequenced using a MiSeq sequencer. Only 5-15M reads obtained, but they managed to get 3 high quality Atribacteria bins. They also had a very high percentage of reads that assembled. They used metaspades and Maxbin for assembly and binning, respectively. 
 
 
-According to Kraken. 5% of the raw reads from PurplePatch 24-28cm were Atribacteria (16% of assigned reads), and 5.98% of the contigs from the same sample (12% of assigned contigs) were assigned to Atribacteria. Archaea actually don't seem to be assembling well as they are about 50% of raw reads, and only ~14% of contig sequences) 
+According to Kraken. 5% of the raw reads from PurplePatch 24-28cm were Atribacteria (16% of assigned reads, 6 million reads), and 5.98% of the contigs from the same sample (12% of assigned contigs, 23K contigs) were assigned to Atribacteria. Of the unbinned contigs from the same sample 6% of contigs were Atribacteria (22k contigs, 13% of assigned contigs, 2 Atribacteria bins were actually made - 40 and 26% complete). Archaea actually don't seem to be assembling well as they are about 50% of raw reads, and only ~14% of contig sequences) 
 
 
 ## Mapping
