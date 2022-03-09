@@ -209,6 +209,8 @@ Potential solution:
 https://bitbucket.org/berkeleylab/metabat/issues/111/jgi_summarize_bam_contig_depths-to
 You can take the weighted average of the set of contigs for each MAG. Maybe Import the depths.txt to a spreadsheet and sum (length*avg_coverage) / sum(length)
 
+How JGI_summarize_bam_contigs_depth works: https://bitbucket.org/berkeleylab/metabat/issues/48/jgi_summarize_bam_contig_depths-coverage
+1) The edges of a contig are generally excluded from the coverage counts up to a default of 75 bases or the average read length (--includeEdgeBases, --maxEdgeBases). This is because, generally mappers have a difficult time aligning a partial read to a contig when it would extend off edge and the coverage ramps up from 0 to the true coverage in this region 2) reads that map imperfectly are excluded when the %ID of the mapping drops below a threshold (--percentIdentity=97). MetaBAT is designed to resolve strain variation and mapping reads with low %ID indicate that the read actually came from a different strain/species. 3) clips/insertions/deletions/mismatches are excluded from the coverage count -- only the read bases that exactly match the reference are counted as coverage. This generally has a small effect, except in the case of long reads from PacBio and Nanopore.
 
 
 ## Testing vamb
