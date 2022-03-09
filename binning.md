@@ -63,6 +63,11 @@ Example checkm coverage:
 checkm coverage -x fa . coverage_PurplePatch_04.tsv ../../mapping/mapping_hc_positive/reads_2A1-TheHole-C54-0-4_contig_2B1-PurplePatch-A54-0-4_sorted.bam 
 ```
 
+Example checkm unbinned: 
+```
+checkm unbinned . /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/megahit/megahit_hc_positive/megahit_JZ-Condor-2B1-PurplePatch-A54-24-28_Li32230_S6/final.contigs.fa unbinned.fna unbinned_stats.tsv
+```
+
 
 ## Gtdbtk
 Example Gtdbtk script 
