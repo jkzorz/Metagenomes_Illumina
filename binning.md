@@ -203,11 +203,11 @@ checkm coverage -t 20 -x fa /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/bin
 
 ## Calculating coverage of MAGs
 
-Issues: huge files, lots of unassembled and unbinned reads, many samples 
+Issues: huge files, lots of unassembled and unbinned reads, many samples. Would like to avoid re-mapping reads to bins  
 
 Potential solution: 
 https://bitbucket.org/berkeleylab/metabat/issues/111/jgi_summarize_bam_contig_depths-to
-
+You can take the weighted average of the set of contigs for each MAG. Maybe Import the depths.txt to a spreadsheet and sum (length*avg_coverage) / sum(length)
 
 
 
