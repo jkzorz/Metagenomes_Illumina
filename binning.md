@@ -201,6 +201,15 @@ checkm coverage -t 20 -x fa /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/bin
 
 ```
 
+## Calculating coverage of MAGs
+
+Issues: huge files, lots of unassembled and unbinned reads, many samples 
+
+Potential solution: 
+https://bitbucket.org/berkeleylab/metabat/issues/111/jgi_summarize_bam_contig_depths-to
+
+
+
 
 ## Testing vamb
 
