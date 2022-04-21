@@ -152,8 +152,26 @@ conda activate minimap
 minimap2 -ax map-ont flye_assembly/assembly.fasta Nanopore_2A2_seqs_trimmed.fastq > map1.sam
 #step 1 - polish 
 /work/ebg_lab/gm/gapp/jzorz/racon/build/bin/racon -t 20 Nanopore_2A2_seqs_trimmed.fastq map1.sam flye_assembly/assembly.fasta > racon1.fasta
+sed -n '/^>/,$p' racon1.fasta | sed 's/\s.*$//g' > racon1.mod.fasta
 
+#step 2 - mapping
+conda activate minimap
+minimap2 -ax map-ont racon1.mod.fasta Nanopore_2A2_seqs_trimmed.fastq > racon1.map.sam
+#step 2 - polish 
+/work/ebg_lab/gm/gapp/jzorz/racon/build/bin/racon -t 20 Nanopore_2A2_seqs_trimmed.fastq racon1.map.sam racon1.mod.fasta > racon2.fasta
+sed -n '/^>/,$p' racon2.fasta | sed 's/\s.*$//g' > racon2.mod.fasta
 
+#step 3 - mapping
+minimap2 -ax map-ont racon2.mod.fasta Nanopore_2A2_seqs_trimmed.fastq > racon2.map.sam
+#step 3 - polish
+/work/ebg_lab/gm/gapp/jzorz/racon/build/bin/racon -t 20 Nanopore_2A2_seqs_trimmed.fastq racon2.map.sam racon2.mod.fasta > racon3.fasta
+sed -n '/^>/,$p' racon3.fasta | sed 's/\s.*$//g' > racon3.mod.fasta
+
+#step 4 - mapping 
+minimap2 -ax map-ont racon3.mod.fasta Nanopore_2A2_seqs_trimmed.fastq > racon3.map.sam
+#step 4 - polish
+/work/ebg_lab/gm/gapp/jzorz/racon/build/bin/racon -t 20 Nanopore_2A2_seqs_trimmed.fastq racon3.map.sam racon3.mod.fasta > racon4.fasta
+sed -n '/^>/,$p' racon4.fasta | sed 's/\s.*$//g' > racon4.mod.fasta
 ```
 
 
