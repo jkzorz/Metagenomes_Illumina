@@ -143,6 +143,22 @@ echo "Job finished with exit code $? at: 'date'"
 ##
 ```
 
+
+**Instead of using bwa mem like above, manually ran all polishing steps using minimap2 and racon**
+
+```
+conda activate minimap 
+#step 1 - mapping
+minimap2 -ax map-ont flye_assembly/assembly.fasta Nanopore_2A2_seqs_trimmed.fastq > map1.sam
+#step 1 - polish 
+/work/ebg_lab/gm/gapp/jzorz/racon/build/bin/racon -t 20 Nanopore_2A2_seqs_trimmed.fastq map1.sam flye_assembly/assembly.fasta > racon1.fasta
+
+
+```
+
+
+
+
 Final round of polishing with medaka: 
 
 ```
