@@ -75,6 +75,10 @@ flye --nano-raw 2B3_D53_2428_seqs_trimmed.fastq.gz --meta --genome-size 4m --out
 ```
 
 Four rounds of mapping and polishing with bwa and racon 
+
+**Having issues with bwa mem mapping on larger nanopore files... May need to substitute bwa mem for minimap2 here...**
+
+
 ```
 #!/bin/bash
 ###### Reserve computing resources ######
