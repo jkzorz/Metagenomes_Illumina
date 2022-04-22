@@ -106,6 +106,33 @@ echo "Job finished with exit code $? at: 'date'"
 
 ```
 
+Gtdbtk script used for dereplicated bins. Updated to gtdbtk v2.0.0 and db release 207 
+
+```
+#!/bin/bash
+###### Reserve computing resources ######
+#SBATCH --mail-user=jacqueline.zorz@ucalgary.ca
+#SBATCH --mail-type=ALL
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=40
+#SBATCH --mem=500GB
+#SBATCH --time=12:00:00
+#SBATCH --partition=bigmem
+
+###### Set environment variables ######
+echo "Starting run at : 'date'"
+source /home/jacqueline.zorz/software/miniconda3/etc/profile.d/conda.sh 
+conda activate gtdbtk2
+
+###### Run your script ######
+
+gtdbtk classify_wf --genome_dir /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/drep_out/dereplicated_genomes/ -x fa --out_dir /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/drep_out/gtdbtk_bins_update207 --cpus 40
+
+
+```
+
+
 
 
 ## dRep 
