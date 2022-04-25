@@ -178,6 +178,7 @@ sed -n '/^>/,$p' racon4.fasta | sed 's/\s.*$//g' > racon4.mod.fasta
 
 
 Final round of polishing with medaka: 
+Takes a long time with large files - over 1 day. 
 
 ```
 #!/bin/bash
@@ -187,9 +188,9 @@ Final round of polishing with medaka:
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=30
-#SBATCH --mem=100GB
-#SBATCH --time=3:00:00
-#SBATCH --partition=cpu2019,apophis-bf,pawson-bf,razi-bf,cpu2021,cpu2021-bf24,cpu2019-bf05
+#SBATCH --mem=180GB
+#SBATCH --time=100:00:00
+#SBATCH --partition=cpu2021,cpu2019
 
 
 ###### Set environment variables ######
@@ -197,16 +198,17 @@ source /home/jacqueline.zorz/software/miniconda3/etc/profile.d/conda.sh
 conda activate medaka
 
 
-medaka_consensus -i /work/ebg_lab/gm/gapp/jzorz/2B3_2428_D53_fastq_pass/2B3_D53_2428_seqs_trimmed.fastq.gz -d racon4.mod.fasta -t 25 -m r941_min_high_g303 -o Medaka_polish
+medaka_consensus -i Nanopore_2A2_seqs_trimmed.fastq -d racon4.mod.fasta -t 25 -m r941_min_high_g303 -o Medaka_polish4
 
 ```
 
 Map reads to polished contigs with minimap
 
 ```
-minimap2 -ax map-ont Medaka_polish/consensus.fasta 2B3_D53_2428_seqs_trimmed.fastq.gz > 2B3_D53_2428.sam
+minimap2 -ax map-ont Medaka_polish4/consensus.fasta Nanopore_2A2_seqs_trimmed.fastq > 2A2_polished_seqs.sam
 
-###Output:
+
+###Output of 2B3_D53 run:
 
 2428_seqs_trimmed.fastq.gz > 2B3_D53_2428.sam
 [M::mm_idx_gen::0.124*0.88] collected minimizers
@@ -220,6 +222,15 @@ minimap2 -ax map-ont Medaka_polish/consensus.fasta 2B3_D53_2428_seqs_trimmed.fas
 [M::main] CMD: minimap2 -ax map-ont Medaka_polish/consensus.fasta 2B3_D53_2428_seqs_trimmed.fastq.gz
 [M::main] Real time: 16.110 sec; CPU: 32.312 sec; Peak RSS: 1.160 GB
 
+###Output of 2A2_D52 run:
+[M::mm_idx_gen::4.506*1.33] collected minimizers
+[M::mm_idx_gen::5.373*1.60] sorted minimizers
+[M::main::5.375*1.60] loaded/built the index for 20653 target sequence(s)
+[M::mm_mapopt_update::5.732*1.56] mid_occ = 34
+[M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 20653
+[M::mm_idx_stat::5.927*1.54] distinct minimizers: 24662668 (77.10% are singletons); average occurrences: 1.427; average spacing: 5.338; total length: 187914556
+
+
 ```
 
 Sort and index sam/bam files and create depth file 
@@ -227,11 +238,11 @@ Sort and index sam/bam files and create depth file
 ```
 conda activate samtools 
 
-samtools view -b 2B3_D53_2428.sam -o 2B3_D53_2428.bam
+samtools view -b 2A2_polished_seqs.sam -o 2A2_polished_seqs.bam
 
-samtools sort -o 2B3_D53_2428_sort.bam 2B3_D53_2428.bam
+samtools sort -o 2A2_polished_seqs_sort.bam 2A2_polished_seqs.bam
 
-samtools index 2B3_D53_2428_sort.bam
+samtools index 2A2_polished_seqs_sort.bam
 
 #metabat
 conda activate metabat
@@ -239,5 +250,16 @@ conda activate metabat
 jgi_summarize_bam_contig_depths --outputDepth depth.txt *sort.bam
 
 ```
+
+## Binning 
+Try different binning methods and compare results:
+- medaka consensus fasta without a depth file
+- medaka consensus fasta with a depth file
+- short read polished medaka consensus fasta without a depth file 
+
+
+## Polishing Nanopore assembly with Illumina short reads 
+
+
 
 
