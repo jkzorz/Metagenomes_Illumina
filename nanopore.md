@@ -301,6 +301,14 @@ samtools sort -o medaka_short_read_map_sort.bam medaka_short_read_map.bam
 samtools index medaka_short_read_map_sort.bam
 ```
 
+Because the metagenome was too large for pilon, try mapping and polishing with just atribacteria bin (metabat_medaka_polish_depth/bin_test3.21.fa)
+
+```
+minimap2 -ax sr metabat_medaka_polish_depth/bin_test3.21.fa JZ-Condor-2A2-PurpleHaze-D52-24-28_Li32312_S88_R1_QC.fastq JZ-Condor-2A2-PurpleHaze-D52-24-28_Li32312_S88_R2_QC.fastq > medaka_short_read_map_atribacteria.sam
+
+```
+
+
 
 ### Pilon 
 Not intended for metagenomes: https://github.com/broadinstitute/pilon/issues/31
