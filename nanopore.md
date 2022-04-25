@@ -306,6 +306,11 @@ Because the metagenome was too large for pilon, try mapping and polishing with j
 ```
 minimap2 -ax sr metabat_medaka_polish_depth/bin_test3.21.fa JZ-Condor-2A2-PurpleHaze-D52-24-28_Li32312_S88_R1_QC.fastq JZ-Condor-2A2-PurpleHaze-D52-24-28_Li32312_S88_R2_QC.fastq > medaka_short_read_map_atribacteria.sam
 
+conda activate samtools
+samtools view -b medaka_short_read_map_atribacteria.sam -o medaka_short_read_map_atribacteria.bam
+samtools sort -o medaka_short_read_map_atribacteria_sort.bam medaka_short_read_map_atribacteria.bam
+samtools index medaka_short_read_map_atribacteria_sort.bam
+
 ```
 
 
