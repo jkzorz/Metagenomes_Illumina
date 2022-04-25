@@ -292,8 +292,51 @@ Start by mapping short reads to medaka consensus alignment with minimap2
 ```
 minimap2 -ax sr Medaka_polish4/consensus.fasta JZ-Condor-2A2-PurpleHaze-D52-24-28_Li32312_S88_R1_QC.fastq JZ-Condor-2A2-PurpleHaze-D52-24-28_Li32312_S88_R2_QC.fastq > medaka_short_read_map.sam
 ```
+Then need to convert sam to bam and sort and index bam file 
+
+```
+conda activate samtools
+samtools view -b medaka_short_read_map.sam -o medaka_short_read_map.bam
+samtools sort -o medaka_short_read_map_sort.bam medaka_short_read_map.bam
+samtools index medaka_short_read_map_sort.bam
+```
+
 
 ### Pilon 
 Not intended for metagenomes: https://github.com/broadinstitute/pilon/issues/31
+Try anyway... 
+
+```
+#!/bin/bash
+###### Reserve computing resources ######
+#SBATCH --mail-user=jacqueline.zorz@ucalgary.ca
+#SBATCH --mail-type=ALL
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=30
+#SBATCH --mem=500GB
+#SBATCH --time=12:00:00
+#SBATCH --partition=bigmem
+
+###### Set environment variables ######
+echo "Starting run at : 'date'"
+source /home/jacqueline.zorz/software/miniconda3/etc/profile.d/conda.sh 
+conda activate pilon
+
+cd /work/ebg_lab/gm/gapp/jzorz/Nanopore_2A2_D52_32-36cm/
+
+###### Run your script ######
+
+pilon --genome Medaka_polish4/consensus.fasta --frags medaka_short_read_map_sort.bam --output pilon_polish_short_reads --outdir pilon_polish_short_reads --threads 20
+
+##
+echo "Job finished with exit code $? at: 'date'"
+##
+
+
+```
+
+
+
 
 
