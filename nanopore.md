@@ -286,6 +286,10 @@ metabat -i Medaka_polish4/consensus.fasta -a medaka_depth.txt -o metabat_medaka_
 
 ## Polishing Nanopore assembly with Illumina short reads 
 
+Start by mapping short reads to medaka consensus alignment with minimap2
 
+```
+minimap2 -ax sr Medaka_polish4/consensus.fasta JZ-Condor-2A2-PurpleHaze-D52-24-28_Li32312_S88_R1_QC.fastq JZ-Condor-2A2-PurpleHaze-D52-24-28_Li32312_S88_R2_QC.fastq > medaka_short_read_map.sam
+```
 
 
