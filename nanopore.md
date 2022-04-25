@@ -229,6 +229,9 @@ minimap2 -ax map-ont Medaka_polish4/consensus.fasta Nanopore_2A2_seqs_trimmed.fa
 [M::mm_mapopt_update::5.732*1.56] mid_occ = 34
 [M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 20653
 [M::mm_idx_stat::5.927*1.54] distinct minimizers: 24662668 (77.10% are singletons); average occurrences: 1.427; average spacing: 5.338; total length: 187914556
+[M::main] Version: 2.22-r1101
+[M::main] CMD: minimap2 -ax map-ont Medaka_polish4/consensus.fasta Nanopore_2A2_seqs_trimmed.fastq
+[M::main] Real time: 1698.012 sec; CPU: 5103.984 sec; Peak RSS: 4.051 GB
 
 
 ```
