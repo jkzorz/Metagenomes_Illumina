@@ -281,7 +281,7 @@ metabat -i Medaka_polish4/consensus.fasta -o metabat_medaka_polish/bin_test2 -v
 ```
 metabat -i Medaka_polish4/consensus.fasta -a medaka_depth.txt -o metabat_medaka_polish_depth/bin_test3 -v
 ```
-
+30 bins formed. Largest bin had less contamination (~300%). Less contamination across all bins, but they were less complete as well. Two bins with >80% completeness and <5% contamination. One bin with 88% completeness and 5.12% contamination (decreased contamination from previous trials). The remaining bins were <60% complete, most under 50% 
 
 
 ## Polishing Nanopore assembly with Illumina short reads 
