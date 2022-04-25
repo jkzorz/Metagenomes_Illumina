@@ -277,6 +277,13 @@ metabat -i Medaka_polish4/consensus.fasta -o metabat_medaka_polish/bin_test2 -v
 
 28 bins created. Largest bin had >2000% contamination... Two bins with >80% completeness, <5% contamination. One more bin had 88% completeness, 10% contamination. Not much improvement over Racon polish only bins 
 
+### Medaka polish and depth file 
+```
+metabat -i Medaka_polish4/consensus.fasta -a medaka_depth.txt -o metabat_medaka_polish_depth/bin_test3 -v
+```
+
+
+
 ## Polishing Nanopore assembly with Illumina short reads 
 
 
