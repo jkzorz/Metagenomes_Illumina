@@ -333,9 +333,8 @@ pilon --genome Medaka_polish4/consensus.fasta --frags medaka_short_read_map_sort
 echo "Job finished with exit code $? at: 'date'"
 ##
 
-
 ```
-
+Can't seem to get pilon to run because there is not enough memory - even with 2500 GB. It was designed for small genomes. 
 
 
 
