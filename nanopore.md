@@ -275,7 +275,7 @@ metabat -i racon4.mod.fasta -o metabat_racon_polish_only/bin_test -v
 metabat -i Medaka_polish4/consensus.fasta -o metabat_medaka_polish/bin_test2 -v
 ```
 
-28 bins created. Largest bin had >2000% contamination... Two bins with >80% completeness, <5% contamination. One more bin had 88% completeness, 10% contamination. Not much improvement over Racon polish only bins 
+28 bins created. Largest bin had >2000% contamination... Two bins with >80% completeness, <5% contamination. One more bin had 88% completeness, 10% contamination. Not much improvement over Racon polish only bins. Good bins are Chloroflexota and WOR-3 
 
 ### Medaka polish and depth file 
 ```
