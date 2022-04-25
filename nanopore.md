@@ -261,6 +261,22 @@ Try different binning methods and compare results:
 - short read polished medaka consensus fasta without a depth file 
 
 
+### Racon polish only
+```
+metabat -i racon4.mod.fasta -o metabat_racon_polish_only/bin_test -v
+```
+
+24 bins created. Lots of contamination in large bins (>1800%). Two bins with >75% completeness, <5% contamination, one more bin had 88% completeness, 8% contamination. 
+
+
+
+### Medaka polish 
+```
+metabat -i Medaka_polish4/consensus.fasta -o metabat_medaka_polish/bin_test2 -v
+```
+
+28 bins created. 
+
 ## Polishing Nanopore assembly with Illumina short reads 
 
 
