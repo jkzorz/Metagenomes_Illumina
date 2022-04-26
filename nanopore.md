@@ -281,7 +281,7 @@ metabat -i Medaka_polish4/consensus.fasta -o metabat_medaka_polish/bin_test2 -v
 ```
 metabat -i Medaka_polish4/consensus.fasta -a medaka_depth.txt -o metabat_medaka_polish_depth/bin_test3 -v
 ```
-30 bins formed. Largest bin had less contamination (~300%). Less contamination across all bins, but they were less complete as well. Two bins with >80% completeness and <5% contamination. One bin with 88% completeness and 5.12% contamination (decreased contamination from previous trials). The remaining bins were <60% complete, most under 50%. Good bins were Atribacterota (83% complete, 3% contamination) and Caldisericota (82% complete, 2% contamination)
+30 bins formed. Largest bin had less contamination (~300%). Less contamination across all bins, but they were less complete as well. Two bins with >80% completeness and <5% contamination. One bin with 88% completeness and 5.12% contamination (decreased contamination from previous trials). The remaining bins were <60% complete, most under 50%. Good bins were **Atribacterota (83% complete, 3% contamination)** and Caldisericota (82% complete, 2% contamination)
 
 
 ## Polishing Nanopore assembly with Illumina short reads 
@@ -313,6 +313,37 @@ samtools index medaka_short_read_map_atribacteria_sort.bam
 
 ```
 
+Pilon with just Atribacteria bin (bin_test3.21).
+
+```
+#!/bin/bash
+###### Reserve computing resources ######
+#SBATCH --mail-user=jacqueline.zorz@ucalgary.ca
+#SBATCH --mail-type=ALL
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=30
+#SBATCH --mem=500GB
+#SBATCH --time=12:00:00
+#SBATCH --partition=bigmem
+
+###### Set environment variables ######
+echo "Starting run at : 'date'"
+source /home/jacqueline.zorz/software/miniconda3/etc/profile.d/conda.sh 
+conda activate pilon
+
+cd /work/ebg_lab/gm/gapp/jzorz/Nanopore_2A2_D52_32-36cm/
+
+###### Run your script ######
+
+pilon --genome metabat_medaka_polish_depth/bin_test3.21.fa --frags medaka_short_read_map_atribacteria_sort.bam --output pilon_polish_short_reads_atribacteria --outdir pilon_polish_short_reads_atribacteria
+
+##
+echo "Job finished with exit code $? at: 'date'"
+##
+```
+
+**Ran checkM and gtdbtk on pilon polished bin. Completeness of bin increased to 84.75% (from 83.05%) and contamination remained at 3.39% (same)**. Bin was still classified as Atribacteria.
 
 
 ### Pilon 
@@ -348,6 +379,8 @@ echo "Job finished with exit code $? at: 'date'"
 
 ```
 Can't seem to get pilon to run because there is not enough memory - even with 2500 GB. It was designed for small genomes. 
+
+
 
 
 
