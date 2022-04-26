@@ -344,7 +344,7 @@ echo "Job finished with exit code $? at: 'date'"
 ```
 
 **Ran checkM and gtdbtk on pilon polished bin. Completeness of bin increased to 84.75% (from 83.05%) and contamination remained at 3.39% (same)**. Bin was still classified as Atribacteria.
-
+Extracted Atri bin 16S sequence and blasted against Atlantic Condor Illumina 16S sequences (as of Feb22). There were ~194 ASV matches with >97% similarity to the bin 16S sequence. There was 1 ASV with 100% identity, and 7 ASVs with 99.644% identity (one mismatch). The sample with the highest % abundance of these 8 ASVs was 2A2 D52 Purple Haze 32-36 cm (the same sample that was used for Nanopore sequencing - so that checks out)  
 
 ### Pilon 
 Not intended for metagenomes: https://github.com/broadinstitute/pilon/issues/31
