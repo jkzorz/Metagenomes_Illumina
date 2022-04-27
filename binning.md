@@ -240,7 +240,7 @@ First need fasta to contig file. This command didn't originally execute from das
 
 Next run DasTool command 
 ```
-DAS_Tool -i my_contigs2bin_hybrid.tsv -c ../metaspades_hybrid_assembly2/contigs.fasta -o DAS_Tool_hybrid --write_bins --write_bin_evals --write_unbinned
+DAS_Tool -i my_contigs2bin_hybrid.tsv -c ../metaspades_hybrid_assembly2/contigs.fasta -o DAS_Tool_hybrid --write_bins --write_bin_evals --write_unbinned -t 20
 ```
 
 
