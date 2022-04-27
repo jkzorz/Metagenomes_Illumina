@@ -281,11 +281,48 @@ metabat -i Medaka_polish4/consensus.fasta -a medaka_depth.txt -o metabat_medaka_
 ```
 30 bins formed. Largest bin had less contamination (~300%). Less contamination across all bins, but they were less complete as well. Two bins with >80% completeness and <5% contamination. One bin with 88% completeness and 5.12% contamination (decreased contamination from previous trials). The remaining bins were <60% complete, most under 50%. Good bins were **Atribacterota (83% complete, 3% contamination)** and Caldisericota (82% complete, 2% contamination)
 
-## Hybrid assembly only 
+### Hybrid assembly only 
 ```
 metabat -i metaspades_hybrid_assembly2/contigs.fasta -o metabat_hybrid_metaspades_only/bin_test4 -v
 ```
 45 bins formed. Lots of contamination in 4 bins (>100%). But 10 bins with >70% completeness and <5% contamination. One bin had 100% completeness and 0% contamination (Planctomycetes). No Atribacteria bin this time around. 
+
+### Hybrid assembly and depth files
+**Long read mapping to hybrid assembly**
+
+```
+minimap2 -ax map-ont metaspades_hybrid_assembly2/contigs.fasta Nanopore_2A2_seqs_trimmed.fastq > 2A2_hybrid_assembly_long.sam
+
+#samtools
+conda activate samtools 
+samtools view -b 2A2_hybrid_assembly_long.sam -o 2A2_hybrid_assembly_long.bam
+samtools sort -o 2A2_hybrid_assembly_long_sort.bam 2A2_hybrid_assembly_long.bam
+samtools index 2A2_hybrid_assembly_long_sort.bam
+
+#metabat
+conda activate metabat
+#create depth file
+jgi_summarize_bam_contig_depths --outputDepth hybrid_long_map_depth.txt *long_sort.bam
+```
+
+**Short read mapping to hybrid assembly**
+
+```
+minimap2 -ax sr metaspades_hybrid_assembly2/contigs.fasta JZ-Condor-2A2-PurpleHaze-D52-24-28_Li32312_S88_R1_QC.fastq JZ-Condor-2A2-PurpleHaze-D52-24-28_Li32312_S88_R2_QC.fastq > 2A2_hybrid_assembly_short.sam
+
+#samtools
+conda activate samtools 
+samtools view -b 2A2_hybrid_assembly_short.sam -o 2A2_hybrid_assembly_short.bam
+samtools sort -o 2A2_hybrid_assembly_short_sort.bam 2A2_hybrid_assembly_short.bam
+samtools index 2A2_hybrid_assembly_short_sort.bam
+
+#metabat
+conda activate metabat
+#create depth file
+jgi_summarize_bam_contig_depths --outputDepth hybrid_short_map_depth.txt *short_sort.bam
+```
+
+
 
 ## Polishing Nanopore assembly with Illumina short reads 
 
