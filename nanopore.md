@@ -285,7 +285,7 @@ metabat -i Medaka_polish4/consensus.fasta -a medaka_depth.txt -o metabat_medaka_
 ```
 metabat -i metaspades_hybrid_assembly2/contigs.fasta -o metabat_hybrid_metaspades_only/bin_test4 -v
 ```
-
+45 bins formed. Lots of contamination in 4 bins (>100%). But 12 bins with >70% completeness and <5% contamination. One bin had 100% completeness and 0% contamination.
 
 ## Polishing Nanopore assembly with Illumina short reads 
 
