@@ -268,7 +268,7 @@ metabat -i racon4.mod.fasta -o metabat_racon_polish_only/bin_test -v
 
 
 
-### Medaka polish 
+### Racon and Medaka polish only 
 ```
 metabat -i Medaka_polish4/consensus.fasta -o metabat_medaka_polish/bin_test2 -v
 ```
@@ -280,6 +280,11 @@ metabat -i Medaka_polish4/consensus.fasta -o metabat_medaka_polish/bin_test2 -v
 metabat -i Medaka_polish4/consensus.fasta -a medaka_depth.txt -o metabat_medaka_polish_depth/bin_test3 -v
 ```
 30 bins formed. Largest bin had less contamination (~300%). Less contamination across all bins, but they were less complete as well. Two bins with >80% completeness and <5% contamination. One bin with 88% completeness and 5.12% contamination (decreased contamination from previous trials). The remaining bins were <60% complete, most under 50%. Good bins were **Atribacterota (83% complete, 3% contamination)** and Caldisericota (82% complete, 2% contamination)
+
+## Hybrid assembly only 
+```
+metabat -i metaspades_hybrid_assembly2/contigs.fasta -o metabat_hybrid_metaspades_only/bin_test4 -v
+```
 
 
 ## Polishing Nanopore assembly with Illumina short reads 
