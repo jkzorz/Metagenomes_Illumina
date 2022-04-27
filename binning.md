@@ -228,6 +228,24 @@ checkm coverage -t 20 -x fa /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/bin
 
 ```
 
+## DAS Tool for bin refinement
+
+May want to go back and try DAS Tool before dREP. 
+
+First need fasta to contig file. This command didn't originally execute from dastool installation so I copied the code and put it in a new file directly. 
+
+```
+../Fasta_to_Contig2Bin.sh -e fa > my_contigs2bin_hybrid.tsv
+```
+
+Next run DasTool command 
+```
+DAS_Tool -i my_contigs2bin_hybrid.tsv -c ../metaspades_hybrid_assembly2/contigs.fasta -o DAS_Tool_hybrid --write_bins --write_bin_evals --write_unbinned
+```
+
+
+
+
 ## Calculating coverage of MAGs
 
 Issues: huge files, lots of unassembled and unbinned reads, many samples. Would like to avoid re-mapping reads to bins  
