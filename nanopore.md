@@ -308,6 +308,9 @@ jgi_summarize_bam_contig_depths --outputDepth hybrid_long_map_depth.txt *long_so
  metabat -i metaspades_hybrid_assembly2/contigs.fasta -a hybrid_long_map_depth.txt -o metabat_hybrid_long_depth/bin_test4 -v
 ```
 
+Generating a depth file by mapping long reads to the hybrid assembly produced only 19 bins, and only 2 with completeness >70% and contamination <5%. The best bin was from Caldisericota. 
+
+
 **Short read mapping to hybrid assembly**
 
 ```
