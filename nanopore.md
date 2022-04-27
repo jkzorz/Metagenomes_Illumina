@@ -285,7 +285,7 @@ metabat -i Medaka_polish4/consensus.fasta -a medaka_depth.txt -o metabat_medaka_
 ```
 metabat -i metaspades_hybrid_assembly2/contigs.fasta -o metabat_hybrid_metaspades_only/bin_test4 -v
 ```
-45 bins formed. Lots of contamination in 4 bins (>100%). But 10 bins with >70% completeness and <5% contamination. One bin had 100% completeness and 0% contamination (Planctomycetes). No Atribacteria bin this time around. 
+45 bins formed. Lots of contamination in 4 bins (>100%). But 10 bins with >70% completeness and <5% contamination. One bin had 100% completeness and 0% contamination (Planctomycetes). No Atribacteria bin this time around. 94% of contigs binned
 
 ### Hybrid assembly and depth files
 **Long read mapping to hybrid assembly**
@@ -308,7 +308,7 @@ jgi_summarize_bam_contig_depths --outputDepth hybrid_long_map_depth.txt *long_so
  metabat -i metaspades_hybrid_assembly2/contigs.fasta -a hybrid_long_map_depth.txt -o metabat_hybrid_long_depth/bin_test4 -v
 ```
 
-Generating a depth file by mapping long reads to the hybrid assembly produced only 19 bins, and only 2 with completeness >70% and contamination <5%. The best bin was from Caldisericota. 
+Generating a depth file by mapping long reads to the hybrid assembly produced only 19 bins, and only 2 with completeness >70% and contamination <5%. The best bin was from Caldisericota. 64% of contigs binned
 
 
 **Short read mapping to hybrid assembly**
@@ -332,6 +332,7 @@ metabat -i metaspades_hybrid_assembly2/contigs.fasta -a hybrid_short_map_depth.t
 
 ```
 
+142 bins formed. 63% of contigs binned. 
 
 
 ## Polishing Nanopore assembly with Illumina short reads 
