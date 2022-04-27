@@ -34,21 +34,19 @@ Try using metaspades because it has a "nanopore" option. But they don't guarante
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=40
-#SBATCH --mem=180GB
+#SBATCH --mem=1200GB
 #SBATCH --time=24:00:00
-#SBATCH --partition=bigmem,cpu2019,cpu2021
-
+#SBATCH --partition=bigmem
 
 ###### Set environment variables ######
 echo "Starting run at : 'date'"
 source /home/jacqueline.zorz/software/miniconda3/etc/profile.d/conda.sh 
 conda activate spades
 
-cd /work/ebg_lab/gm/gapp/jzorz/2015-nanopore/
+cd /work/ebg_lab/gm/gapp/jzorz/Nanopore_2A2_D52_32-36cm/
 
-#command
-
-metaspades.py -1 /work/ebg_lab/gm/gapp/jzorz/2015-nanopore/JZ-Condor-BG15-Background-23-24-28_Li32330_S106_R1_QC.fastq -2 /work/ebg_lab/gm/gapp/jzorz/2015-nanopore/JZ-Condor-BG15-Background-23-24-28_Li32330_S106_R2_QC.fastq --nanopore /work/ebg_lab/gm/gapp/jzorz/2015-nanopore/2015_metagenome_test_trimmed.fastq -m 180 -t 40 -o metaspades_hybrid_assembly_BG15_2428
+#do the assembly using quality controlled reads
+metaspades.py -1 /work/ebg_lab/gm/gapp/jzorz/Nanopore_2A2_D52_32-36cm/JZ-Condor-2A2-PurpleHaze-D52-24-28_Li32312_S88_R1_QC.fastq -2 /work/ebg_lab/gm/gapp/jzorz/Nanopore_2A2_D52_32-36cm/JZ-Condor-2A2-PurpleHaze-D52-24-28_Li32312_S88_R2_QC.fastq --nanopore /work/ebg_lab/gm/gapp/jzorz/Nanopore_2A2_D52_32-36cm/Nanopore_2A2_seqs_trimmed.fastq -m 1000 -t 40 -o metaspades_hybrid_assembly2
 
 
 ```
