@@ -332,7 +332,7 @@ metabat -i metaspades_hybrid_assembly2/contigs.fasta -a hybrid_short_map_depth.t
 
 ```
 
-142 bins formed. 63% of contigs binned. 33 bins with >80% completeness and <5% contamination
+142 bins formed. 63% of contigs binned. 33 bins with >70% completeness and <5% contamination. Top bin 100% complete, 0% contamination (Planctomycetes). The only Atribacteria bin formed (bin3) was only 27% complete. A few bins with >80% contamination. 
 
 
 ## Polishing Nanopore assembly with Illumina short reads 
