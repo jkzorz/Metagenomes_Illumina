@@ -326,6 +326,10 @@ samtools index 2A2_hybrid_assembly_short_sort.bam
 conda activate metabat
 #create depth file
 jgi_summarize_bam_contig_depths --outputDepth hybrid_short_map_depth.txt *short_sort.bam
+
+#binning
+metabat -i metaspades_hybrid_assembly2/contigs.fasta -a hybrid_short_map_depth.txt -o metabat_hybrid_short_depth/bin_test6 -v
+
 ```
 
 
