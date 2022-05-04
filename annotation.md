@@ -71,3 +71,22 @@ Test for loop to run CANT-HYD HMMs on Purple Haze 0-4 cm bins.
 for i in bins/bin_PurpleHaze_04.*/genes.faa; do  hmmsearch --tblout hmmsearch_$(basename $(dirname $i)).tblout ../CANT-HYD.hmm $i > $(basename $(dirname $i)).out;done
 
 ```
+
+Try on all good MAGs
+
+```
+conda activate hmmer
+cd /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/drep_out/dereplicated_genomes/good_bins
+
+#copy over the hmms
+cp /work/ebg_lab/gm/CANT-HYD/Final_important_files_JZ/catallcatalytic_renamed.hmm .
+
+#copy over prodigal predicted genes for the good bins 
+for i in *.fa; do cp -R ../../bins/$(basename $i .fa) . ; done
+
+#cant hyd for loop
+for i in predicted_genes/bin*/genes.faa; do  hmmsearch --tblout hmmsearch_$(basename $(dirname $i)).tblout catallcatalytic_renamed.hmm $i > $(basename $(dirname $i)).out;done
+
+```
+
+
