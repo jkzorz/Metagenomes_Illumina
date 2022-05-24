@@ -338,8 +338,18 @@ done
 **Bam headers**
 Remove everything after first space in bam headers. Need to first convert bam to sam, change headers, then copy headers to new bam file. Then need to re-index bam file.
 
+**Test**
+```
+samtools view -H $BAM | sed "s/Solid5500XL/Solid/" | samtools reheader $BAM > new.bam
 
-
+for BAM in *.bam
+do
+     samtools view -H original.bam > header.sam
+     sed "s/\sflag.*LN/\tLN/" test_headers.sam > header_corrected.sam
+     samtools reheader header_corrected.sam original.bam > header_corrected.bam
+     samtools index header_corrected.bam
+done
+```
 
 
 ```
