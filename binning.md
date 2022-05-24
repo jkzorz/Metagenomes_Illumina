@@ -301,3 +301,25 @@ vamb --outdir /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/vamb_Purp
 
 ```
 
+## Testing CONCOCT
+
+Need to remove spaces from headers of contig file? Having issues with contig headers. Removed spaces from headers in contig.fa file, but headers didn't match bam files then and I believe this is what was causing errors with the concoct_coverage_table.py script. 
+
+```
+sed 's/ /_/g' /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/megahit/megahit_hc_positive/megahit_JZ-Condor-2B1-PurplePatch-A54-24-28_Li32230_S6/header_final.contigs.fa > /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/megahit/megahit_hc_positive/megahit_JZ-Condor-2B1-PurplePatch-A54-24-28_Li32230_S6/concoct_header_final.contigs.fa
+``` 
+
+Cut up contigs into 10k pieces
+
+```
+cut_up_fasta.py /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/megahit/megahit_hc_positive/megahit_JZ-Condor-2A -c 10000 -o 0 --merge_last -b concoct_test_PurplePatch2428/contigs_10K.bed > concoct_test_PurplePatch2428/contigs_10k.fa
+```
+
+Create coverage table 
+```
+concoct_coverage_table.py concoct_test_PurplePatch2428/contigs_10K.bed /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/mapping/mapping_bam/reads_*PurplePatch-A54-24-28_sorted.bam > concoct_test_PurplePatch2428/coverage_table.tsv
+
+``
+
+
+
