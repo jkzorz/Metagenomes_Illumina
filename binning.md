@@ -303,7 +303,44 @@ vamb --outdir /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/vamb_Purp
 
 ## Testing CONCOCT
 
-Need to remove spaces from headers of contig file? Having issues with contig headers. Removed spaces from headers in contig.fa file, but headers didn't match bam files then and I believe this is what was causing errors with the concoct_coverage_table.py script. 
+Need to remove spaces from headers of contig file? Having issues with contig headers. Removed spaces from headers in contig.fa file, but headers didn't match bam files then and I believe this is what was causing errors with the concoct_coverage_table.py script. According to CASI II, CONCOCT is supposed to be good for metagenomes with high strain diversity (test run with one sample managed to get low quality atribacteria bin). Will try using CONCOCT on metagenome data, but will need to pre-process contigs and sorted bam files so that they do not contain spaces. 
+
+
+### Pre-processing contig and sam files 
+
+Removing everything after the first space from all contig files. Run from: /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/concoct/concoct_nospace_contigs
+```
+for f in /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/megahit/megahit_hc_positive/megahit*/final.contigs.fa;
+
+do 
+	contig=$f
+	contig_name=$(basename $(dirname $f))  #megahit_JZ-Condor-2A1-TheHole-C54-24-28_Li32297_S73
+	contig_short=${contig_name:18} #2B1-TinyBubbles-C18-24-30_Li32239_S15
+	contig_short2=${contig_short%_Li*} #2B1-TinyBubbles-C18-24-30
+
+sed 's/\s.*$//' $f > ${contig_short2}_nospace_final.contigs.fa;
+
+done
+
+for f in /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/megahit/megahit_hc_negative/megahit*/final.contigs.fa;
+
+do 
+	contig=$f
+	contig_name=$(basename $(dirname $f))  #megahit_JZ-Condor-2A1-TheHole-C54-24-28_Li32297_S73
+	contig_short=${contig_name:18} #2B1-TinyBubbles-C18-24-30_Li32239_S15
+	contig_short2=${contig_short%_Li*} #2B1-TinyBubbles-C18-24-30
+
+sed 's/\s.*$//' $f > ${contig_short2}_nospace_final.contigs.fa;
+
+done
+```
+
+**Bam headers**
+Remove everything after first space in bam headers. Need to first convert bam to sam, change headers, then copy headers to new bam file. Then need to re-index bam file.
+
+
+
+
 
 ```
 sed 's/ /_/g' /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/megahit/megahit_hc_positive/megahit_JZ-Condor-2B1-PurplePatch-A54-24-28_Li32230_S6/header_final.contigs.fa > /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/megahit/megahit_hc_positive/megahit_JZ-Condor-2B1-PurplePatch-A54-24-28_Li32230_S6/concoct_header_final.contigs.fa
