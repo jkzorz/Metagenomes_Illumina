@@ -3,6 +3,7 @@
 Downloaded mash from: https://github.com/marbl/Mash/releases
 No dependencies, so just downloaded and transferred over to home drive on server. Unzipped using ``` tar -xf```
 
+**Mash version 2.3**
 
 ```
 #create sketch 
