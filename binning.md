@@ -336,20 +336,27 @@ done
 ```
 
 **Bam headers**
-Remove everything after first space in bam headers. Need to first convert bam to sam, change headers, then copy headers to new bam file. Then need to re-index bam file.
+Remove everything after first space, but keep "LN" at the end in bam headers. Need to first convert bam to sam, change headers, then copy headers to new bam file. Then need to re-index bam file.
 
-**Test**
 ```
-samtools view -H $BAM | sed "s/Solid5500XL/Solid/" | samtools reheader $BAM > new.bam
+conda activate samtools
 
-for BAM in *.bam
+
+cd /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/concoct/concoct_nospace_bam
+
+for BAM in /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/mapping/mapping_bam/*.bam;
 do
-     samtools view -H original.bam > header.sam
-     sed "s/\sflag.*LN/\tLN/" test_headers.sam > header_corrected.sam
-     samtools reheader header_corrected.sam original.bam > header_corrected.bam
-     samtools index header_corrected.bam
+	short_name=$(basename ${BAM})
+	new_name="header_nospace_${short_name}"
+
+	samtools view -H $BAM > test_header.sam
+	sed "s/\sflag.*LN/\tLN/" test_header.sam > header_corrected.sam
+	samtools reheader header_corrected.sam $BAM > $new_name
+	samtools index $new_name
+	rm test_header.sam
+	rm header_corrected.sam
 done
-```
+
 
 
 ```
