@@ -6,6 +6,8 @@ There are 19 hydrocarbon positive samples, so 19 reads x 19 contigs = 361 result
 
 Chose minid=0.9 to speed up process. Added 'if' statements so that command could be run multiple times without overwriting existing files. 
 
+**bbmap (bbtools) version: 37.62**
+
 ```
 #!/bin/bash
 ###### Reserve computing resources ######
