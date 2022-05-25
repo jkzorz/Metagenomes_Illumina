@@ -357,23 +357,60 @@ do
 	rm header_corrected.sam
 done
 
-
-
-```
-sed 's/ /_/g' /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/megahit/megahit_hc_positive/megahit_JZ-Condor-2B1-PurplePatch-A54-24-28_Li32230_S6/header_final.contigs.fa > /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/megahit/megahit_hc_positive/megahit_JZ-Condor-2B1-PurplePatch-A54-24-28_Li32230_S6/concoct_header_final.contigs.fa
-``` 
-
-Cut up contigs into 10k pieces
-
-```
-cut_up_fasta.py /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/megahit/megahit_hc_positive/megahit_JZ-Condor-2A -c 10000 -o 0 --merge_last -b concoct_test_PurplePatch2428/contigs_10K.bed > concoct_test_PurplePatch2428/contigs_10k.fa
 ```
 
-Create coverage table 
+
+## Concoct for loop **
+
+For loop to run concoct on each sample 
 ```
-concoct_coverage_table.py concoct_test_PurplePatch2428/contigs_10K.bed /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/mapping/mapping_bam/reads_*PurplePatch-A54-24-28_sorted.bam > concoct_test_PurplePatch2428/coverage_table.tsv
+#!/bin/bash
+###### Reserve computing resources ######
+#SBATCH --mail-user=jacqueline.zorz@ucalgary.ca
+#SBATCH --mail-type=ALL
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=30
+#SBATCH --mem=180GB
+#SBATCH --time=72:00:00
+#SBATCH --partition=cpu2019,cpu2021
 
-``
+###### Set environment variables ######
+echo "Starting run at : 'date'"
+source /home/jacqueline.zorz/software/miniconda3/etc/profile.d/conda.sh 
+conda activate concoct
 
+
+cd /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/concoct/
+
+mkdir /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/concoct/concoct_nospace_contigs/concoct_nospace_contigs_10K/
+
+for i in /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/concoct/concoct_nospace_contigs/*.fa;
+
+do
+
+#step 1
+cut_up_fasta.py $i -c 10000 -o 0 --merge_last -b $(basename $i .fa)_10K.bed > /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/concoct/concoct_nospace_contigs/concoct_nospace_contigs_10K/$(basename $i .fa)_10K.fa
+
+
+
+#step 2
+concoct_coverage_table.py $(basename $i .fa)_10K.bed /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/concoct/concoct_nospace_bam/header_nospace_reads*$(basename $i _nospace_final.contigs.fa)_sorted.bam > $(basename $i _nospace_final.contigs.fa)_coverage_table.tsv
+
+#step 3
+concoct --composition_file /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/concoct/concoct_nospace_contigs/concoct_nospace_contigs_10K/$(basename $i .fa)_10K.fa --coverage_file $(basename $i _nospace_final.contigs.fa)_coverage_table.tsv -b $(basename $i _nospace_final.contigs.fa)_concoct_output/ -t 25
+
+#step 4
+merge_cutup_clustering.py $(basename $i _nospace_final.contigs.fa)_concoct_output/$(basename $i _nospace_final.contigs.fa)_clustering_gt1000.csv > $(basename $i _nospace_final.contigs.fa)_concoct_output/$(basename $i _nospace_final.contigs.fa)_clustering_merged.csv
+
+#step 5
+#step 5
+mkdir $(basename $i _nospace_final.contigs.fa)_concoct_output/fasta_bins
+
+#step 6
+extract_fasta_bins.py $i $(basename $i _nospace_final.contigs.fa)_concoct_output/$(basename $i _nospace_final.contigs.fa)_clustering_merged.csv --output_path $(basename $i _nospace_final.contigs.fa)_concoct_output/fasta_bins;
+
+done
+```
 
 
