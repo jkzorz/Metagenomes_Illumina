@@ -4,6 +4,8 @@ Binning with metabat, and using jgi_summarize_contigs to create depth file.
   
 Example code with one sample at a time (as they finish mapping stage): 
 
+**Metabat version: 2.12.1**
+
 ```
 #!/bin/bash
 ###### Reserve computing resources ######
