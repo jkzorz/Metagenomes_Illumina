@@ -26,6 +26,8 @@ Skip read merging with bbmerge?
 
 Assemble each sample separately with Megahit 
 
+**Megahit version: v1.2.9**
+
 ```
 #!/bin/bash
 ###### Reserve computing resources ######
