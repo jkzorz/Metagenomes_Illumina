@@ -336,6 +336,7 @@ done
 ```
 
 **Bam headers**
+
 Remove everything after first space, but keep "LN" at the end in bam headers. Need to first convert bam to sam, change headers, then copy headers to new bam file. Then need to re-index bam file.
 
 ```
