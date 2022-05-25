@@ -2,6 +2,8 @@
 
 ## DRAM annotation 
 
+**DRAM version: 1.3**
+
 Copy all "good" (>75% complete, <5% contamination) bins into a new directory. 
 
 ```
@@ -55,6 +57,8 @@ DRAM.py distill -i all_annotations.tsv -o genome_summaries --trna_path all_trnas
 
 ## Barrnap 
 Use barrnap to grab rRNA genes from bins 
+
+**barrnap version: 0.9**
 
 ```
 for i in *.fa; do barrnap $i --outseq barrnap_16S/'rrna_'$i; done
