@@ -38,6 +38,8 @@ metabat -i /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/megahit/megahit_hc_p
 ## CheckM
 
 Example checkM script 
+
+**CheckM version: v1.1.3 **
 ```
 #!/bin/bash
 ###### Reserve computing resources ######
@@ -73,6 +75,8 @@ checkm unbinned . /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/megahit/megah
 
 ## Gtdbtk
 Example Gtdbtk script 
+
+**Gtdbtk version: v1.6.0, release 207**
 
 ```
 #!/bin/bash
@@ -140,6 +144,8 @@ gtdbtk classify_wf --genome_dir /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina
 ## dRep 
 
 Test with bins from 3 samples. Need to put locations of each bin separately into a text file 
+
+**dRep version: v3.2.2 **
 
 ```
 #e.g. make list of bin locations 
