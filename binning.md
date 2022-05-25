@@ -305,6 +305,7 @@ vamb --outdir /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/vamb_Purp
 
 Need to remove spaces from headers of contig file? Having issues with contig headers. Removed spaces from headers in contig.fa file, but headers didn't match bam files then and I believe this is what was causing errors with the concoct_coverage_table.py script. According to CASI II, CONCOCT is supposed to be good for metagenomes with high strain diversity (test run with one sample managed to get low quality atribacteria bin). Will try using CONCOCT on metagenome data, but will need to pre-process contigs and sorted bam files so that they do not contain spaces. 
 
+**Concoct version: 1.1.0**
 
 ### Pre-processing contig and sam files 
 
