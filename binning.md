@@ -450,5 +450,5 @@ Need to be really particular with including all parameters and including full pa
 -p path to metabinner scripts (don't include final /) 
 
 ```
-bash ~/software/miniconda3/envs/metabinner/bin/run_metabinner.sh -a 2B1-PurplePatch-A54-12-16_nospace_final.contigs_1000.fa -o /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/metabinner/test -d /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/concoct/2B1-PurplePatch-A54-12-16_coverage_table.tsv -k kmer_4_f1000.csv -t 10 -s huge -p ~/software/miniconda3/envs/metabinner/bin
+bash ~/software/miniconda3/envs/metabinner/bin/run_metabinner.sh -a 2B1-PurplePatch-A54-12-16_nospace_final.contigs_1000.fa -o /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/metabinner/test -d /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/concoct/2B1-PurplePatch-A54-12-16_coverage_table.tsv -k /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/metabinner/kmer_4_f1000.csv -t 10 -s huge -p ~/software/miniconda3/envs/metabinner/bin
 ```
