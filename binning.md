@@ -249,7 +249,7 @@ sh Fasta_to_Contig2Bin.sh -i dastool_2B1-PurplePatch-A54-12-16/ -e fa > 2B1-Purp
 
 Next run DasTool command 
 ```
-DAS_Tool -i my_contigs2bin_hybrid.tsv -c ../metaspades_hybrid_assembly2/contigs.fasta -o DAS_Tool_hybrid --write_bins --write_bin_evals --write_unbinned -t 20
+DAS_Tool -i 2B1-PurplePatch-A54-12-16_contigs2bin.tsv -c /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/concoct/concoct_nospace_contigs/2B1-PurplePatch-A54-12-16_nospace_final.contigs.fa -o dastool_2B1-PurplePatch-A54-12-16/ --write_bins --write_bin_evals --write_unbinned -t 20
 ```
 
 
