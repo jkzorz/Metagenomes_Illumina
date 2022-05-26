@@ -296,6 +296,31 @@ do
 done
 ```
 
+Depth files: 
+```
+for i in /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/*_depth/*depth.txt;
+do 
+
+for i in /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/concoct/concoct_nospace_contigs/set2/*fa;
+do 
+	name="$(basename $i _nospace_final.contigs.fa)"
+	NW='NW'
+	subsite="$(echo ${name} | cut -d'-' -f2)"
+	site="$(echo ${name} | cut -d'-' -f1)"
+	depth1="$(echo ${name} | cut -d'-' -f4)"
+	depth2="$(echo ${name} | cut -d'-' -f5)"
+	
+
+if [[ "$name" == *"$NW"* ]];then 
+	newname="$site$subsite"_"$depth1$depth2"
+else
+	newname="$subsite"_"$depth1$depth2"
+fi
+	echo $newname; done
+	
+	sed "s/k141/${name}.k141/g" /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/PurplePatch_2428_depth/PurplePatch_2428_depth.txt > /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/PurplePatch_2428_depth/header_PurplePatch_2428_depth.txt
+```
+
 
 vamb script: 
 
