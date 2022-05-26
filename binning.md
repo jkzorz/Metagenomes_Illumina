@@ -322,6 +322,17 @@ fi
 done
 ```
 
+**Considerations**
+Vamb works best in a "multisplitting" mode, where all separately-assembled contig files are concatenated. Reads from each sample are individually mapped to the concatenated contig file, and then these mapped bam files are either provided as input to vamb or converted to a depth file with jgi. More info can be found here: 
+https://github.com/RasmussenLab/vamb
+https://github.com/RasmussenLab/vamb/blob/master/doc/CAMI2.md
+
+To concatenate contigs: 
+```
+concatenate.py vamb_concatenated_contigs.fa vamb_contigs_sample_headers/*.fa -m 1000
+```
+
+
 
 vamb script: 
 
