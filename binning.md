@@ -283,6 +283,17 @@ sed 's/>/>PurplePatch2428-/' /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/me
 sed 's/k141/PurplePatch2428-k141/g' /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/PurplePatch_2428_depth/PurplePatch_2428_depth.txt > /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/PurplePatch_2428_depth/header_PurplePatch_2428_depth.txt
 ```
 
+**for loop**
+```
+for i in /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/concoct/concoct_nospace_contigs/set2/*fa;
+do 
+	name=$(basename $i _nospace_final.contigs.fa)
+	sed "s/>/>${name}-/" $i > /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/vamb/vamb_contigs_sample_headers/$(basename $i _nospace_final.contigs.fa)_header_sample_final.contigs.fa;
+
+done
+```
+
+
 vamb script: 
 
 ```
