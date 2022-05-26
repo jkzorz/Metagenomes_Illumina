@@ -241,9 +241,10 @@ checkm coverage -t 20 -x fa /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/bin
 May want to go back and try DAS Tool before dREP. 
 
 First need fasta to contig file. This command didn't originally execute from dastool installation so I copied the code and put it in a new file directly. 
+Need all bin files in same folder
 
 ```
-../Fasta_to_Contig2Bin.sh -e fa > my_contigs2bin_hybrid.tsv
+sh Fasta_to_Contig2Bin.sh -i dastool_2B1-PurplePatch-A54-12-16/ -e fa > 2B1-PurplePatch-A54-12-16_contigs2bin.tsv
 ```
 
 Next run DasTool command 
@@ -372,7 +373,7 @@ done
 
 **Concoct for loop**
 
-For loop to run concoct on each sample 
+For loop to run concoct on each sample. Takes a really long time (~5 hours per sample). Split contig files into 3 groups and ran 3 different scripts to speed up the process. 
 ```
 #!/bin/bash
 ###### Reserve computing resources ######
