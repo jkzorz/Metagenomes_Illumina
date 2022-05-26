@@ -298,10 +298,7 @@ done
 
 Depth files: 
 ```
-for i in /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/*_depth/*depth.txt;
-do 
-
-for i in /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/concoct/concoct_nospace_contigs/set2/*fa;
+for i in /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/concoct/concoct_nospace_contigs/set1/*fa;
 do 
 	name="$(basename $i _nospace_final.contigs.fa)"
 	NW='NW'
@@ -310,15 +307,18 @@ do
 	depth1="$(echo ${name} | cut -d'-' -f4)"
 	depth2="$(echo ${name} | cut -d'-' -f5)"
 	
-
 if [[ "$name" == *"$NW"* ]];then 
 	newname="$site$subsite"_"$depth1$depth2"
 else
 	newname="$subsite"_"$depth1$depth2"
 fi
-	echo $newname; done
+	echo $newname
 	
-	sed "s/k141/${name}.k141/g" /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/PurplePatch_2428_depth/PurplePatch_2428_depth.txt > /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/PurplePatch_2428_depth/header_PurplePatch_2428_depth.txt
+	sed "s/k141/${name}.k141/g" /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/${newname}_depth/${newname}_depth.txt > /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/vamb/vamb_depth_file_sample_headers/${name}_header_sample_depth_temp.txt;
+
+	sed "s/\sflag.*len=[0-9]*//" /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/vamb/vamb_depth_file_sample_headers/${name}_header_sample_depth_temp.txt > /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/vamb/vamb_depth_file_sample_headers/${name}_header_sample_depth.txt;
+
+done
 ```
 
 
