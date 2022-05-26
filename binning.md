@@ -238,6 +238,8 @@ checkm coverage -t 20 -x fa /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/bin
 
 ## DAS Tool for bin refinement
 
+**Dastool version: 1.1.4**
+
 May want to go back and try DAS Tool before dREP. 
 
 First need fasta to contig file. This command didn't originally execute from dastool installation so I copied the code and put it in a new file directly. 
