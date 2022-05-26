@@ -283,7 +283,7 @@ sed 's/>/>PurplePatch2428-/' /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/me
 sed 's/k141/PurplePatch2428-k141/g' /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/PurplePatch_2428_depth/PurplePatch_2428_depth.txt > /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/PurplePatch_2428_depth/header_PurplePatch_2428_depth.txt
 ```
 
-**changing headers**
+**Changing headers**
 
 For binsplitting in vamb, contig headers need to be in the format {sample}{separator}{contig_number}. Used "." as separator to differentiate between "-" and "\_" already in contig headers. Might be useful for reverting contig headers back to orignal format so they can be combined with metabat and concoct bins in dastool. 
 
@@ -323,11 +323,13 @@ done
 ```
 
 **Considerations**
+
 Vamb works best in a "multisplitting" mode, where all separately-assembled contig files are concatenated. Reads from each sample are individually mapped to the concatenated contig file, and then these mapped bam files are either provided as input to vamb or converted to a depth file with jgi. More info can be found here: 
+
 https://github.com/RasmussenLab/vamb
 https://github.com/RasmussenLab/vamb/blob/master/doc/CAMI2.md
 
-To concatenate contigs: 
+To concatenate contigs (and remove contigs less than 1000bp):
 ```
 concatenate.py vamb_concatenated_contigs.fa vamb_contigs_sample_headers/*.fa -m 1000
 ```
