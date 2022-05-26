@@ -283,10 +283,11 @@ sed 's/>/>PurplePatch2428-/' /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/me
 sed 's/k141/PurplePatch2428-k141/g' /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/PurplePatch_2428_depth/PurplePatch_2428_depth.txt > /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/PurplePatch_2428_depth/header_PurplePatch_2428_depth.txt
 ```
 
-**for loop**
+**changing headers**
 
 For binsplitting in vamb, contig headers need to be in the format {sample}{separator}{contig_number}. Used "." as separator to differentiate between "-" and "\_" already in contig headers. Might be useful for reverting contig headers back to orignal format so they can be combined with metabat and concoct bins in dastool. 
 
+Contigs:
 ```
 for i in /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/concoct/concoct_nospace_contigs/set2/*fa;
 do 
@@ -333,8 +334,8 @@ vamb script:
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=20
 #SBATCH --mem=180GB
-#SBATCH --time=5:00:00
-#SBATCH --partition=cpu2019,cpu2021,cpu2021-bf24,bigmem,cpu2019-bf05
+#SBATCH --time=24:00:00
+#SBATCH --partition=cpu2019,cpu2021,cpu2021-bf24,bigmem
 
 
 
@@ -343,11 +344,16 @@ echo "Starting run at : 'date'"
 source /home/jacqueline.zorz/software/miniconda3/etc/profile.d/conda.sh 
 conda activate vamb
 
-cd /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/
+cd /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/vamb/
 
-#vamb --outdir path/to/outdir --fasta /path/to/catalogue.fna.gz --bamfiles /path/to/bam/*.bam -o C --minfasta 200000
+for i in /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/vamb/vamb_contigs_sample_headers/set1/*.fa; 
 
-vamb --outdir /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/vamb_PurplePatch_2428 --fasta /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/megahit/megahit_hc_positive/megahit_JZ-Condor-2B1-PurplePatch-A54-24-28_Li32230_S6/header_final.contigs.fa --jgi /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/PurplePatch_2428_depth/PurplePatch_2428_depth.txt -o - --minfasta 100000
+do
+name="$(basename $i _header_sample_final.contigs.fa)"
+
+vamb --outdir /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/vamb_${name} --fasta $i --jgi /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/vamb/vamb_depth_file_sample_headers/${name}_depth.txt -o . --minfasta 100000;
+
+done
 
 ```
 
