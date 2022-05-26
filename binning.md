@@ -284,11 +284,14 @@ sed 's/k141/PurplePatch2428-k141/g' /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illu
 ```
 
 **for loop**
+
+For binsplitting in vamb, contig headers need to be in the format {sample}{separator}{contig_number}. Used "." as separator to differentiate between "-" and "\_" already in contig headers. Might be useful for reverting contig headers back to orignal format so they can be combined with metabat and concoct bins in dastool. 
+
 ```
 for i in /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/concoct/concoct_nospace_contigs/set2/*fa;
 do 
 	name=$(basename $i _nospace_final.contigs.fa)
-	sed "s/>/>${name}-/" $i > /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/vamb/vamb_contigs_sample_headers/$(basename $i _nospace_final.contigs.fa)_header_sample_final.contigs.fa;
+	sed "s/>/>${name}./" $i > /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/vamb/vamb_contigs_sample_headers/$(basename $i _nospace_final.contigs.fa)_header_sample_final.contigs.fa;
 
 done
 ```
