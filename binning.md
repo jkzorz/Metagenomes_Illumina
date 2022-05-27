@@ -390,13 +390,15 @@ conda activate samtools
 
 cd /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/vamb/
 
-for i in /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/vamb/*bam;
+for i in /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/vamb/vamb_bams_temp/*bam;
 do
 bam=$(basename $i .bam)
 
 samtools sort -o /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/vamb/vamb_bams/${bam}_sorted.bam
 
-samtools index /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/vamb/vamb_bams/${bam}_sorted.bam
+samtools index /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/vamb/vamb_bams/${bam}_sorted.bam;
+
+done
 
 ```
 Once this works, delete unsorted bam files. 
