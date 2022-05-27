@@ -343,9 +343,9 @@ For loop for mapping reads from each sample to concatenated contigs. Need to fir
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=40
-#SBATCH --mem=180GB
+#SBATCH --mem=500GB
 #SBATCH --time=24:00:00
-#SBATCH --partition=cpu2019,cpu2021,cpu2021-bf24,bigmem
+#SBATCH --partition=bigmem
 
 
 ###### Set environment variables ######
@@ -356,16 +356,16 @@ conda activate minimap
 cd /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/vamb
 
 #make index
-#minimap2 -d catalogue.mmi vamb_concatenated_contigs.fa
+minimap2 -d catalogue.mmi -I 500g vamb_concatenated_contigs.fa
 
 
 for i in /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/vamb/vamb_contigs_sample_headers/*fa;
 do 
 	name="$(basename $i _header_sample_final.contigs.fa)"
 
-	minimap2 -t 35 -N 5 -ax sr catalogue.mmi /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/bbduk/cat_qc/JZ-Condor-${name}*_R1_QC.fastq /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/bbduk/cat_qc/JZ-Condor-${name}*_R2_QC.fastq > ${name}_vamb.sam;
+	minimap2 -t 35 -I 500g -N 5 -ax sr catalogue.mmi /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/bbduk/cat_qc/JZ-Condor-${name}*_R1_QC.fastq /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/bbduk/cat_qc/JZ-Condor-${name}*_R2_QC.fastq |samtools view -F 3584 -b --threads 35 > ${name}_vamb.bam;
+ 
 done
-
 
 ```
 
