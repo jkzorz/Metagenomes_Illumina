@@ -334,6 +334,41 @@ To concatenate contigs (and remove contigs less than 1000bp):
 concatenate.py vamb_concatenated_contigs.fa vamb_contigs_sample_headers/*.fa -m 1000
 ```
 
+For loop for mapping reads from each sample to concatenated contigs. Need to first index concatenated contig file. Will need to delete sam files afterwards. 
+```
+#!/bin/bash
+###### Reserve computing resources ######
+#SBATCH --mail-user=jacqueline.zorz@ucalgary.ca
+#SBATCH --mail-type=ALL
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=40
+#SBATCH --mem=180GB
+#SBATCH --time=24:00:00
+#SBATCH --partition=cpu2019,cpu2021,cpu2021-bf24,bigmem
+
+
+###### Set environment variables ######
+echo "Starting run at : 'date'"
+source /home/jacqueline.zorz/software/miniconda3/etc/profile.d/conda.sh 
+conda activate minimap
+
+cd /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/vamb
+
+#make index
+#minimap2 -d catalogue.mmi vamb_concatenated_contigs.fa
+
+
+for i in /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/vamb/vamb_contigs_sample_headers/*fa;
+do 
+	name="$(basename $i _header_sample_final.contigs.fa)"
+
+	minimap2 -t 35 -N 5 -ax sr catalogue.mmi /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/bbduk/cat_qc/JZ-Condor-${name}*_R1_QC.fastq /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/bbduk/cat_qc/JZ-Condor-${name}*_R2_QC.fastq > ${name}_vamb.sam;
+done
+
+
+```
+
 
 
 vamb script: 
