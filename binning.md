@@ -377,10 +377,10 @@ Apparently the jgi summarize contig script is the best input for depth details f
 #SBATCH --mail-type=ALL
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
-#SBATCH --cpus-per-task=40
-#SBATCH --mem=500GB
+#SBATCH --cpus-per-task=20
+#SBATCH --mem=150GB
 #SBATCH --time=24:00:00
-#SBATCH --partition=bigmem
+#SBATCH --partition=bigmem,cpu2019,cpu2021,cpu2021-bf24
 
 
 ###### Set environment variables ######
@@ -392,11 +392,11 @@ cd /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/vamb/
 
 for i in /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/vamb/vamb_bams_temp/*bam;
 do
-bam=$(basename $i .bam)
+bam="$(basename $i .bam)"
 
-samtools sort -o /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/vamb/vamb_bams/${bam}_sorted.bam
+samtools sort -o /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/vamb/vamb_bams/${bam}_sorted.bam $i
 
-samtools index /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/vamb/vamb_bams/${bam}_sorted.bam;
+samtools index /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/vamb/vamb_bams/${bam}_sorted.bam; 
 
 done
 
