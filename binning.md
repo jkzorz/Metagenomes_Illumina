@@ -405,6 +405,27 @@ Once this works, delete unsorted bam files.
 
 Then need to run jgi summarize contig script on all sorted bam files (should just be one depth file because of the one concatenated assembly). 
 
+```
+#!/bin/bash
+###### Reserve computing resources ######
+#SBATCH --mail-user=jacqueline.zorz@ucalgary.ca
+#SBATCH --mail-type=ALL
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=20
+#SBATCH --mem=150GB
+#SBATCH --time=24:00:00
+#SBATCH --partition=bigmem,cpu2019,cpu2021,cpu2021-bf24
+
+###### Set environment variables ######
+echo "Starting run at : 'date'"
+source /home/jacqueline.zorz/software/miniconda3/etc/profile.d/conda.sh 
+conda activate metabat
+
+jgi_summarize_bam_contig_depths --outputDepth vamb_consolidated_contigs_depth.txt /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/vamb/vamb_bams/*sorted.bam
+
+```
+
 
 
 vamb script: 
