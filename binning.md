@@ -422,6 +422,8 @@ echo "Starting run at : 'date'"
 source /home/jacqueline.zorz/software/miniconda3/etc/profile.d/conda.sh 
 conda activate metabat
 
+cd /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/vamb/
+
 jgi_summarize_bam_contig_depths --outputDepth vamb_consolidated_contigs_depth.txt /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/vamb/vamb_bams/*sorted.bam
 
 ```
