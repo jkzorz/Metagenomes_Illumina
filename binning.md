@@ -439,10 +439,11 @@ vamb script:
 #SBATCH --mail-type=ALL
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
-#SBATCH --cpus-per-task=20
+#SBATCH --cpus-per-task=40
 #SBATCH --mem=180GB
-#SBATCH --time=24:00:00
-#SBATCH --partition=cpu2019,cpu2021,cpu2021-bf24,bigmem
+#SBATCH --time=168:00:00
+#SBATCH --partition=cpu2019,cpu2021
+
 
 
 
@@ -452,13 +453,9 @@ source /home/jacqueline.zorz/software/miniconda3/etc/profile.d/conda.sh
 conda activate vamb
 
 cd /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/vamb/
+ 
 
-for i in /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/vamb/vamb_contigs_sample_headers/set1/*.fa; 
-
-do
-name="$(basename $i _header_sample_final.contigs.fa)"
-
-vamb --outdir /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/vamb_${name} --fasta $i --jgi /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/vamb/vamb_depth_file_sample_headers/${name}_depth.txt -o . --minfasta 100000;
+vamb --outdir /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/vamb_bins2 --fasta /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/vamb/vamb_concatenated_contigs.fa --jgi /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/vamb/vamb_consolidated_contigs_depth.txt -o . -m 1000 --minfasta 100000;
 
 done
 
