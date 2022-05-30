@@ -34,6 +34,11 @@ jgi_summarize_bam_contig_depths --outputDepth /work/ebg_lab/gm/gapp/jzorz/Metage
 metabat -i /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/megahit/megahit_hc_positive/megahit_JZ-Condor-2A2-PurpleHaze-D52-0-4_Li32235_S11/final.contigs.fa -a /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/PurpleHaze_04_depth/PurpleHaze_04_depth.txt -o bin_PurpleHaze_04 -v
 ```
 
+Need to copy metabat bins into sample-specific folders for dastool selection. Changed metabat folder names manually to match sample pattern and moved them into "metabat" directory within binning
+```
+for i in /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/metabat/*_depth/bin_*.fa; do sample=$(basename $(dirname $i) _depth); cp $i /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/dastool/all_bins/${sample} ; done
+```
+
 
 ## CheckM
 
