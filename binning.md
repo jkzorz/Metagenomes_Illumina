@@ -582,7 +582,13 @@ for i in /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/concoct/*_conc
 do bin="$(basename $i)"
 sample="$(dirname $i)" 
 sample2="$(basename $(basename $(dirname ${sample})) _concoct_output)"
-cp $i /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/dastool/all_bins/concoct_${sample2}_${bin}; 
+
+
+if [ ! -d "/work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/dastool/all_bins/${sample2}" ]; then
+mkdir /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/dastool/all_bins/${sample2}
+fi
+
+cp $i /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/dastool/all_bins/${sample2}/concoct_${sample2}_${bin}; 
 done
 
 ```
