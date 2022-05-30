@@ -578,16 +578,13 @@ done
 Need to rename bins because they don't have sample info in title. 
 
 ```
-for i in /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/concoct/*_concoct_output/fasta_bins/*.fa;
-
-do
-sample="$(dirname $i)"
-bin="$(basename $i)"
-
-echo $sample
-
-cp $i concoct_${sample}_${bin};
+for i in /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/concoct/*_concoct_output/fasta_bins/*.fa; 
+do bin="$(basename $i)"
+sample="$(dirname $i)" 
+sample2="$(basename $(basename $(dirname ${sample})) _concoct_output)"
+cp $i /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/dastool/all_bins/concoct_${sample2}_${bin}; 
 done
+
 ```
 
 
