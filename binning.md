@@ -468,6 +468,14 @@ done
 
 There were over 10 million contigs when including all contigs > 1000 bp. Trying to analyze this many contigs would have taken longer than the max 7 days available. Instead changed -m parameter to 2000 and only analyzed contigs > 2000 bp. Vamb ran in less than a day. 8563 bins created. 
 
+**Rename vamb bins and contigs**
+
+Need to rename vamb bins to end with ".fa", and change the contig headers to match the contig files 
+
+```
+for i in /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/vamb_bins3/bins/*.fna; do bin="$(basename $i .fna)"; cp $i /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/vamb_bins3/bins_rename/${bin}.fa;done
+```
+
 
 
 ## Testing CONCOCT
