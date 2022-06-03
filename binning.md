@@ -541,7 +541,7 @@ Example Gtdbtk script
 ###### Set environment variables ######
 echo "Starting run at : 'date'"
 source /home/jacqueline.zorz/software/miniconda3/etc/profile.d/conda.sh 
-conda activate gtdbtk
+conda activate gtdbtk2
 
 ###### Run your script ######
 
