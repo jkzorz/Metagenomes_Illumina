@@ -260,6 +260,23 @@ DAS_Tool -i 2B1-PurplePatch-A54-12-16_contigs2bin.tsv -c /work/ebg_lab/gm/gapp/j
 ```
 
 
+### DAStool for all bins
+
+Created bins with metabat, concoct and vamb. Will now use Dastool to select best bins for each sample. 
+
+Step 1: Fasta to contig file 
+
+```
+cd /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/dastool/
+for i in /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/dastool/all_bins/*;
+do
+sample="$(basename $i)"
+sh /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/dastool/Fasta_to_Contig2Bin.sh -i $i -e fa > ${sample}_contigs2bin.tsv;
+done
+
+```
+
+
 
 
 ## Calculating coverage of MAGs
