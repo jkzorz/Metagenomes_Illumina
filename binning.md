@@ -466,7 +466,7 @@ done
 
 ```
 
-There were over 10 million contigs when including all contigs > 1000 bp. Trying to analyze this many contigs would have taken longer than the max 7 days available. Instead changed -m parameter to 2000 and only analyzed contigs > 2000 bp. Vamb ran in less than a day.
+There were over 10 million contigs when including all contigs > 1000 bp. Trying to analyze this many contigs would have taken longer than the max 7 days available. Instead changed -m parameter to 2000 and only analyzed contigs > 2000 bp. Vamb ran in less than a day. 8563 bins created. 
 
 
 
