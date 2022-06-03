@@ -265,7 +265,7 @@ DAS_Tool -i 2B1-PurplePatch-A54-12-16_contigs2bin.tsv -c /work/ebg_lab/gm/gapp/j
 Created bins with metabat, concoct and vamb. Will now use Dastool to select best bins for each sample. 
 
 Step 1: Fasta to contig file 
-
+Run as for loop.
 ```
 cd /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/dastool/
 for i in /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/dastool/all_bins/*;
@@ -275,6 +275,43 @@ sh /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/dastool/Fasta_to_Con
 done
 
 ```
+
+Step 2: Run Dastool
+Run as for loop. Should probably divide samples into 3+ groups and submit multiple jobs... 
+
+```
+#!/bin/bash
+###### Reserve computing resources ######
+#SBATCH --mail-user=jacqueline.zorz@ucalgary.ca
+#SBATCH --mail-type=ALL
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=40
+#SBATCH --mem=180GB
+#SBATCH --time=150:00:00
+#SBATCH --partition=cpu2019,cpu2021,cpu2022
+
+###### Set environment variables ######
+echo "Starting run at : 'date'"
+source /home/jacqueline.zorz/software/miniconda3/etc/profile.d/conda.sh 
+conda activate dastool
+
+cd /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/dastool
+
+for i in /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/dastool/all_bins/set1/*;
+
+do
+sample="$(basename $i)"
+echo ${sample}
+mkdir dastool_${sample}
+
+DAS_Tool -i ${sample}_contigs2bin.tsv -c /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/concoct/concoct_nospace_contigs/${sample}_nospace_final.contigs.fa -o dastool_${sample}/ --write_bins --write_bin_evals --write_unbinned -t 35;
+
+done
+
+
+```
+
 
 
 
