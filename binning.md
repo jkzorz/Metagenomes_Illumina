@@ -493,7 +493,7 @@ Example checkM script
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=12
 #SBATCH --mem=100GB
-#SBATCH --time=3:00:00
+#SBATCH --time=5:00:00
 #SBATCH --partition=cpu2019,cpu2021,cpu2021-bf24,cpu2019-bf05,cpu2017-bf05
 
 ###### Set environment variables ######
@@ -501,9 +501,13 @@ echo "Starting run at : 'date'"
 source /home/jacqueline.zorz/software/miniconda3/etc/profile.d/conda.sh 
 conda activate checkm
 
-cd /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/
+for i in /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/dastool/dastool_finished1/*;
+do
+sample="$(basename $i)"
 
-checkm lineage_wf -f /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/PurpleHaze_04_depth/CheckM_PurpleHaze_04.txt -t 10 -x fa /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/PurpleHaze_04_depth/ /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/PurpleHaze_04_depth/
+checkm lineage_wf -f $i/CheckM_${sample}.txt -t 10 -x fa $i/_DASTool_bins/ $i/_DASTool_bins/;
+
+done
 ```
 
 Example checkm coverage: 
@@ -530,8 +534,8 @@ Example Gtdbtk script
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=20
-#SBATCH --mem=250GB
-#SBATCH --time=4:00:00
+#SBATCH --mem=350GB
+#SBATCH --time=16:00:00
 #SBATCH --partition=bigmem
 
 ###### Set environment variables ######
@@ -541,18 +545,19 @@ conda activate gtdbtk
 
 ###### Run your script ######
 
-gtdbtk classify_wf --genome_dir /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/PurpleHaze_04_depth/ -x fa --out_dir /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/PurpleHaze_04_depth/gtdbtk_bins --cpus 20
+for i in /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/dastool/dastool_finished1/*;
+do
 
+gtdbtk classify_wf --genome_dir $i/_DASTool_bins/ -x fa --out_dir $i/gtdbtk_bins --cpus 20;
 
-#gtdbtk classify_wf --genome_dir /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/Test_Hole_1216_depth/ -x fa --out_dir /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/Test_Hole_1216_depth/gtdbtk_bins --cpus 20
+done
 
-
-#gtdbtk classify_wf --genome_dir /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/Test_Hole_2428_depth/ -x fa --out_dir /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/Test_Hole_2428_depth/gtdbtk_bins --cpus 20
 
 
 ##
 echo "Job finished with exit code $? at: 'date'"
 ##
+
 
 ```
 
