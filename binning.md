@@ -466,6 +466,10 @@ done
 
 ```
 
+There were over 10 million contigs when including all contigs > 1000 bp. Trying to analyze this many contigs would have taken longer than the max 7 days available. Instead changed -m parameter to 2000 and only analyzed contigs > 2000 bp. Vamb ran in less than a day.
+
+
+
 ## Testing CONCOCT
 
 Need to remove spaces from headers of contig file? Having issues with contig headers. Removed spaces from headers in contig.fa file, but headers didn't match bam files then and I believe this is what was causing errors with the concoct_coverage_table.py script. According to CASI II, CONCOCT is supposed to be good for metagenomes with high strain diversity (test run with one sample managed to get low quality atribacteria bin). Will try using CONCOCT on metagenome data, but will need to pre-process contigs and sorted bam files so that they do not contain spaces. 
