@@ -4,7 +4,8 @@ Binning with metabat, and using jgi_summarize_contigs to create depth file.
   
 Example code with one sample at a time (as they finish mapping stage): 
 
-**Metabat version: 2.12.1**
+## Metabat 
+**version: 2.12.1**
 
 ```
 #!/bin/bash
@@ -199,7 +200,6 @@ jgi_summarize_bam_contig_depths --outputDepth vamb_consolidated_contigs_depth.tx
 ```
 
 
-
 vamb script: 
 
 ```
@@ -276,7 +276,7 @@ Need to remove spaces from headers of contig file? Having issues with contig hea
 
 **Concoct version: 1.1.0**
 
-### Pre-processing contig and sam files 
+**Pre-processing contig and sam files**
 
 Removing everything after the first space from all contig files. Run from: /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/concoct/concoct_nospace_contigs
 ```
