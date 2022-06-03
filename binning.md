@@ -477,6 +477,33 @@ for i in /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/vamb_bins3/bin
 ```
 
 
+>S18C2AT-700NW-B7-24-28.k141_586741 needs to change to >k141_586741
+
+```
+for i in /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/vamb_bins3/bins_rename/*.fa; do bin="$(basename $i)"; sed 's/S.*\.//' $i > /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/vamb_bins3/bins_rename/contigs_rename/${bin}; done
+
+```
+
+**Move vamb bin files to correct sample folder**
+Need to move vamb bin files to correct dastool sample folder 
+
+```
+for i in /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/vamb_bins3/bins_rename/contigs_rename/*.fa;
+do
+bin="$(basename $i .fa)" #S12C2AT-350NW-E75-24-28.3745
+sample="$(echo ${bin} | sed 's/S[0-9]*C//')"
+sample2="$(echo ${sample} | sed 's/\..*//')"
+
+echo ${sample}
+echo ${sample2}
+
+cp $i /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/dastool/all_bins/${sample2};
+
+
+done
+
+```
+
 
 ## Testing CONCOCT
 
