@@ -478,8 +478,9 @@ done
 
 
 
-
 ## CheckM
+
+Run CheckM on all Das Tool refined bins. 
 
 Example checkM script 
 
@@ -522,6 +523,7 @@ checkm unbinned . /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/megahit/megah
 
 
 ## Gtdbtk
+Run Gtdbtk on all Das Tool refined bins. 
 Example Gtdbtk script 
 
 **Gtdbtk version: v1.6.0, release 207**
@@ -655,6 +657,56 @@ cd /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/
 #run drep 
 dRep dereplicate drep_out/ -p 25 -g /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/bins_all/*.fa --genomeInfo /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/checkm_consolidated_drep.csv
 ```
+
+**Running dREP on das tool refined bins**
+
+Need to copy all das tool refined bins to new directory. 
+```
+for i in /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/dastool/dastool_*/_DASTool_bins/*.fa; do cp $i  /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/dastool/all_bins_dastool/; done
+```
+
+Concatenate and consolidate the checkM files 
+```
+for i in /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/dastool/dastool_*/CheckM*.txt; do echo $i; awk '$1 ~/^bin/ {print $1 ".fa," $13 "," $14}' $i >> checkm_consolidated_drep_dastool.csv; done
+
+for i in /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/dastool/dastool_*/CheckM*.txt; do echo $i; awk '$1 ~/^S/ {print $1 ".fa," $13 "," $14}' $i >> checkm_consolidated_drep_dastool.csv; done
+
+for i in /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/dastool/dastool_*/CheckM*.txt; do echo $i; awk '$1 ~/^con/ {print $1 ".fa," $13 "," $14}' $i >> checkm_consolidated_drep_dastool.csv; done
+
+#add headers
+sed -i '1s/^/genome,completeness,contamination\n/' checkm_consolidated_drep_dastool.csv
+
+```
+**2944 bins as input for drep from das tool.** 
+1557 bins from concoct
+1056 bins from metabat
+331 bins from vamb
+
+```
+#!/bin/bash
+###### Reserve computing resources ######
+#SBATCH --mail-user=jacqueline.zorz@ucalgary.ca
+#SBATCH --mail-type=ALL
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=30
+#SBATCH --mem=180GB
+#SBATCH --time=24:00:00
+#SBATCH --partition=bigmem,cpu2019,cpu2021
+
+###### Set environment variables ######
+echo "Starting run at : 'date'"
+source /home/jacqueline.zorz/software/miniconda3/etc/profile.d/conda.sh 
+conda activate drep
+
+/work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/dastool
+
+
+#run drep 
+dRep dereplicate drep_dastool_out/ -p 25 -g /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/dastool/all_bins_dastool/*.fa --genomeInfo /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/dastool/checkm_consolidated_drep_dastool.csv -comp 50 -con 10
+```
+
+
 
 add -comp 50 and -con 10 parameters
 
