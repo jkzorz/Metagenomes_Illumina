@@ -656,6 +656,8 @@ cd /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/
 dRep dereplicate drep_out/ -p 25 -g /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/bins_all/*.fa --genomeInfo /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/checkm_consolidated_drep.csv
 ```
 
+add -comp 50 and -con 10 parameters
+
 ## CheckM coverage of good bins 
 
 Using checkM coverage to estimate abundance of bins in community. (First moved all .bam and .bam.bai files to one folder)
