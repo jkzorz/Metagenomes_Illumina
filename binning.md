@@ -681,6 +681,8 @@ sed -i '1s/^/genome,completeness,contamination\n/' checkm_consolidated_drep_dast
 1557 bins from concoct
 1056 bins from metabat
 331 bins from vamb
+*70.75% of genomes passed checkM filtering*
+
 
 ```
 #!/bin/bash
