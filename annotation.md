@@ -55,6 +55,28 @@ for i in good_bin_annotations*/rrnas.tsv; do cat $i >> all_rrnas.tsv; done
 DRAM.py distill -i all_annotations.tsv -o genome_summaries --trna_path all_trnas.tsv --rrna_path all_rrnas.tsv
 ```
 
+**Das Tool and dRep bins**
+
+1750 bins, divided into ~100 bin folders to run DRAM separately: 
+Made individual dram folders (dram1, dram2, dram3, etc) manually
+
+*copy_bins_command.sh*
+```
+dir=1
+counter=1
+
+for file in /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/dastool/drep_dastool_out/dereplicated_genomes/*.fa
+do
+   cp $file dram$dir/
+   ((counter++))
+   (( $counter%100 == 1 )) && ((dir++))
+done
+
+```
+
+
+
+
 ## Barrnap 
 Use barrnap to grab rRNA genes from bins 
 
