@@ -86,7 +86,11 @@ Use barrnap to grab rRNA genes from bins
 for i in *.fa; do barrnap $i --outseq barrnap_16S/'rrna_'$i; done
 ```
 
+das tool and drep bins:
 
+```
+for i in /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/dastool/drep_dastool_out/dereplicated_genomes/*.fa; do barrnap $i --outseq /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/annotation/barrnap_drep_dastool/'rrna_'$(basename $i); done
+```
 
 
 ## CANT-HYD HMMs
