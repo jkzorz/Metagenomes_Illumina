@@ -92,6 +92,18 @@ das tool and drep bins:
 for i in /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/dastool/drep_dastool_out/dereplicated_genomes/*.fa; do barrnap $i --outseq /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/annotation/barrnap_drep_dastool/'rrna_'$(basename $i); done
 ```
 
+Collect all MAG 16S sequences and append MAG name to fasta header 
+```
+for i in barrnap_drep_dastool/rrna_*.fa; do sample="$(basename $i .fa)"; echo -n $(grep ">16S" $i) >> test.fa && echo ": ${sample}" >> test.fa; grep "16S" $i -A 1 | tail -n 1 >> test.fa ; done
+
+#get rid of MAGs without 16S
+sed 's/^: .*//' test.fa > test2.fa
+
+#get rid of empty lines
+sed '/^$/d' test2.fa > 16S_MAG_sequences_4db.fa
+```
+
+
 
 ## CANT-HYD HMMs
 
