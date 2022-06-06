@@ -103,6 +103,17 @@ sed 's/^: .*//' test.fa > test2.fa
 sed '/^$/d' test2.fa > 16S_MAG_sequences_4db.fa
 ```
 
+### Blast 16S Miseq sequences against MAGs
+
+```
+makeblastdb -in 16S_MAG_sequences_4db.fa -out 16S_MAG_sequences_4db.db -dbtype nucl
+
+blastn -query may17_ASVseqs.fasta -db 16S_MAG_sequences_4db.db -outfmt 6 -out blast_16S_results.tbl -max_target_seqs 1 -perc_identity 97 -word_size 200
+
+
+```
+
+
 
 
 ## CANT-HYD HMMs
