@@ -94,10 +94,10 @@ for i in /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/dastool/drep_d
 
 Collect all MAG 16S sequences and append MAG name to fasta header 
 ```
-for i in barrnap_drep_dastool/rrna_*.fa; do sample="$(basename $i .fa)"; echo -n $(grep ">16S" $i) >> test.fa && echo ": ${sample}" >> test.fa; grep "16S" $i -A 1 | tail -n 1 >> test.fa ; done
+for i in barrnap_drep_dastool/rrna_*.fa; do sample="$(basename $i .fa)"; echo -n $(grep ">16S" $i) >> test.fa && echo ":${sample}" >> test.fa; grep "16S" $i -A 1 | tail -n 1 >> test.fa ; done
 
 #get rid of MAGs without 16S
-sed 's/^: .*//' test.fa > test2.fa
+sed 's/^:.*//' test.fa > test2.fa
 
 #get rid of empty lines
 sed '/^$/d' test2.fa > 16S_MAG_sequences_4db.fa
@@ -110,6 +110,8 @@ makeblastdb -in 16S_MAG_sequences_4db.fa -out 16S_MAG_sequences_4db.db -dbtype n
 
 blastn -query may17_ASVseqs.fasta -db 16S_MAG_sequences_4db.db -outfmt 6 -out blast_16S_results.tbl -max_target_seqs 1 -perc_identity 97 -word_size 200
 
+#allow for multiple hits of ASV to MAG 16S
+blastn -query may17_ASVseqs.fasta -db 16S_MAG_sequences_4db.db -outfmt 6 -out blast_16S_results2.tbl -max_target_seqs 5 -perc_identity 99.5 -word_size 200
 
 ```
 
