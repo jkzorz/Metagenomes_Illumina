@@ -176,7 +176,7 @@ sed -n '/^>/,$p' racon4.fasta | sed 's/\s.*$//g' > racon4.mod.fasta
 
 
 Final round of polishing with medaka: 
-Takes a long time with large files - over 1 day. 
+Takes a long time with large files - over 1 day. Medaka doesn't seem to work with large metagenomes... Trying to use it on reads combined from two samples failed immediately. 
 
 ```
 #!/bin/bash
