@@ -433,6 +433,18 @@ Can't seem to get pilon to run because there is not enough memory - even with 25
 
 
 
+## 2A2 D52 28-32 cm 
 
+Ran flye assembly, 4 rounds of racon polishing, and one round of medaka polishing with long reads. 
+
+Ran Metabat after creating depth file: 
+```
+ metabat -i Medaka_polish/consensus.fasta -a depth.txt -o metabat_medaka_polish_depth/bin_2A2_2832_depth -v
+ 
+ #output: 
+ #[00:00:12] 82.83% (47106654 bases) of large (>=2500) and 0.00% (0 bases) of small (<2500) contigs were binned.
+#18 bins (47106654 bases in total) formed.
+
+```
 
 
