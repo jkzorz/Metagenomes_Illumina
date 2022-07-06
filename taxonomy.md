@@ -1,3 +1,20 @@
+## Phyloflash
+
+Use Phyloflash to assign taxonomy to full length 16S rRNA sequences 
+
+```
+conda activate phyloflash
+
+phyloFlash.pl -lib Phylo_test_2AT_2428 -poscov -treemap -log -read1 /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/bbduk/cat_qc/JZ-Condor-2AT-175NW-E46-24-28_Li32317_S93_R1_QC.fastq -read2 /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/bbduk/cat_qc/JZ-Condor-2AT-175NW-E46-24-28_Li32317_S93_R2_QC.fastq -readlength 150
+
+```
+
+
+
+
+
+## Kraken 
+
 Try assigning taxonomy to contigs/reads with Kraken 
 
 
