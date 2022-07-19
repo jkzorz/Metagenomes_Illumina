@@ -741,7 +741,31 @@ checkm coverage -t 20 -x fa /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/bin
 
 ```
 
+## Trying out CheckM2
 
+https://github.com/chklovski/CheckM2
+
+Used this to install:
+```
+git clone --recursive https://github.com/chklovski/checkm2.git && cd checkm2
+conda env create -n checkm2 -f checkm2.yml
+conda activate checkm2
+bin/checkm2 -h
+```
+
+To download the database: 
+```
+bin/checkm2 database --download --path /work/ebg_lab/referenceDatabases/checkm2
+```
+Change directory: 
+```
+cd /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/dastool/drep_dastool_out
+```
+
+Run checkm2
+```
+~/checkm2/bin/checkm2 predict --threads 30 --input dereplicated_genomes/ --output-directory checkm2_output -x fa
+```
 
 
 # Stuff that didn't work...
