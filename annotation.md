@@ -118,7 +118,7 @@ blastn -query may17_ASVseqs.fasta -db 16S_MAG_sequences_4db.db -outfmt 6 -out bl
 
 
 #allow for shorter matches because some of the 16S sequences aren't completely full length
-blastn -query may17_ASVseqs.fasta -db 16S_MAG_sequences_4db.db -outfmt 6 -out blast_16S_results3.tbl -max_target_seqs 5 -perc_identity 97
+#blastn -query may17_ASVseqs.fasta -db 16S_MAG_sequences_4db.db -outfmt 6 -out blast_16S_results3.tbl -max_target_seqs 5 -perc_identity 97
 
 ```
 
