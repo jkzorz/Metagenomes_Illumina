@@ -10,6 +10,16 @@ phyloFlash.pl -lib Phylo_test_2AT_2428 -poscov -treemap -log -read1 /work/ebg_la
 ```
 
 
+## FastTree 
+
+Use FastTree to make tree of gtdbtk.ar53.user_msa.fasta and gtdbtk.bac120.user_msa.fasta files. (Needed to gunzip file first) 
+
+```
+#archaea tree
+FastTree < gtdbtk.ar53.user_msa.fasta > gtdbtk.ar53.user_msa.tre
+
+#bacteria tree
+FastTree < gtdbtk.bac120.user_msa.fasta > gtdbtk.bac120.user_msa.tre
 
 
 
