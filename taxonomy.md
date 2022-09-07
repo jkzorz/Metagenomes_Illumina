@@ -21,6 +21,22 @@ FastTree < gtdbtk.ar53.user_msa.fasta > gtdbtk.ar53.user_msa.tre
 #bacteria tree
 FastTree < gtdbtk.bac120.user_msa.fasta > gtdbtk.bac120.user_msa.tre
 
+```
+
+## FastANI
+
+Use FastANI to determine relatedness between genomes 
+
+```
+conda activate fastani
+
+#create list of MAGs to compare
+ls > MAG_list.txt #need to delete the MAG_list.txt line from file
+
+#run fastANI - all MAGs against all MAGs
+fastANI --ql MAG_list.txt --rl MAG_list.txt -o MAG_FastANI.tsv
+
+```
 
 
 ## Kraken 
