@@ -781,6 +781,30 @@ Run checkm2
 ```
 
 
+### CheckM2 for all DasTool bins (before Derep)
+```
+#!/bin/bash
+###### Reserve computing resources ######
+#SBATCH --mail-user=jacqueline.zorz@ucalgary.ca
+#SBATCH --mail-type=ALL
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=12
+#SBATCH --mem=100GB
+#SBATCH --time=5:00:00
+#SBATCH --partition=cpu2019,cpu2021,cpu2021-bf24,cpu2019-bf05,cpu2017-bf05
+
+###### Set environment variables ######
+echo "Starting run at : 'date'"
+source /home/jacqueline.zorz/software/miniconda3/etc/profile.d/conda.sh 
+conda activate checkm2
+
+~/checkm2/bin/checkm2 predict --threads 30 --input /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/dastool/all_bins_dastool/ --output-directory checkm2_dastool_output -x fa
+
+```
+
+
+
 # Stuff that didn't work...
 
 
