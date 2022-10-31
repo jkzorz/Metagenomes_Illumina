@@ -712,6 +712,19 @@ dRep dereplicate drep_dastool_out/ -p 25 -g /work/ebg_lab/gm/gapp/jzorz/Metageno
 
 add -comp 50 and -con 10 parameters
 
+### Rerun DeRep with very lax comp and con parameters to allow for subsequent check with CheckM2
+New script: drep_dastool2.slurm, uses a minimum of 10% completeness and 30% contamination 
+**2944 dastool bins as input for drep2 script: **
+
+```
+#run drep 
+dRep dereplicate drep_dastool_out2/ -p 25 -g /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/dastool/all_bins_dastool/*.fa --genomeInfo /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/dastool/checkm_consolidated_drep_dastool.csv -comp 10 -con 30
+```
+
+
+
+
+
 ## CheckM coverage of good bins 
 
 Using checkM coverage to estimate abundance of bins in community. (First moved all .bam and .bam.bai files to one folder)
