@@ -715,6 +715,7 @@ add -comp 50 and -con 10 parameters
 ### Rerun DeRep with very lax comp and con parameters to allow for subsequent check with CheckM2
 New script: drep_dastool2.slurm, uses a minimum of 10% completeness and 30% contamination 
 **2944 dastool bins as input for drep2 script: **
+2449 bins remained after dereplicating
 
 ```
 #run drep 
