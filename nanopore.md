@@ -397,6 +397,21 @@ echo "Job finished with exit code $? at: 'date'"
 **Ran checkM and gtdbtk on pilon polished bin. Completeness of bin increased to 84.75% (from 83.05%) and contamination remained at 3.39% (same)**. Bin was still classified as Atribacteria.
 Extracted Atri bin 16S sequence and blasted against Atlantic Condor Illumina 16S sequences (as of Feb22). There were ~194 ASV matches with >97% similarity to the bin 16S sequence. There was 1 ASV with 100% identity, and 7 ASVs with 99.644% identity (one mismatch). The sample with the highest % abundance of these 8 ASVs was 2A2 D52 Purple Haze 32-36 cm (the same sample that was used for Nanopore sequencing - so that checks out)  
 
+### Pilon with bin 51 (closed genome, 4484-113 phylum)
+minimap to map reads to genome and convert into sorted and indexed bam file
+```
+minimap2 -ax sr bin_2A2_combo_nodepth.51.fa ../../Nanopore_2A2_D52_32-36cm/JZ-Condor-2A2-PurpleHaze-D52-24-28_Li32312_S88_R1_QC.fastq ../../Nanopore_2A2_D52_32-36cm/JZ-Condor-2A2-PurpleHaze-D52-24-28_Li32312_S88_R2_QC.fastq > medaka_short_read_map_bin51.sam
+
+conda activate samtools
+samtools view -b medaka_short_read_map_bin51.sam -o medaka_short_read_map_bin51.bam
+samtools sort -o medaka_short_read_map_bin51_sort.bam medaka_short_read_map_bin51.bam
+samtools index medaka_short_read_map_bin51_sort.bam
+
+```
+
+
+
+
 ### Pilon 
 Not intended for metagenomes: https://github.com/broadinstitute/pilon/issues/31
 Try anyway... 
