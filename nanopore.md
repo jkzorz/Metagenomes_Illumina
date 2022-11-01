@@ -409,7 +409,33 @@ samtools index medaka_short_read_map_bin51_sort.bam
 
 ```
 
+Ridiculous memory requirements by Pilon seemed are improved slightly by --chunksize parameter: 
+```
+#!/bin/bash
+###### Reserve computing resources ######
+#SBATCH --mail-user=jacqueline.zorz@ucalgary.ca
+#SBATCH --mail-type=ALL
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=30
+#SBATCH --mem=2000GB
+#SBATCH --time=12:00:00
+#SBATCH --partition=bigmem
 
+###### Set environment variables ######
+echo "Starting run at : 'date'"
+source /home/jacqueline.zorz/software/miniconda3/etc/profile.d/conda.sh 
+conda activate pilon
+
+cd /work/ebg_lab/gm/gapp/jzorz/Nanopore_2A2_D52_combo_28-36/metabat_medaka_combo_nodepth
+
+###### Run your script ######
+
+#chunksize seems to help with memory
+pilon --genome bin_2A2_combo_nodepth.51.fa --bam medaka_short_read_map_bin51_sort.bam --output pilon_polish_short_reads_bin51 --outdir pilon_polish_short_reads_bin51 --chunksize 100000
+
+
+```
 
 
 ### Pilon 
