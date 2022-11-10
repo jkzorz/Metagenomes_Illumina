@@ -158,3 +158,28 @@ for i in /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/dastool/drep_d
 ```
 
 
+
+## MetaErg 2.0
+
+docker link: https://hub.docker.com/r/kinestetika/metaerg
+github: https://github.com/kinestetika/MetaErg
+
+Docker is not for HPC clusters, singularity is generally used instead. But singularity can be used to pull docker images and convert to singularity images (sif files)
+```
+module load singularity
+singularity pull docker://kinestetika/metaerg
+```
+
+Can use 'singularity run' to enter singularity container for metaerg, and run metaerg scripts: 
+
+```
+singularity run /work/ebg_lab/referenceDatabases/metaerg_latest.sif
+```
+
+Use this to download metaerg databases. For some reason, I only seem to be able to access my home directory from the singularity container? 
+```
+metaerg --download_database --database_dir metaerg_test/
+```
+
+
+
