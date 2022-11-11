@@ -181,5 +181,9 @@ Use this to download metaerg databases. For some reason, I only seem to be able 
 metaerg --download_database --database_dir metaerg_test/
 ```
 
+Running MetaErg on one genome sample: 
+```
+metaerg --contig_file pilon_polish_short_reads_bin51.fasta --database_dir ../metaerg_test/
+```
 
 
