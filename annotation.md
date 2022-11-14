@@ -178,7 +178,8 @@ singularity run /work/ebg_lab/referenceDatabases/metaerg_latest.sif
 
 Use this to download metaerg databases. For some reason, I only seem to be able to access my home directory from the singularity container? 
 ```
-metaerg --download_database --database_dir metaerg_test/
+mkdir metaerg_database
+metaerg --download_database --database_dir metaerg_database/
 ```
 
 Running MetaErg on one genome sample: 
