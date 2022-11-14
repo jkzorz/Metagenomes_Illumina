@@ -184,7 +184,7 @@ metaerg --download_database --database_dir metaerg_database/
 
 Running MetaErg on one genome sample: 
 ```
-metaerg --contig_file pilon_polish_short_reads_bin51.fasta --database_dir ../metaerg_test/
+metaerg --contig_file pilon_polish_short_reads_bin51.fasta --database_dir ../metaerg_database/
 ```
 
 
