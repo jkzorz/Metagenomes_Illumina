@@ -182,9 +182,15 @@ mkdir metaerg_database
 metaerg --download_database --database_dir metaerg_database/
 ```
 
-Running MetaErg on one genome sample: 
+Running Metaerg on one genome sample: 
 ```
 metaerg --contig_file bin_Hole_1216_85.fa --database_dir ../metaerg_database/ --path_to_signalp ../metaerg_database/signalp-5.0b.Linux.tar.gz --path_to_tmhmm ../metaerg_database/tmhmm-2.0c.Linux.tar.gz
 ```
+
+Running Metaerg on multiple genomes: 
+```
+ metaerg --contig_file ~/metaerg_abyssubacteria/ --database_dir ../metaerg_database/ --path_to_signalp ../metaerg_database/signalp-6.0g.fast.tar.gz --path_to_tmhmm ../metaerg_database/tmhmm-2.0c.Linux.tar.gz --file_extension .fa --rename_contigs --rename_genomes
+```
+
 
 
