@@ -184,7 +184,7 @@ metaerg --download_database --database_dir metaerg_database/
 
 Running MetaErg on one genome sample: 
 ```
-metaerg --contig_file pilon_polish_short_reads_bin51.fasta --database_dir ../metaerg_database/
+metaerg --contig_file bin_Hole_1216_85.fa --database_dir ../metaerg_database/ --path_to_signalp ../metaerg_database/signalp-5.0b.Linux.tar.gz --path_to_tmhmm ../metaerg_database/tmhmm-2.0c.Linux.tar.gz
 ```
 
 
