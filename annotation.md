@@ -192,5 +192,26 @@ Running Metaerg on multiple genomes:
  metaerg --contig_file ~/metaerg_abyssubacteria/ --database_dir ../metaerg_database/ --path_to_signalp ../metaerg_database/signalp-6.0g.fast.tar.gz --path_to_tmhmm ../metaerg_database/tmhmm-2.0c.Linux.tar.gz --file_extension .fa --rename_contigs --rename_genomes
 ```
 
+Running a Singularity command in batch on slurm: 
+```
+#!/bin/bash
+###### Reserve computing resources ######
+#SBATCH --mail-user=jacqueline.zorz@ucalgary.ca
+#SBATCH --mail-type=ALL
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=12
+#SBATCH --mem=100GB
+#SBATCH --time=8:00:00
+#SBATCH --partition=cpu2019,cpu2021,cpu2021-bf24,bigmem
 
+
+#might not be necessary... 
+source /home/jacqueline.zorz/software/miniconda3/etc/profile.d/conda.sh 
+conda activate metaerg2
+
+cd ~/metaerg_abyssubacteria
+
+singularity run ../metaerg_latest.sif metaerg --contig_file ~/metaerg_abyssubacteria/ --database_dir ~/metaerg_database/ --path_to_signalp ~/metaerg_database/signalp-6.0g.fast.tar.gz --path_to_tmhmm ~/metaerg_database/tmhmm-2.0c.Linux.tar.gz --file_extension .fa --rename_contigs --rename_genomes
+```
 
