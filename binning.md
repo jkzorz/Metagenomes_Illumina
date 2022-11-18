@@ -804,6 +804,13 @@ conda activate checkm2
 
 ```
 
+## Trying out MaxBin2
+
+Had troubles installing with conda, but it worked installing with mamba 
+Test on one sample:
+```
+run_MaxBin.pl -contig ../../megahit/megahit_hc_positive/megahit_JZ-Condor-2A1-TheHole-C54-0-4_Li32233_S9/final.contigs.fa -abund ../metabat/2A1-TheHole-C54-0-4_depth/TheHole_04_depth.txt -out MaxBin_Text 
+```
 
 
 # Stuff that didn't work...
