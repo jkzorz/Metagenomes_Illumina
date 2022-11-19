@@ -813,6 +813,45 @@ run_MaxBin.pl -contig ../../megahit/megahit_hc_positive/megahit_JZ-Condor-2A1-Th
 ```
 
 
+**MaxBin for loop:**
+
+```
+#!/bin/bash
+###### Reserve computing resources ######
+#SBATCH --mail-user=jacqueline.zorz@ucalgary.ca
+#SBATCH --mail-type=ALL
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=40
+#SBATCH --mem=100GB
+#SBATCH --time=150:00:00
+#SBATCH --partition=cpu2019,cpu2021,bigmem
+
+###### Set environment variables ######
+echo "Starting run at : 'date'"
+source /home/jacqueline.zorz/software/miniconda3/etc/profile.d/conda.sh 
+conda activate maxbin2
+
+
+cd /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/maxbin
+
+for i in /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/metabat/*_depth
+
+do
+
+sample=$(basename $i _depth)
+
+mkdir $sample
+
+run_MaxBin.pl -contig /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/megahit/megahit_hc_positive/megahit_JZ-Condor-${sample}*/final.contigs.fa -abund $i/*_depth.txt -out ${sample}/maxbin_${sample} -thread 35
+
+done
+
+```
+
+
+
+
 # Stuff that didn't work...
 
 
