@@ -81,3 +81,14 @@ kraken2 --db /work/ebg_lab/referenceDatabases/KrakenGTDB --threads 40 --classifi
 kraken2 --db /work/ebg_lab/referenceDatabases/KrakenGTDB --threads 40 --classified-out 2B3_D53_2428_nanopore_contig_gtdb.kraken.classified.fasta --unclassified-out 2B3_D53_2428_nanopore_contig.kraken.unclassified.fasta --output 2B3_D53_2428_nanopore_contig.kraken.output --report 2B3_D53_2428_nanopore_contig.kraken.report /work/ebg_lab/gm/gapp/jzorz/2B3_2428_D53_fastq_pass/Medaka_polish/consensus.fasta
 ```
 
+## inStrain
+Trying inStrain to use with reference Atribacteria genome from gtdb (https://gtdb.ecogenomic.org/genome?gid=GCA_001773955.1). Same genus as the poor quality MAGs recovered, but different species
+
+Use Hole 24-28cm sample (high Atribacteria content according to 16S). First need to map reads to gtdb Atribacteira genome contig file.
+
+```
+bbmap.sh ref=gtdb_atribacteria_GCA_001773955.1_ASM177395v1_genomic.fna in=/work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/bbduk/cat_qc/JZ-Condor-2A1-TheHole-C54-24-28_Li32297_S73_R1_QC.fastq in2=/work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/bbduk/cat_qc/JZ-Condor-2A1-TheHole-C54-24-28_Li32297_S73_R2_QC.fastq outm=Hole2428_instrain.sam covstats=covstats_instrain_test.txt scafstats=scafstats_instrain_test.txt threads=40 minid=0.
+ ```
+ 
+
+
