@@ -82,13 +82,31 @@ kraken2 --db /work/ebg_lab/referenceDatabases/KrakenGTDB --threads 40 --classifi
 ```
 
 ## inStrain
-Trying inStrain to use with reference Atribacteria genome from gtdb (https://gtdb.ecogenomic.org/genome?gid=GCA_001773955.1). Same genus as the poor quality MAGs recovered, but different species
+Trying inStrain to use with reference Atribacteria genome from gtdb (https://gtdb.ecogenomic.org/genome?gid=GCA_001773955.1). Same genus as the poor quality MAGs recovered, but different species. Installation was slow with Conda, so used Mamba instead. 
 
 Use Hole 24-28cm sample (high Atribacteria content according to 16S). First need to map reads to gtdb Atribacteira genome contig file.
 
 ```
+conda activate bbtools
+
 bbmap.sh ref=gtdb_atribacteria_GCA_001773955.1_ASM177395v1_genomic.fna in=/work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/bbduk/cat_qc/JZ-Condor-2A1-TheHole-C54-24-28_Li32297_S73_R1_QC.fastq in2=/work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/bbduk/cat_qc/JZ-Condor-2A1-TheHole-C54-24-28_Li32297_S73_R2_QC.fastq outm=Hole2428_instrain.sam covstats=covstats_instrain_test.txt scafstats=scafstats_instrain_test.txt threads=40 minid=0.
  ```
+ 
+ convert sam file to sorted bam file 
+ 
+ ```
+ conda activate samtools
+ 
+ samtools view -b Hole2428_instrain.sam | samtools sort -o Hole2428_instrain_sort.bam
+ ```
+ 
+ Run inStrain profile function. Have to specify the use full header parameter because bbmap doesn't shorten contig headers in mapping files. 
+
+```
+ conda activate instrain 
+ 
+ inStrain profile Hole2428_instrain_sort.bam gtdb_atribacteria_GCA_001773955.1_ASM177395v1_genomic.fna -o gtdb_atribacteria_instrain_test --use_full_fasta_header
+```
  
 
 
