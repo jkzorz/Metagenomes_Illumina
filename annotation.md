@@ -173,7 +173,7 @@ singularity pull docker://kinestetika/metaerg
 Can use 'singularity run' to enter singularity container for metaerg, and run metaerg scripts: 
 
 ```
-singularity run /work/ebg_lab/referenceDatabases/metaerg_latest.sif
+singularity run ~/metaerg_latest.sif
 ```
 
 Use this to download metaerg databases. For some reason, I only seem to be able to access my home directory from the singularity container? 
