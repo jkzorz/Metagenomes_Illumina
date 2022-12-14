@@ -73,4 +73,32 @@ do gtdbtk classify_wf --genome_dir $i -x fa --out_dir $i/gtdbtk_bins/ --cpus 20
 done
 ```
 
+## DRAM on all genomes
+```
+#!/bin/bash
+###### Reserve computing resources ######
+#SBATCH --mail-user=jacqueline.zorz@ucalgary.ca
+#SBATCH --mail-type=ALL
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=20
+#SBATCH --mem=800GB
+#SBATCH --time=24:00:00
+#SBATCH --partition=bigmem
 
+#set environmental parameters
+source /home/jacqueline.zorz/software/miniconda3/etc/profile.d/conda.sh 
+conda activate DRAM
+
+cd /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/compare
+
+####command
+
+for i in /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/compare/*/
+
+do
+
+DRAM.py annotate -i '$i/*.fa' -o $i/dram --threads 20
+
+done
+```
