@@ -1,5 +1,11 @@
 # Comparing to MAGs from NCBI
 
+
+```
+/work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/compare
+```
+
+
 #unzip files
 ```
 for i in 4484-113/*.fna.gz; do gunzip $i; done
