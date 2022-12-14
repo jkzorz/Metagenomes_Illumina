@@ -83,13 +83,17 @@ Use barrnap to grab rRNA genes from bins
 **barrnap version: 0.9**
 
 ```
+#e.g.
 for i in *.fa; do barrnap $i --outseq barrnap_16S/'rrna_'$i; done
 ```
 
-das tool and drep bins:
+das tool and drep bins (update to checkm2 bins):
 
 ```
-for i in /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/dastool/drep_dastool_out/dereplicated_genomes/*.fa; do barrnap $i --outseq /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/annotation/barrnap_drep_dastool/'rrna_'$(basename $i); done
+conda activate barrnap
+cd /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/annotation/barrnap_drep_dastool
+
+for i in /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/dastool/drep_dastool_out2/dereplicated_genomes/*.fa; do barrnap $i --outseq /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/annotation/barrnap_drep_dastool/'rrna_'$(basename $i); done
 ```
 
 Collect all MAG 16S sequences and append MAG name to fasta header 
