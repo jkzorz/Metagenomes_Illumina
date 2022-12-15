@@ -63,13 +63,12 @@ source /home/jacqueline.zorz/software/miniconda3/etc/profile.d/conda.sh
 conda activate gtdbtk2
 
 ###### Run your script ######
-
 cd /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/compare
 
-for i in /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/compare/*/
-
-do gtdbtk classify_wf --genome_dir $i -x fa --out_dir $i/gtdbtk_bins/ --cpus 20
-
+for i in /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/compare/*/checkm2*
+do 
+sample=$(dirname $i)
+gtdbtk classify_wf --genome_dir $sample -x fa --out_dir $sample/gtdbtk_bins/ --cpus 20
 done
 ```
 
