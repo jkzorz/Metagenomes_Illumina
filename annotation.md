@@ -107,6 +107,32 @@ sed 's/^:.*//' test.fa > test2.fa
 sed '/^$/d' test2.fa > 16S_MAG_sequences_4db.fa
 ```
 
+**Python script** (python_16S_parse2.py) to collect 16S rRNA genes from barrnap output and put in new files. 
+```
+#! /usr/bin/python
+
+import os, re
+from itertools import islice 
+
+word = '16S'
+
+for file in os.listdir("/work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/annotation/barrnap_drep_dastool"):
+	if file.endswith(".fa"):
+		#search for 16S
+		fasta = open(file, 'r').read().splitlines()
+			#read lines in list
+		for index, line in enumerate(fasta):
+			if re.search(word, line):
+				#create new file 
+				new = ["header", file]
+				new2 = "_".join(new)
+				with open(new2, 'a') as f:
+					temp = fasta[index:index+2]
+					print(''.join(temp), file=f)
+```
+
+
+
 ### Blast 16S Miseq sequences against MAGs
 
 ```
