@@ -102,3 +102,20 @@ DRAM.py annotate -i '$i/*.fa' -o $i/dram --threads 20
 
 done
 ```
+
+
+## Barrnap 
+
+Use Barrnap to retrieve rrna sequences:
+
+```
+conda activate barrnap
+
+cd /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/compare
+
+for i in /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/compare/*/*.fa; do sample=rrna_$(basename $i); phy=$(basename $(dirname $i)); barrnap $i --outseq $phy/$sample; done
+
+```
+
+
+
