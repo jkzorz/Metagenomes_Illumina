@@ -63,9 +63,11 @@ source /home/jacqueline.zorz/software/miniconda3/etc/profile.d/conda.sh
 conda activate gtdbtk2
 
 ###### Run your script ######
+
 cd /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/compare
 
 for i in /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/compare/*/checkm2*
+
 do 
 sample=$(dirname $i)
 gtdbtk classify_wf --genome_dir $sample -x fa --out_dir $sample/gtdbtk_bins/ --cpus 20
@@ -73,7 +75,8 @@ done
 ```
 
 ## DRAM on all genomes
-```#!/bin/bash
+```
+#!/bin/bash
 ###### Reserve computing resources ######
 #SBATCH --mail-user=jacqueline.zorz@ucalgary.ca
 #SBATCH --mail-type=ALL
@@ -106,7 +109,7 @@ conda activate barrnap
 
 cd /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/compare
 
-for i in /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/compare/*/*.fa; do sample=rrna_$(basename $i); phy=$(basename $(dirname $i)); barrnap $i --outseq $phy/$sample; done
+for i in /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/compare/*/*.fa; do sample=rrna_$(basename $i); phy=$(basename $(dirname $i)); mkdir /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/compare/$phy/barrnap_$phy; barrnap $i --outseq $phy/barrnap_$phy/$sample; done
 
 ```
 
