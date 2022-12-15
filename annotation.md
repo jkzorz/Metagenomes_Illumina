@@ -76,7 +76,6 @@ done
 
 
 
-
 ## Barrnap 
 Use barrnap to grab rRNA genes from bins 
 
@@ -129,6 +128,32 @@ for file in os.listdir("/work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/annotat
 				with open(new2, 'a') as f:
 					temp = fasta[index:index+2]
 					print('\n'.join(temp), file=f)
+```
+
+
+**Python script** (change_header.py) to add MAG name to fasta header
+```
+#! /usr/bin/python
+
+import os, re
+from itertools import islice 
+
+word = "16S"
+
+for file in os.listdir("/work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/annotation/barrnap_drep_dastool"):
+	if file.startswith("header"):
+		input = open(file, 'r')
+		file2 = re.sub('.fa', '', file)
+		file3 = re.sub('header_rrna_', '', file2)
+		temp = ['temp', file]
+		temp2 = open('_'.join(temp), 'w')
+		for line in input:
+			text = ['16S',file3]
+			if word in line: 
+				temp2.write(re.sub(word, '_'.join(text), line))
+			else: 
+				temp2.write(line)
+			
 ```
 
 
