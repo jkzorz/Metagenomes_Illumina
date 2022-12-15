@@ -74,8 +74,7 @@ done
 ```
 
 ## DRAM on all genomes
-```
-#!/bin/bash
+```#!/bin/bash
 ###### Reserve computing resources ######
 #SBATCH --mail-user=jacqueline.zorz@ucalgary.ca
 #SBATCH --mail-type=ALL
@@ -94,13 +93,8 @@ cd /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/compare
 
 ####command
 
-for i in /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/compare/*/
+DRAM.py annotate -i '/work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/compare/*/*.fa' -o /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/compare/dram --threads 20
 
-do
-
-DRAM.py annotate -i '$i/*.fa' -o $i/dram --threads 20
-
-done
 ```
 
 
