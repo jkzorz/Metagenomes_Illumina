@@ -128,7 +128,7 @@ for file in os.listdir("/work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/annotat
 				new2 = "_".join(new)
 				with open(new2, 'a') as f:
 					temp = fasta[index:index+2]
-					print(''.join(temp), file=f)
+					print('\n'.join(temp), file=f)
 ```
 
 
