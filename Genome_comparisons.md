@@ -99,6 +99,10 @@ DRAM.py annotate -i '/work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/compare/*/
 
 ```
 
+Distill results: 
+```
+DRAM.py distill -i all_compare_annotations.tsv -o genome_summaries --trna_path all_compare_trnas.tsv --rrna_path all_compare_rrnas.tsv
+```
 
 ## Barrnap 
 
