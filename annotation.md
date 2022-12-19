@@ -235,6 +235,7 @@ Use this to download metaerg databases. For some reason, I only seem to be able 
 ```
 mkdir metaerg_database
 metaerg --download_database --database_dir metaerg_database/
+metaerg --create_database S --database_dir  metaerg_database/
 ```
 
 Running Metaerg on one genome sample: 
