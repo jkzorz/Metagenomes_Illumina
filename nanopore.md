@@ -1,6 +1,5 @@
-# Incorporating Nanopore long reads into Illumina metagenomes
+# Analyzing Nanopore metagenomes
 
-Using long Nanopore reads to try to improve assembly of Illumina metagenomes. 
 
 Nanopore does it's own quality control for the reads (failed vs passed folders). Ignore the failed reads and concatenate all passed reads into one large file. Use porechop to remove adapters.
 
