@@ -489,3 +489,13 @@ Ran Metabat after creating depth file:
 ```
 
 
+## SemiBin
+
+SemiBin binning program has option for long reads: https://github.com/BigDataBiology/SemiBin/
+Needs fasta file and sorted bam file as input. Seems to generate better bins than metabat on the same data.
+
+```
+SemiBin single_easy_bin -i Medaka_polish/consensus.fasta -b 2A2_D52_28_32_polished_seqs_sort.bam -o SemiBin_output --environment global --sequencing-type=long_read
+```
+
+
