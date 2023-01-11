@@ -527,7 +527,7 @@ echo "Starting run at : 'date'"
 source /home/jacqueline.zorz/software/miniconda3/etc/profile.d/conda.sh 
 conda activate pilon
 
-cd /work/ebg_lab/gm/gapp/jzorz/Nanopore_2A2_D52_combo_28-36/metabat_medaka_combo_nodepth
+cd /work/ebg_lab/gm/gapp/jzorz/Nanopore_2B1_A54_20-24cm_16Dec22
 
 ###### Run your script ######
 
