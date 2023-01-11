@@ -464,10 +464,6 @@ cd /work/ebg_lab/gm/gapp/jzorz/Nanopore_2A2_D52_32-36cm/
 
 pilon --genome Medaka_polish4/consensus.fasta --frags medaka_short_read_map_sort.bam --output pilon_polish_short_reads --outdir pilon_polish_short_reads --threads 20
 
-##
-echo "Job finished with exit code $? at: 'date'"
-##
-
 ```
 Can't seem to get pilon to run because there is not enough memory - even with 2500 GB. It was designed for small genomes. 
 
@@ -497,4 +493,46 @@ Needs fasta file and sorted bam file as input. Seems to generate better bins tha
 SemiBin single_easy_bin -i Medaka_polish/consensus.fasta -b 2A2_D52_28_32_polished_seqs_sort.bam -o SemiBin_output --environment global --sequencing-type=long_read
 ```
 
+SemiBin of 20-24 Purple Patch sample produced a goodish quality Atribacteria bin (90% complete, 8.5% contamination)
+Use pilon to polish bin with Illumina short reads
+```
+#map short reads to bin 
+conda activate minimap
+minimap2 -ax sr SemiBin_output/output_bins/bin.2.fa /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/bbduk/cat_qc/JZ-Condor-2B1-PurplePatch-A54-20-24_Li32229_S5_R1_QC.fastq /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/bbduk/cat_qc/JZ-Condor-2B1-PurplePatch-A54-20-24_Li32229_S5_R2_QC.fastq > short_read_map_atribacteria_semibin2.sam
+
+#convert sam to sorted bam
+conda activate samtools
+samtools view -bshort_read_map_atribacteria_semibin2.sam -o short_read_map_atribacteria_semibin2.bam
+samtools sort -o short_read_map_atribacteria_semibin2_sort.bam short_read_map_atribacteria_semibin2.bam
+samtools index short_read_map_atribacteria_semibin2_sort.bam
+
+```
+
+Run Pilon: 
+
+```
+#!/bin/bash
+###### Reserve computing resources ######
+#SBATCH --mail-user=jacqueline.zorz@ucalgary.ca
+#SBATCH --mail-type=ALL
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=30
+#SBATCH --mem=500GB
+#SBATCH --time=12:00:00
+#SBATCH --partition=bigmem
+
+###### Set environment variables ######
+echo "Starting run at : 'date'"
+source /home/jacqueline.zorz/software/miniconda3/etc/profile.d/conda.sh 
+conda activate pilon
+
+cd /work/ebg_lab/gm/gapp/jzorz/Nanopore_2A2_D52_combo_28-36/metabat_medaka_combo_nodepth
+
+###### Run your script ######
+
+#chunksize seems to help with memory
+pilon --genome SemiBin_output/output_bins/bin.2.fa --bam short_read_map_atribacteria_semibin2_sort.bam --output SemiBin_output/pilon_polish_short_reads_bin2 --outdir SemiBin_output/pilon_polish_short_reads_bin2 --chunksize 100000
+
+```
 
