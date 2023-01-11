@@ -502,7 +502,7 @@ minimap2 -ax sr SemiBin_output/output_bins/bin.2.fa /work/ebg_lab/gm/gapp/jzorz/
 
 #convert sam to sorted bam
 conda activate samtools
-samtools view -bshort_read_map_atribacteria_semibin2.sam -o short_read_map_atribacteria_semibin2.bam
+samtools view -b short_read_map_atribacteria_semibin2.sam -o short_read_map_atribacteria_semibin2.bam
 samtools sort -o short_read_map_atribacteria_semibin2_sort.bam short_read_map_atribacteria_semibin2.bam
 samtools index short_read_map_atribacteria_semibin2_sort.bam
 
