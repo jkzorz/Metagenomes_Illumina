@@ -536,3 +536,20 @@ pilon --genome SemiBin_output/output_bins/bin.2.fa --bam short_read_map_atribact
 
 ```
 
+
+
+## stRainy
+
+Trying out stRainy to fix the assembly hairball issues (https://github.com/katerinakazantseva/stRainy)
+
+Requires graph from flye assembly and (sorted and indexed?) bam file as input. Apparently not really made for complex metagenomes yet. 
+```
+./strainy.py phase -o stRainy_phase -b 2B1_20-24_graph_map_sort.bam -g flye_assembly/assembly_graph.gfa -m nano -t 30
+
+```
+
+
+
+
+
+
