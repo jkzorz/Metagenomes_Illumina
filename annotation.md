@@ -221,6 +221,48 @@ for i in /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/dastool/drep_d
 
 ```
 
+### Python scripts for managing HMM output
+From all files, grab rows with contig info
+```
+#! /usr/bin/python
+
+import os, re
+from itertools import islice 
+
+word = 'k141_*'
+
+for file in os.listdir("/work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/annotation/Jayne_rdhA"):
+	if file.endswith(".tblout"):
+		#search for rows with content
+		fasta = open(file, 'r').readlines()
+		#read lines in list
+		for line in fasta:
+			if re.search(word, line):
+				#create new file 
+				new = ["summary", file]
+				new2 = "_".join(new)
+				with open(new2, 'a') as f:
+					print(line, file=f)
+```
+
+From summary files, add file name to final column, overwrite summary file
+
+```
+#! /usr/bin/python
+
+import os, re, pandas
+from itertools import islice
+
+word = 'k141_*'
+
+for file in os.listdir("/work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/annotation/Jayne_rdhA"):
+        if file.startswith("summary"):
+                df = pandas.read_csv(file, header=None)
+                df[len(df.columns)] = file
+                df.to_csv(file, header=None, index=None)
+
+```
+
 
 ## MetaErg 2.0
 
