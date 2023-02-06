@@ -263,6 +263,15 @@ for file in os.listdir("/work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/annotat
 
 ```
 
+### Pfam HMMs
+
+Need to first use hmmfetch to grab specific HMM from all Pfam HMMs (Pfam-A.HMM file)
+
+```
+hmmfetch /work/ebg_lab/referenceDatabases/Pfam/Pfam-A.hmm PF13486.8 > /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/annotation/Jayne_rdhA/PF13486.8.hmm 
+```
+
+
 
 ## MetaErg 2.0
 
