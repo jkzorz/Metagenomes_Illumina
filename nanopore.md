@@ -544,6 +544,14 @@ Trying out stRainy to fix the assembly hairball issues (https://github.com/kater
 
 Requires graph from flye assembly and (sorted and indexed?) bam file as input. Apparently not really made for complex metagenomes yet. 
 ```
+#convert graph to assembly file
+awk '/^S/{print ">"$2"\n"$3}' flye_assembly/assembly_graph.gfa > assembly_graph.fasta
+conda activate minimap
+minimap2 -ax map-ont assembly_graph.fasta Nanopore_2B1_A54_20-24cm_16Dec22_seqs_trimmed.fastq | samtools sort -@4 -t 8 > assembly_graph.bam
+samtools index assembly_grpah.bam
+
+
+conda activate strainy
 ~/stRainy/strainy.py phase -o stRainy_phase -b 2B1_20-24_graph_map_sort.bam -g flye_assembly/assembly_graph.gfa -m nano -t 30
 
 ```
