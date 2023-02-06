@@ -552,7 +552,7 @@ samtools index assembly_graph.bam
 
 
 conda activate strainy
-~/stRainy/strainy.py phase -o stRainy_phase -b 2B1_20-24_graph_map_sort.bam -g flye_assembly/assembly_graph.gfa -m nano -t 30
+~/stRainy/strainy.py phase -o stRainy_phase -b assembly_graph.bam -g flye_assembly/assembly_graph.gfa -m nano -t 30
 
 ```
 
