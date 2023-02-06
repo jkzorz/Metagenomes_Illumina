@@ -548,7 +548,7 @@ Requires graph from flye assembly and (sorted and indexed?) bam file as input. A
 awk '/^S/{print ">"$2"\n"$3}' flye_assembly/assembly_graph.gfa > assembly_graph.fasta
 conda activate minimap
 minimap2 -ax map-ont assembly_graph.fasta Nanopore_2B1_A54_20-24cm_16Dec22_seqs_trimmed.fastq | samtools sort -@4 -t 8 > assembly_graph.bam
-samtools index assembly_grpah.bam
+samtools index assembly_graph.bam
 
 
 conda activate strainy
