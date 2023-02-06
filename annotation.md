@@ -212,6 +212,14 @@ All das tool and drep MAGs:
 for i in /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/dastool/drep_dastool_out/dereplicated_genomes/*.fa; do hmmsearch --cut_nc --tblout hmmsearch_$(basename $i .fa).tblout CANT-HYD.hmm /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/dastool/drep_dastool_out/bins/$(basename $i .fa)/genes.faa > $(basename $i).out;done
 ```
 
+## HMM search 
+Using TIGRfam HMM to search for reductive dehalogenase in MAGs
+```
+conda activate hmmer
+
+for i in /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/dastool/drep_dastool_out2/checkm2_output/protein_files/*.faa; do hmmsearch --cut_nc --tblout rdhA_hmmsearch_$(basename $i .faa).tblout TIGR02486.1.HMM $i > $(basename $i .faa).out;done
+
+```
 
 
 ## MetaErg 2.0
