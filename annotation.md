@@ -271,6 +271,11 @@ Need to first use hmmfetch to grab specific HMM from all Pfam HMMs (Pfam-A.HMM f
 hmmfetch /work/ebg_lab/referenceDatabases/Pfam/Pfam-A.hmm PF13486.8 > /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/annotation/Jayne_rdhA/PF13486.8.hmm 
 ```
 
+Search genes against Pfam HMM
+```
+for i in /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/dastool/drep_dastool_out2/checkm2_output/protein_files/*.faa; do hmmsearch --cut_nc --tblout Pfam_hmmsearch_$(basename $i .faa).tblout PF13486.8.hmm $i > $(basename $i .faa).out;done
+```
+Then use the python scripts above to manipulate data. 
 
 
 ## MetaErg 2.0
