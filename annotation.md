@@ -277,6 +277,52 @@ for i in /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/dastool/drep_d
 ```
 Then use the python scripts above to manipulate data. 
 
+### Pull gene sequences with HMM match
+
+Pull gene sequences that match TIGRfam or Pfam HMM 
+```
+cd /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/annotation/Jayne_rdhA/
+
+#change , to space in csv file for easier use with awk 
+sed 's/,/ /g' PF13486/MAG_info_PF13486.csv > MAG_info_PF13486_update.csv
+sed 's/,/ /g' TIGR02486/MAG_info_rdhA_TIGR02486.csv > MAG_info_rdhA_TIGR02486_update.csv
+
+#make list of genes from summarized output
+awk '{ print $NF"_"$1" " }' MAG_info_rdhA_TIGR02486_update.csv > TIGR02486_genes2.list
+awk '{ print $NF"_"$1" " }' MAG_info_PF13486_update.csv > PF13486_genes2.list
+
+#fix list to match contig headers
+sed 's/summary_rdhA_hmmsearch_//' TIGR02486_genes2.list > TIGR02486_genes3.list
+sed 's/.tblout//' TIGR02486_genes3.list > TIGR02486_genes4.list
+sed 's/summary_Pfam_hmmsearch_//' PF13486_genes2.list > PF13486_genes3.list
+sed 's/.tblout//' PF13486_genes3.list > PF13486_genes4.list
+
+#use grep to find genes in DRAM files 
+for i in /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/annotation/dram_drep_dastool/dram*/genes.faa; do grep -Ff TIGR02486_genes.list $i -A1 --no-group-separator >> TIGR02486_genes.fasta; done
+
+for i in /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/annotation/dram_drep_dastool/dram*/genes.faa; do grep -Ff PF13486_genes.list $i -A1 --no-group-separator >> PF13486_genes.fasta; done
+```
+
+DRAM files don't contain all the genes from some of the MAGs from the updated checkm2 list. Try to pull genes from updated checkm2 list. First need to convert files to single line fasta, and put MAG names in gene headers. 
+
+**Note: Duplicate contig/gene names in some MAGs... 
+
+```
+#change headers
+for i in /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/dastool/drep_dastool_out2/checkm2_output/protein_files/*.faa; do sample=$(basename $i .faa); sed "s/>/>${sample}_/" $i > /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/dastool/drep_dastool_out2/checkm2_output/protein_files/headers/${sample}.faa; done
+
+#convert to single line
+for i in /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/dastool/drep_dastool_out2/checkm2_output/protein_files/headers/*.faa; do awk '/^>/ {printf("\n%s\n",$0);next; } { printf("%s",$0);}  END {printf("\n");}' $i > /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/dastool/drep_dastool_out2/checkm2_output/protein_files/headers/singleline/$(basename $i); done
+
+#repeat search - pfam
+for i in /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/dastool/drep_dastool_out2/checkm2_output/protein_files/headers/*.faa; do grep -Ff PF13486_genes4.list $i -A1 --no-group-separator >> PF13486_genes_checkm2.fasta; done
+
+#repeat search - tigrfam
+for i in /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/dastool/drep_dastool_out2/checkm2_output/protein_files/headers/*.faa; do grep -Ff TIGR02486_genes4.list $i -A1 --no-group-separator >> TIGR02486_genes_checkm2.fasta; done
+
+
+```
+
 
 ## MetaErg 2.0
 
