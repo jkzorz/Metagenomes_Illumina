@@ -1,6 +1,38 @@
 # Analyzing Nanopore metagenomes
 
+## Basecalling with Dorado
 
+Download Dorado from https://github.com/nanoporetech/dorado
+Unzip file using: 
+```
+cd /work/ebg_lab/gm/gapp/jzorz
+mkdir Dorado
+gunzip -dc dorado-0.1.1-linux-x64.tar.gz | tar xf - -C Dorado 
+
+```
+
+Download models needed for basecalling: 
+```
+/work/ebg_lab/gm/gapp/jzorz/Dorado/dorado-0.1.1+eb48766-Linux/bin/dorado download --model dna_r9.4.1_e8_hac@v3.3
+```
+
+## Basecalling with Guppy 
+Download Guppy zip file 
+
+Unzip using: 
+```
+cd /work/ebg_lab/gm/gapp/jzorz
+mkdir Guppy
+gunzip -dc ont-guppy_6.4.6_linux64.tar.gz | tar xf - -C Guppy
+```
+
+Basecalling with Guppy
+```
+/work/ebg_lab/gm/gapp/jzorz/Guppy/ont-guppy/bin/guppy_basecaller -i /work/ebg_lab/gm/gapp/jzorz/Nanopore_dorado_test/fast5/ --flowcell FLO-MIN106 --kit SQK-LSK109
+```
+
+
+## Quality control 
 Nanopore does it's own quality control for the reads (failed vs passed folders). Ignore the failed reads and concatenate all passed reads into one large file. Use porechop to remove adapters.
 
 ```
