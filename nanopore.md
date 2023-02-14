@@ -28,7 +28,7 @@ gunzip -dc ont-guppy_6.4.6_linux64.tar.gz | tar xf - -C Guppy
 
 Basecalling with Guppy
 ```
-/work/ebg_lab/gm/gapp/jzorz/Guppy/ont-guppy/bin/guppy_basecaller -i /work/ebg_lab/gm/gapp/jzorz/Nanopore_dorado_test/fast5/ --flowcell FLO-MIN106 --kit SQK-LSK109
+/work/ebg_lab/gm/gapp/jzorz/Guppy/ont-guppy/bin/guppy_basecaller -i /work/ebg_lab/gm/gapp/jzorz/Nanopore_dorado_test/fast5/ -s /work/ebg_lab/gm/gapp/jzorz/Nanopore_dorado_test/ --flowcell FLO-MIN106 --kit SQK-LSK109 -x auto --resume
 ```
 
 
