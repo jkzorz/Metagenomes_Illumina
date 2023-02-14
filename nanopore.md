@@ -28,7 +28,7 @@ gunzip -dc ont-guppy_6.4.6_linux64.tar.gz | tar xf - -C Guppy
 
 Need to request a gpu node to use Guppy basecaller with gpu. E.g. 
 ```
-salloc --mem=1G -t 01:00:00 -p gpu-v100 --gres=gpu:1
+salloc --mem=1G -t 05:00:00 -p gpu-v100 --gres=gpu:1
 ```
 
 Basecalling with Guppy
