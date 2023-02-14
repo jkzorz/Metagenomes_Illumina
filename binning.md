@@ -858,6 +858,15 @@ done
 
 ## Calculating coverage of MAGs
 
+
+### CoverM
+https://wwood.github.io/CoverM/coverm-genome.html
+Example with one genome and one set of reads
+```
+coverm genome --coupled /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/bbduk/cat_qc/JZ-Condor-2A2-PurpleHaze-D52-24-28_Li32312_S88_R1_QC.fastq /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/bbduk/cat_qc/JZ-Condor-2A2-PurpleHaze-D52-24-28_Li32312_S88_R2_QC.fastq --genome-fasta-files pilon_polish_bin_2A2_2832_nodepth.42.fa -o coverm_test.tsv
+```
+
+
 Issues: huge files, lots of unassembled and unbinned reads, many samples. Would like to avoid re-mapping reads to bins  
 
 Potential solution: 
