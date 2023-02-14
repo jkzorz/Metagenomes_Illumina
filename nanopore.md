@@ -26,6 +26,11 @@ mkdir Guppy
 gunzip -dc ont-guppy_6.4.6_linux64.tar.gz | tar xf - -C Guppy
 ```
 
+Need to request a gpu node to use Guppy basecaller with gpu. E.g. 
+```
+salloc --mem=1G -t 01:00:00 -p gpu-v100 --gres=gpu:1
+```
+
 Basecalling with Guppy
 ```
 /work/ebg_lab/gm/gapp/jzorz/Guppy/ont-guppy/bin/guppy_basecaller -i /work/ebg_lab/gm/gapp/jzorz/Nanopore_dorado_test/fast5/ -s /work/ebg_lab/gm/gapp/jzorz/Nanopore_dorado_test/ --flowcell FLO-MIN106 --kit SQK-LSK109 -x auto --resume
