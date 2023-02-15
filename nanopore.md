@@ -55,6 +55,17 @@ porechop -i seqs.fastq -o seqs_trimmed.fastq -t 8
 
 ```
 
+## Nanoplot
+
+Get statistics about assembly length etc, with Nanoplot
+
+```
+conda activate nanoplot
+
+NanoPlot -t 30 --fastq all_reads_trimmed.fastq.gz --plots dot --legacy hex
+```
+
+
 
 ## Assembly using nanopore and Illumina reads
 
