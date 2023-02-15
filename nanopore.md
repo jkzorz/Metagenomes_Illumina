@@ -36,6 +36,20 @@ Basecalling with Guppy
 /work/ebg_lab/gm/gapp/jzorz/Guppy/ont-guppy/bin/guppy_basecaller -i /work/ebg_lab/gm/gapp/jzorz/Nanopore_dorado_test/fast5/ -s /work/ebg_lab/gm/gapp/jzorz/Nanopore_dorado_test/ --flowcell FLO-MIN106 --kit SQK-LSK109 -x auto --resume
 ```
 
+With bigger metagenomes, will need more memory, so run as batch job: 
+```
+#!/bin/bash
+###### Reserve computing resources ######
+#SBATCH --mail-user=jacqueline.zorz@ucalgary.ca
+#SBATCH --mail-type=ALL
+#SBATCH --mem=200GB
+#SBATCH --time=20:00:00
+#SBATCH --partition=gpu-v100
+#SBATCH --gres=gpu:1
+
+/work/ebg_lab/gm/gapp/jzorz/Guppy/ont-guppy/bin/guppy_basecaller -i /work/ebg_lab/gm/gapp/jzorz/Nanopore_2B1_A54_24-28/fast5/ -s /work/ebg_lab/gm/gapp/jzorz/Nanopore_2B1_A54_24-28/ --flowcell FLO-MIN106 --kit SQK-LSK109 -x auto --resume
+```
+
 
 ## Quality control 
 Nanopore does it's own quality control for the reads (failed vs passed folders). Ignore the failed reads and concatenate all passed reads into one large file. Use porechop to remove adapters.
