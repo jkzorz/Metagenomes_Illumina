@@ -849,13 +849,6 @@ done
 
 ```
 
-
-
-
-# Stuff that didn't work...
-
-
-
 ## Calculating coverage of MAGs
 
 
@@ -866,6 +859,26 @@ Example with one genome and one set of reads
 coverm genome --coupled /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/bbduk/cat_qc/JZ-Condor-2A2-PurpleHaze-D52-24-28_Li32312_S88_R1_QC.fastq /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/bbduk/cat_qc/JZ-Condor-2A2-PurpleHaze-D52-24-28_Li32312_S88_R2_QC.fastq --genome-fasta-files pilon_polish_bin_2A2_2832_nodepth.42.fa -o coverm_test.tsv
 ```
 
+**Need to first grab all "good bins" from CheckM2 list and Nanopore (replace Illumina bins with good Nanopore bins afterwards)**
+```
+cd /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/dastool/drep_dastool_out2/dereplicated_genomes
+for file in $(<CheckM2_good_bin_list.txt); do cp "$file" Good_Bins_CheckM2/; done
+```
+
+Test one set of reads against all good bins: 
+```
+cd /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/dastool/drep_dastool_out2/coverM
+
+coverm genome --coupled /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/bbduk/cat_qc/JZ-Condor-2A2-PurpleHaze-D52-24-28_Li32312_S88_R1_QC.fastq /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/bbduk/cat_qc/JZ-Condor-2A2-PurpleHaze-D52-24-28_Li32312_S88_R2_QC.fastq --genome-fasta-directory  /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/dastool/drep_dastool_out2/dereplicated_genomes/Good_Bins_CheckM2 --genome-fasta-extension fa -o coverm_test.tsv
+
+```
+
+
+
+
+# Stuff that didn't work...
+
+Calculating MAG coverage... 
 
 Issues: huge files, lots of unassembled and unbinned reads, many samples. Would like to avoid re-mapping reads to bins  
 
