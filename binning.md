@@ -873,7 +873,31 @@ coverm genome --coupled /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/bbduk/c
 
 ```
 
+Example batch script: 
 
+```
+#!/bin/bash
+###### Reserve computing resources ######
+#SBATCH --mail-user=jacqueline.zorz@ucalgary.ca
+#SBATCH --mail-type=ALL
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=40
+#SBATCH --mem=150GB
+#SBATCH --time=24:00:00
+#SBATCH --partition=cpu2019,cpu2021,bigmem
+
+###### Set environment variables ######
+echo "Starting run at : 'date'"
+source /home/jacqueline.zorz/software/miniconda3/etc/profile.d/conda.sh 
+conda activate coverm
+
+
+cd /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/dastool/drep_dastool_out2/coverM
+
+for i in /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/bbduk/cat_qc/JZ-Condor-2AT-[5-7]*R1_QC.fastq; do dir=$(dirname $i); r2=$(basename $i R1_QC.fastq)R2_QC.fastq; sample=$(basename $i _R1_QC.fastq); coverm genome --coupled $i ${dir}/${r2} --genome-fasta-directory  /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/dastool/drep_dastool_out2/dereplicated_genomes/Good_Bins_CheckM2 --genome-fasta-extension fa -o coverm_${sample}.tsv; done
+
+```
 
 
 # Stuff that didn't work...
