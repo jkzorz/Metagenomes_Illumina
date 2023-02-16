@@ -895,7 +895,7 @@ conda activate coverm
 
 cd /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/dastool/drep_dastool_out2/coverM
 
-for i in /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/bbduk/cat_qc/JZ-Condor-2AT-[5-7]*R1_QC.fastq; do dir=$(dirname $i); r2=$(basename $i R1_QC.fastq)R2_QC.fastq; sample=$(basename $i _R1_QC.fastq); coverm genome --coupled $i ${dir}/${r2} --genome-fasta-directory  /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/dastool/drep_dastool_out2/dereplicated_genomes/Good_Bins_CheckM2 --genome-fasta-extension fa -o coverm_${sample}.tsv; done
+for i in /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/bbduk/cat_qc/JZ-Condor-2AT-[5-7]*R1_QC.fastq; do dir=$(dirname $i); r2=$(basename $i R1_QC.fastq)R2_QC.fastq; sample=$(basename $i _R1_QC.fastq); coverm genome --coupled $i ${dir}/${r2} --genome-fasta-directory  /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/dastool/drep_dastool_out2/dereplicated_genomes/Good_Bins_CheckM2 --genome-fasta-extension fa -o coverm_${sample}.tsv -t 30; done
 
 ```
 
