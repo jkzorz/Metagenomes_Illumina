@@ -111,6 +111,31 @@ ko_list: /home/jacqueline.zorz/kofamscan/ko_list
  ~/kofamscan/kofam_scan-1.3.0/exec_annotation -o kofam_test.txt --cpu 20 --tmp-dir ko-fam_temp -E 0.0001 -f detail-tsv ../checkm2_output_mags/protein_files/concoct_2B1-TinyBubbles-C18-0-4_106_sub.faa
 ```
 
+**kofamscan for loop with slurm:**
+
+```
+#!/bin/bash
+###### Reserve computing resources ######
+#SBATCH --mail-user=jacqueline.zorz@ucalgary.ca
+#SBATCH --mail-type=ALL
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=20
+#SBATCH --mem=180GB
+#SBATCH --time=24:00:00
+#SBATCH --partition=bigmem,cpu2019,cpu2021
+
+#set environmental parameters
+
+source /home/jacqueline.zorz/software/miniconda3/etc/profile.d/conda.sh 
+conda activate kofamscan
+
+cd /work/ebg_lab/gm/gapp/taylor/kofam_hmms
+
+for i in /work/ebg_lab/gm/gapp/taylor/checkm2_output_mags/protein_files/*.faa; do mag=$(basename $i .faa); ~/kofamscan/kofam_scan-1.3.0/exec_annotation -o kofam_$mag.txt --cpu 20 --tmp-dir ko-fam_temp -E 0.0001 -f detail-tsv $i; done
+```
+
+
 
 ## Barrnap 
 Use barrnap to grab rRNA genes from bins 
