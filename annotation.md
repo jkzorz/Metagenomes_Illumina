@@ -75,6 +75,42 @@ done
 ```
 
 
+## Kofamscan
+
+Use kofamscan to annotate proteins with kofam HMMs
+
+**Downloading kofamscan**
+```
+#create kofamscan conda environment
+conda create -n kofamscan
+conda activate kofamscan
+#install dependencies with conda
+conda install ruby
+conda install hmmer
+conda install parallel
+
+#create kofam directory in home 
+mkdir ~/kofamscan
+cd ~/kofamscan
+
+#download profiles, ko lists, and kofam-scan 
+wget ftp://ftp.genome.jp/pub/tools/kofamscan/kofamscan.tar.gz
+wget ftp://ftp.genome.jp/pub/db/kofam/profiles.tar.gz
+gunzip ko_list.gz
+tar xf profiles.tar.gz
+wget https://www.genome.jp/ftp/tools/kofam_scan/kofam_scan-1.3.0.tar.gz
+tar xf kofam_scan-1.3.0.tar.gz
+
+#update config file with locations of profile and ko list (optional, can also be provided as parameters in command):
+profile: /home/jacqueline.zorz/kofamscan/profiles
+ko_list: /home/jacqueline.zorz/kofamscan/ko_list
+```
+**Running kofamscan:**
+
+```
+ ~/kofamscan/kofam_scan-1.3.0/exec_annotation -o kofam_test.txt --cpu 20 --tmp-dir ko-fam_temp -E 0.0001 -f detail-tsv ../checkm2_output_mags/protein_files/concoct_2B1-TinyBubbles-C18-0-4_106_sub.faa
+```
+
 
 ## Barrnap 
 Use barrnap to grab rRNA genes from bins 
