@@ -132,7 +132,7 @@ conda activate kofamscan
 
 cd /work/ebg_lab/gm/gapp/taylor/kofam_hmms
 
-for i in /work/ebg_lab/gm/gapp/taylor/checkm2_output_mags/protein_files/*.faa; do mag=$(basename $i .faa); ~/kofamscan/kofam_scan-1.3.0/exec_annotation -o kofam_$mag.txt --cpu 20 --tmp-dir ko-fam_temp -E 0.0001 -f detail-tsv $i; done
+for i in /work/ebg_lab/gm/gapp/taylor/checkm2_output_mags/protein_files/*.faa; do mag=$(basename $i .faa); ~/kofamscan/kofam_scan-1.3.0/exec_annotation -o kofam_$mag.txt --cpu 20 --tmp-dir ko-fam_temp -E 0.0001 -f detail-tsv $i; rm ko-fam_temp/ -R; done
 ```
 
 
