@@ -52,7 +52,7 @@ for i in good_bin_annotations*/trnas.tsv; do cat $i >> all_trnas.tsv; done
 for i in good_bin_annotations*/rrnas.tsv; do cat $i >> all_rrnas.tsv; done
 
 #distill
-DRAM.py distill -i all_annotations.tsv -o genome_summaries --trna_path all_trnas.tsv --rrna_path all_rrnas.tsv
+DRAM.py distill -i all_annotations.tsv -o genome_summaries --trna_path all_trnas.tsv --rrna_path all_rrnas.tsv --genomes_per_product 250
 ```
 
 **Das Tool and dRep bins**
