@@ -746,9 +746,32 @@ New script: drep_dastool2.slurm, uses a minimum of 10% completeness and 30% cont
 dRep dereplicate drep_dastool_out2/ -p 25 -g /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/dastool/all_bins_dastool/*.fa --genomeInfo /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/dastool/checkm_consolidated_drep_dastool.csv -comp 10 -con 30
 ```
 
+## Final run of dRep with good Nanopore bins and previous dereplicated Illumina set
+
+```
+#!/bin/bash
+###### Reserve computing resources ######
+#SBATCH --mail-user=jacqueline.zorz@ucalgary.ca
+#SBATCH --mail-type=ALL
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=30
+#SBATCH --mem=180GB
+#SBATCH --time=24:00:00
+#SBATCH --partition=bigmem,cpu2019,cpu2021
+
+###### Set environment variables ######
+echo "Starting run at : 'date'"
+source /home/jacqueline.zorz/software/miniconda3/etc/profile.d/conda.sh 
+conda activate drep
 
 
+cd /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/dastool/drep_dastool_out2/dereplicated_genomes/Good_Bins_CheckM2
 
+
+dRep dereplicate drep_Final_Nanopore_output -g *.fa -comp 10 -con 30 -p 30 --genomeInfo checkm_consolidated_drep_nano.csv
+
+```
 
 ## CheckM coverage of good bins 
 
