@@ -135,7 +135,55 @@ cd /work/ebg_lab/gm/gapp/taylor/kofam_hmms
 for i in /work/ebg_lab/gm/gapp/taylor/checkm2_output_mags/protein_files/*.faa; do mag=$(basename $i .faa); ~/kofamscan/kofam_scan-1.3.0/exec_annotation -o kofam_$mag.txt --cpu 20 --tmp-dir ko-fam_temp -E 0.0001 -f detail-tsv $i; rm ko-fam_temp/ -R; done
 ```
 
+**kofamscan on all final MAGs: detail-tsv version**
+```
+#!/bin/bash
+###### Reserve computing resources ######
+#SBATCH --mail-user=jacqueline.zorz@ucalgary.ca
+#SBATCH --mail-type=ALL
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=20
+#SBATCH --mem=180GB
+#SBATCH --time=168:00:00
+#SBATCH --partition=cpu2019,cpu2021
 
+#set environmental parameters
+
+source /home/jacqueline.zorz/software/miniconda3/etc/profile.d/conda.sh 
+conda activate kofamscan
+
+cd /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/dastool/drep_dastool_out2/dereplicated_genomes/Good_Bins_CheckM2/drep_Final_Nanopore_output/dereplicated_genomes/kofamscan/
+
+for i in /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/dastool/drep_dastool_out2/dereplicated_genomes/Good_Bins_CheckM2/drep_Final_Nanopore_output/dereplicated_genomes/checkm2_output_all/protein_files/*.faa; do mag=$(basename $i .faa); ~/kofamscan/kofam_scan-1.3.0/exec_annotation -o kofam_$mag.txt --cpu 20 --tmp-dir ko-fam_temp -E 0.0001 -f detail-tsv $i; rm ko-fam_temp/ -R; done
+```
+Results now located at: ```/work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/dereplicated_genomes/kofamscan```
+
+**kofamscan on all final MAGs: mapper version for input to kegg mapper**
+```
+#!/bin/bash
+###### Reserve computing resources ######
+#SBATCH --mail-user=jacqueline.zorz@ucalgary.ca
+#SBATCH --mail-type=ALL
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=20
+#SBATCH --mem=180GB
+#SBATCH --time=168:00:00
+#SBATCH --partition=cpu2019,cpu2021
+
+#set environmental parameters
+
+source /home/jacqueline.zorz/software/miniconda3/etc/profile.d/conda.sh 
+conda activate kofamscan
+
+cd /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/dastool/drep_dastool_out2/dereplicated_genomes/Good_Bins_CheckM2/drep_Final_Nanopore_output/dereplicated_genomes/kofamscan_mapper/
+
+for i in /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/dastool/drep_dastool_out2/dereplicated_genomes/Good_Bins_CheckM2/drep_Final_Nanopore_output/dereplicated_genomes/checkm2_output_all/protein_files/*.faa; do mag=$(basename $i .faa); ~/kofamscan/kofam_scan-1.3.0/exec_annotation -o kofam_mapper_$mag.txt --cpu 20 --tmp-dir ko-fam_temp -E 0.0001 -f mapper $i; rm ko-fam_temp/ -R; done
+
+```
+
+Results now located at: ```/work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/dereplicated_genomes/kofamscan_mapper```
 
 ## Barrnap 
 Use barrnap to grab rRNA genes from bins 
