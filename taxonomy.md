@@ -1,10 +1,16 @@
 ## GToTree
 
-Uses a set of single copy marker genes to produce phylogenetic tree. **[More info here]**(https://github.com/AstrobioMike/GToTree/wiki/example-usage#alteromonas-example)
+Uses a set of single copy marker genes to produce phylogenetic tree. **[More info here]**(https://github.com/AstrobioMike/GToTree/wiki/example-usage#alteromonas-example). The default run ended up removing ~300 MAGs because they didn't have enough marker genes. 
 
 ```
 conda activate gtotree
 cd /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/dereplicated_genomes
+
+#shows list of in-built HMMs
+gtt-hmms
+
+#create list of MAG file paths
+ls *.fa > Final_MAG_List.txt
 
 #basic run 
 GToTree -f Final_MAG_List.txt -H Bacteria_and_Archaea -j 15 -o gtotree_test
