@@ -1,3 +1,18 @@
+## GToTree
+
+Uses a set of single copy marker genes to produce phylogenetic tree. **[More info here]**(https://github.com/AstrobioMike/GToTree/wiki/example-usage#alteromonas-example)
+
+```
+conda activate gtotree
+cd /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/dereplicated_genomes
+
+#basic run 
+GToTree -f Final_MAG_List.txt -H Bacteria_and_Archaea -j 15 -o gtotree_test
+```
+
+Can also just perform the multiple sequence alignment of marker genes by using -N flag. MSA can then be imported into another program (e.g., IQTree). -x Flag overrides the default super5 muscle sequence alignment algorithm used with many genomes. 
+
+
 ## Phyloflash
 
 Use Phyloflash to assign taxonomy to full length 16S rRNA sequences 
