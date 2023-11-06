@@ -14,6 +14,12 @@ ls *.fa > Final_MAG_List.txt
 
 #basic run 
 GToTree -f Final_MAG_List.txt -H Bacteria_and_Archaea -j 15 -o gtotree_test
+
+#bacteria only
+GToTree -f Final_MAG_List.txt -H Bacteria -j 15 -o gtotree_bacteria_only_test
+
+#archaea only
+GToTree -f Final_MAG_List.txt -H Archaea -j 15 -o gtotree_archaea_only_test
 ```
 
 Can also just perform the multiple sequence alignment of marker genes by using -N flag. MSA can then be imported into another program (e.g., IQTree). -x Flag overrides the default super5 muscle sequence alignment algorithm used with many genomes. 
