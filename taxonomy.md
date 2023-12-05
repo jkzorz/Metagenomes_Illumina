@@ -1,6 +1,6 @@
 ## GToTree
 
-Uses a set of single copy marker genes to produce phylogenetic tree. **[More info here]**(https://github.com/AstrobioMike/GToTree/wiki/example-usage#alteromonas-example). The default run ended up removing ~300 MAGs because they didn't have enough marker genes. 
+Uses a set of single copy marker genes to produce phylogenetic tree. **[(More info here)](https://github.com/AstrobioMike/GToTree/wiki/example-usage#alteromonas-example)**. The default run ended up removing ~300 MAGs because they didn't have enough marker genes. 
 
 ```
 conda activate gtotree
