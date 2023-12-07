@@ -4,6 +4,7 @@ Uses a set of single copy marker genes to produce phylogenetic tree. **[(More in
 
 ```
 conda activate gtotree
+#version:  GToTree v1.8.3
 cd /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/dereplicated_genomes
 
 #shows list of in-built HMMs
