@@ -22,7 +22,7 @@ GToTree -f Final_MAG_List.txt -H Bacteria -j 15 -o gtotree_bacteria_only_test
 GToTree -f Final_MAG_List.txt -H Archaea -j 15 -o gtotree_archaea_only_test
 
 #alignment only - archaea
-GToTree -f archaea_list.txt -H Archaea -j 15 -N -n 20 -o gtotree_alignment_archaea
+GToTree -f archaea_list.txt -H Archaea -j 10 -N -n 3 -o gtotree_alignment_archaea
 
 
 ```
