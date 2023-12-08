@@ -28,6 +28,12 @@ GToTree -f archaea_list.txt -H Archaea -j 10 -N -n 3 -o gtotree_alignment_archae
 #alignment only - bacteria
 GToTree -f bacteria_list.txt -H Bacteria -j 10 -N -n 3 -o gtotree_alignment_bacteria
 
+#with parameters for SCG best hit, IQ-Tree, and keeping MAGs with >30% of SCGs
+#bacteria
+GToTree -f bacteria_list.txt -H Bacteria -j 10 -n 3 -T IQ-TREE -B -G 0.3 -o gtotree_tree_bacteria2
+
+#archaea
+GToTree -f archaea_list.txt -H Archaea -j 10 -n 3 -T IQ-TREE -B -G 0.3 -o gtotree_tree_archaea2
 
 ```
 
