@@ -286,7 +286,15 @@ blastn -query may17_ASVseqs.fasta -db 16S_MAG_sequences_4db.db -outfmt 6 -out bl
 
 ```
 
+## Prodigal gene prediction 
 
+Use Prodigal to predict genes in MAGs
+
+```
+cd /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/dereplicated_genomes98
+
+for i in *.fa; do prodigal -a drep98_proteins/${i}a -d drep98_proteins/${i}sta -i $i -o drep98_proteins/$(basename $i .fa).out; done
+```
 
 
 ## CANT-HYD HMMs
