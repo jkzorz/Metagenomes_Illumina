@@ -321,6 +321,10 @@ for i in *.fa; do cp -R ../../bins/$(basename $i .fa) . ; done
 #cant hyd for loop - use noise cutoff
 for i in predicted_genes/bin*/genes.faa; do  hmmsearch --cut_nc --tblout hmmsearch_$(basename $(dirname $i)).tblout CANT-HYD.hmm $i > $(basename $(dirname $i)).out;done
 
+#cant hyd for loop - noise cutoff and drep 98 MAGs
+cd /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/dereplicated_genomes98/drep98_proteins
+for i in genes_protein/*.faa; do  hmmsearch --cut_nc --tblout hmmsearch_$(basename $i).tblout CANT-HYD.hmm $i > $(basename $i).out;done
+
 ```
 
 All das tool and drep MAGs: 
