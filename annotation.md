@@ -55,6 +55,9 @@ for i in good_bin_annotations*/rrnas.tsv; do cat $i >> all_rrnas.tsv; done
 DRAM.py distill -i all_annotations.tsv -o genome_summaries --trna_path all_trnas.tsv --rrna_path all_rrnas.tsv --genomes_per_product 250
 ```
 
+DRAM distill heatmap information: https://github.com/WrightonLabCSU/DRAM/blob/master/data/function_heatmap_form.tsv
+
+
 **Das Tool and dRep bins**
 
 1750 bins, divided into ~100 bin folders to run DRAM separately: 
