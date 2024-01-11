@@ -188,6 +188,45 @@ for i in /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/dastool/drep_d
 
 Results now located at: ```/work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/dereplicated_genomes/kofamscan_mapper```
 
+## Genomad
+
+Use Genomad to identify plasmids and viruses in MAGs
+
+```
+conda activate genomad
+
+cd /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/dereplicated_genomes98
+
+```
+Bash script: 
+
+```
+#!/bin/bash
+###### Reserve computing resources ######
+#SBATCH --mail-user=jacqueline.zorz@ucalgary.ca
+#SBATCH --mail-type=ALL
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=30
+#SBATCH --mem=180GB
+#SBATCH --time=24:00:00
+#SBATCH --partition=bigmem,cpu2019,cpu2021,cpu2021-bf24
+
+
+###### Set environment variables ######
+echo "Starting run at : 'date'"
+source /home/jacqueline.zorz/software/miniconda3/etc/profile.d/conda.sh 
+conda activate genomad
+
+cd /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/dereplicated_genomes98/genomad
+
+
+for i in /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/dereplicated_genomes98/*.fa; do mag=$(basename $i); genomad end-to-end --cleanup --splits 8 --enable-score-calibration $i $mag.genomad_default /work/ebg_lab/referenceDatabases/genomad/genomad_db/; done
+
+```
+
+
+
 ## Barrnap 
 Use barrnap to grab rRNA genes from bins 
 
