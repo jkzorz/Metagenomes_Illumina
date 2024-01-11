@@ -226,6 +226,33 @@ for i in /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/dereplicated_genomes98
 ```
 Score calibration not needed if sample has fewer than 1000 sequences (https://portal.nersc.gov/genomad/score_calibration.html) 
 
+## dbCAN3 
+
+The latest dbCAN version, with cgc (cazyme gene cluster) clusters and substrate specific dbcan database: (https://dbcan.readthedocs.io/en/latest/index.html)
+
+```
+#!/bin/bash
+###### Reserve computing resources ######
+#SBATCH --mail-user=jacqueline.zorz@ucalgary.ca
+#SBATCH --mail-type=ALL
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=30
+#SBATCH --mem=180GB
+#SBATCH --time=60:00:00
+#SBATCH --partition=cpu2019,cpu2021
+
+###### Set environment variables ######
+echo "Starting run at : 'date'"
+source /home/jacqueline.zorz/software/miniconda3/etc/profile.d/conda.sh 
+conda activate dbcan
+
+cd /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/dereplicated_genomes98/dbcan
+
+
+for i in /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/dereplicated_genomes98/*.fa; do mag=$(basename $i); run_dbcan $i prok -c cluster --out_dir dbcan_$mag --db_dir /work/ebg_lab/referenceDatabases/dbcan_db/; done
+```
+
 
 ## Barrnap 
 Use barrnap to grab rRNA genes from bins 
