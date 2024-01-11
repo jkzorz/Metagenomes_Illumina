@@ -224,7 +224,7 @@ cd /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/dereplicated_genomes98/genom
 for i in /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/dereplicated_genomes98/*.fa; do mag=$(basename $i); genomad end-to-end --cleanup --splits 8 --enable-score-calibration $i $mag.genomad_default /work/ebg_lab/referenceDatabases/genomad/genomad_db/; done
 
 ```
-
+Score calibration not needed if sample has fewer than 1000 sequences (https://portal.nersc.gov/genomad/score_calibration.html) 
 
 
 ## Barrnap 
