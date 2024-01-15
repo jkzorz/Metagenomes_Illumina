@@ -235,6 +235,10 @@ for i in *genomad_default/*summary/*_plasmid_proteins.faa; do cat $i >> all_plas
 grep ">" all_virus_proteins.faa > virus_proteins_list.txt
 grep ">" all_plasmid_proteins.faa > plasmid_proteins_list.txt
 
+#remove first ">"
+sed -i 's/>//g' plasmid_proteins_list.txt
+sed -i 's/>//g' virus_proteins_list.txt 
+
 #add MAG names to genomad protein names:
 cd /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/dereplicated_genomes98/genomad/
 for i in *genomad_default/*_annotate/*_proteins.faa; do mag=$(basename $i _proteins.faa); sed "s/>/>${mag}:/g" $i > ${mag}_2.faa; done
