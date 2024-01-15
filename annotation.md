@@ -231,12 +231,18 @@ Score calibration not needed if sample has fewer than 1000 sequences (https://po
 for i in *genomad_default/*summary/*_virus_proteins.faa; do cat $i >> all_virus_proteins.faa; done
 for i in *genomad_default/*summary/*_plasmid_proteins.faa; do cat $i >> all_plasmid_proteins.faa; done
 
+#collect just gene names
+grep ">" all_virus_proteins.faa > virus_proteins_list.txt
+grep ">" all_plasmid_proteins.faa > plasmid_proteins_list.txt
+
 #add MAG names to genomad protein names:
 cd /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/dereplicated_genomes98/genomad/
-for i in *genomad_default/*_annotate/*_proteins.faa; do mag=$(basename $i .faa); sed "s/>/>${mag}:/g" $i > ${mag}2.faa; done
+for i in *genomad_default/*_annotate/*_proteins.faa; do mag=$(basename $i _proteins.faa); sed "s/>/>${mag}:/g" $i > ${mag}_2.faa; done
 
 #collect all gene names with MAG name in header and put in new file:
-grep ">" --no-group-separator *proteins2.faa > MAG_contig_gene.txt
+for i in *_2.faa; do grep ">" --no-group-separator $i >> MAG_contig_gene.txt;done
+#remove everything after the space to make file smaller
+sed 's/ .*//g' MAG_contig_gene.txt > MAG_contig_gene2.txt
 ```
 
 ## dbCAN3 
