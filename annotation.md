@@ -226,6 +226,12 @@ for i in /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/dereplicated_genomes98
 ```
 Score calibration not needed if sample has fewer than 1000 sequences (https://portal.nersc.gov/genomad/score_calibration.html) 
 
+```
+#collect all virus and plasmid sequences:
+for i in *genomad_default/*summary/*_virus_proteins.faa; do cat $i >> all_virus_proteins.faa; done
+for i in *genomad_default/*summary/*_plasmid_proteins.faa; do cat $i >> all_plasmid_proteins.faa; done
+```
+
 ## dbCAN3 
 
 The latest dbCAN version, with cgc (cazyme gene cluster) clusters and substrate specific dbcan database: (https://dbcan.readthedocs.io/en/latest/index.html)
