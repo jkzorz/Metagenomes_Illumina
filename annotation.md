@@ -240,9 +240,19 @@ cd /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/dereplicated_genomes98/genom
 for i in *genomad_default/*_annotate/*_proteins.faa; do mag=$(basename $i _proteins.faa); sed "s/>/>${mag}:/g" $i > ${mag}_2.faa; done
 
 #collect all gene names with MAG name in header and put in new file:
-for i in *_2.faa; do grep ">" --no-group-separator $i >> MAG_contig_gene.txt;done
+#for i in Proteins_with_MAG_headers/*_2.faa; do grep ">" --no-group-separator $i >> MAG_contig_gene.txt;done
+#file too big, split into smaller files:
+for i in Proteins_with_MAG_headers/concoct*_2.faa; do grep ">" --no-group-separator $i >> concoct_MAG_contig_gene.txt;done
+for i in Proteins_with_MAG_headers/bin*_2.faa; do grep ">" --no-group-separator $i >> bin_MAG_contig_gene.txt;done
+for i in Proteins_with_MAG_headers/Nano*_2.faa; do grep ">" --no-group-separator $i >> Nano_MAG_contig_gene.txt;done
+for i in Proteins_with_MAG_headers/S*_2.faa; do grep ">" --no-group-separator $i >> S_MAG_contig_gene.txt;done
+
 #remove everything after the space to make file smaller
-sed 's/ .*//g' MAG_contig_gene.txt > MAG_contig_gene2.txt
+#sed 's/ .*//g' MAG_contig_gene.txt > MAG_contig_gene2.txt
+sed 's/ .*//g' concoct_MAG_contig_gene.txt > concoct_MAG_contig_gene2.txt
+sed 's/ .*//g' bin_MAG_contig_gene.txt > bin_MAG_contig_gene2.txt
+sed 's/ .*//g' Nano_MAG_contig_gene.txt > Nano_MAG_contig_gene2.txt
+sed 's/ .*//g' S_MAG_contig_gene.txt > S_MAG_contig_gene2.txt
 ```
 
 ## dbCAN3 
