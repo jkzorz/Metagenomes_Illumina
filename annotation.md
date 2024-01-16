@@ -288,6 +288,34 @@ vir_mag.to_csv('virus_MAGs.csv', index=False)
 ```
 **For some reason, there is duplicate gene/contig names between MAGs :( - better option would be to add MAG name into virus and plasmid protein output files**
 
+**Easier workaround is to just collect proteins and add the MAG name individually before concatenating all virus/plasmid proteins:**
+```
+#virus
+for i in *genomad_default/*summary/*virus_proteins.faa; do mag=$(basename $i _virus_proteins.faa); grep ">" $i --no-group-separator > ${mag}_virus_proteins_list.txt; sed -i "s/>/${mag}:/g" ${mag}_virus_proteins_list.txt;done
+
+cat *virus_proteins_list.txt > Virus_proteins_list_all.txt
+
+#plasmid
+for i in *genomad_default/*summary/*plasmid_proteins.faa; do mag=$(basename $i _plasmid_proteins.faa); grep ">" $i --no-group-separator > ${mag}_plasmid_proteins_list.txt; sed -i "s/>/${mag}:/g" ${mag}_plasmid_proteins_list.txt;done
+
+cat *plasmid_proteins_list.txt > Plasmid_proteins_list_all.txt
+```
+
+**Repeat steps to get the "summary" files**
+```
+#virus
+for i in *genomad_default/*summary/*virus_summary.tsv; do mag=$(basename $i _virus_summary.tsv); grep "[0-9]" $i --no-group-separator > ${mag}_virus_summary_list.txt; sed -i -e "s/^/${mag}:/" ${mag}_virus_summary_list.txt;done
+
+cat *virus_summary_list.txt > Virus_summary_list_all.txt
+
+#plasmid
+for i in *genomad_default/*summary/*plasmid_summary.tsv; do mag=$(basename $i _plasmid_summary.tsv); grep "[0-9]" $i --no-group-separator > ${mag}_plasmid_summary_list.txt; sed -i -e "s/^/${mag}:/" ${mag}_plasmid_summary_list.txt;done
+
+cat *plasmid_summary_list.txt > Plasmid_summary_list_all.txt
+
+```
+
+
 
 ## dbCAN3 
 
@@ -315,7 +343,6 @@ cd /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/dereplicated_genomes98/dbcan
 
 for i in /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/dereplicated_genomes98/*.fa; do mag=$(basename $i); run_dbcan $i prok -c cluster --out_dir dbcan_$mag --db_dir /work/ebg_lab/referenceDatabases/dbcan_db/; done
 ```
-
 
 ## Barrnap 
 Use barrnap to grab rRNA genes from bins 
