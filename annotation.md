@@ -238,6 +238,10 @@ grep ">" all_plasmid_proteins.faa > plasmid_proteins_list.txt
 #remove text after " "
 sed 's/ .*//g' plasmid_proteins_list.txt > plasmid_proteins_list2.txt
 sed 's/ .*//g' virus_proteins_list.txt > virus_proteins_list2.txt
+#weird bits in virus file
+sed -i 's/|provirus_73487_113103//g' virus_proteins_list2.txt
+sed -i 's/|provirus_268712_291402//g' virus_proteins_list2.txt
+
 
 #remove first ">"
 sed -i 's/>//g' plasmid_proteins_list.txt
