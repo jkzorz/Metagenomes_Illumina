@@ -235,6 +235,10 @@ for i in *genomad_default/*summary/*_plasmid_proteins.faa; do cat $i >> all_plas
 grep ">" all_virus_proteins.faa > virus_proteins_list.txt
 grep ">" all_plasmid_proteins.faa > plasmid_proteins_list.txt
 
+#remove text after " "
+sed 's/ .*//g' plasmid_proteins_list.txt > plasmid_proteins_list2.txt
+sed 's/ .*//g' virus_proteins_list.txt > virus_proteins_list2.txt
+
 #remove first ">"
 sed -i 's/>//g' plasmid_proteins_list.txt
 sed -i 's/>//g' virus_proteins_list.txt 
