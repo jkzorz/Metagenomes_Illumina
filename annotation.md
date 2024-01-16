@@ -259,6 +259,35 @@ sed 's/ .*//g' MAG_contig_gene.txt > MAG_contig_gene2.txt
 #remove first ">" symbol
 sed 's/>//g' MAG_contig_gene2.txt > MAG_contig_gene3.txt
 ```
+**Python script for merging MAG info and plasmid genes:** 
+```
+import pandas as pd
+import os
+
+os.chdir('/work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/dereplicated_genomes98/genomad')
+key = pd.read_csv('MAG_contig_gene3.txt', sep=':', header=None, names=['MAG', 'Gene'])
+
+#plasmid list
+plas = pd.read_csv('plasmid_proteins_list2.txt', sep = ' ', header=None, names=['Gene'])
+
+#merge MAG data and plasmid gene data
+plas_mag = plas.merge(key, on = 'Gene')
+
+plas_mag.head()
+#write to csv
+plas_mag.to_csv('plasmid_MAGs.csv', index=False)
+
+#virus list
+vir = pd.read_csv('virus_proteins_list2.txt', sep = ' ', header=None, names=['Gene'])
+
+vir_mag = vir.merge(key, on = 'Gene')
+
+vir_mag.head()
+
+vir_mag.to_csv('virus_MAGs.csv', index=False)
+```
+
+
 
 ## dbCAN3 
 
