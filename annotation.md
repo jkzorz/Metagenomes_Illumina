@@ -286,7 +286,7 @@ vir_mag.head()
 
 vir_mag.to_csv('virus_MAGs.csv', index=False)
 ```
-
+**For some reason, there is duplicate gene/contig names between MAGs :( - better option would be to add MAG name into virus and plasmid protein output files**
 
 
 ## dbCAN3 
