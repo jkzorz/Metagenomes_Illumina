@@ -188,6 +188,22 @@ for i in /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/dastool/drep_d
 
 Results now located at: ```/work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/dereplicated_genomes/kofamscan_mapper```
 
+
+## KEGG-Decoder
+
+Running this on my local computer. Installed conda, and installed kegg-decoder with pip. Had to add installation path to zshrc file before it would work. 
+
+Used for loop to create heatmaps and summary stats for each MAG: 
+```
+cd Documents/University\ of\ Calgary/PostDoc/Metagenomes/final_drep/kofamscan_mapper/kegg_decoder
+#kegg-decoder
+for i in ../*.txt; do KEGG-decoder --input $i  --output $(basename $i .txt)_output.txt --vizoption static;done
+```
+
+
+
+
+
 ## Genomad
 
 Use Genomad to identify plasmids and viruses in MAGs
