@@ -615,6 +615,30 @@ gtdbtk classify_wf --genome_dir . --out_dir gtdbtk_bins_final_214 -x fa --mash_d
 ```
 
 
+Gtdbtk script with new R220 DB and gtdbtk 2.4.0 on 1432 MAGs dereplicated at 98%
+
+```
+#!/bin/bash
+###### Reserve computing resources ######
+#SBATCH --mail-user=jacqueline.zorz@ucalgary.ca
+#SBATCH --mail-type=ALL
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=40
+#SBATCH --mem=500GB
+#SBATCH --time=24:00:00
+#SBATCH --partition=bigmem
+
+###### Set environment variables ######
+echo "Starting run at : 'date'"
+source /home/jacqueline.zorz/software/miniconda3/etc/profile.d/conda.sh
+conda activate gtdbtk4
+
+cd /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/dereplicated_genomes98
+
+gtdbtk classify_wf --genome_dir . --out_dir gtdbtk_bins_final_220 -x fa --mash_db gtdbtk_bins_final_220/mash
+```
+
 
 ## dRep 
 
