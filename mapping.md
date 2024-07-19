@@ -78,3 +78,14 @@ do
 done 
 
 ```
+
+## Create a file with the total number of reads mapped to each sample's contigs
+
+Do for negative and positive hc directories. 
+```
+cd /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/mapping/mapping_hc_negative
+for file in *covstats.txt; do echo "$file: $(awk 'NR>1 {sum += $5} END {print sum}' "$file")"; done > ../hc_negative_covstats_sums.txt
+
+cd /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/mapping/mapping_hc_positive
+for file in *covstats.txt; do echo "$file: $(awk 'NR>1 {sum += $5} END {print sum}' "$file")"; done > ../hc_positive_covstats_sums.txt
+```
