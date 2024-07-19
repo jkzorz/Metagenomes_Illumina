@@ -90,6 +90,12 @@ for i in JZ*L001_R1_qc.fastq; do cat $i $(basename $i L001_R1_qc.fastq)L00{2,3,4
 for i in JZ*L001_R2_qc.fastq; do cat $i $(basename $i L001_R2_qc.fastq)L00{2,3,4}_R2_qc.fastq  > cat_qc/$(basename $i L001_R2_qc.fastq)R2_QC.fastq; done
 ```
 
+## Count the number of reads per sample
+
+```
+cd /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/bbduk/cat_qc
+sbatch --time=5:00:00 --wrap='for i in *R1_QC.fastq.gz; do echo "$i: $(zcat $i | grep -c '^@')" >> sample_sequence_count.txt; done'
+```
 
 
 ## Trying different methods to improve downstream assembly and binning
