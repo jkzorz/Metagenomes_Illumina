@@ -611,7 +611,7 @@ conda activate gtdbtk3
 cd /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/dastool/drep_dastool_out2/dereplicated_genomes/Good_Bins_CheckM2/drep_Final_Nanopore_output/dereplicated_genomes
 
 
-gtdbtk classify_wf --genome_dir . --out_dir gtdbtk_bins_final_214 -x fa --mash_db gtdbtk_bins_final_214/mash
+gtdbtk classify_wf --genome_dir . --out_dir gtdbtk_bins_final_214 -x fa --mash_db gtdbtk_bins_final_214/mash --cpus 35
 ```
 
 
@@ -636,7 +636,7 @@ conda activate gtdbtk4
 
 cd /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/dereplicated_genomes98
 
-gtdbtk classify_wf --genome_dir . --out_dir gtdbtk_bins_final_220 -x fa --mash_db gtdbtk_bins_final_220/mash
+gtdbtk classify_wf --genome_dir . --out_dir gtdbtk_bins_final_220 -x fa --mash_db gtdbtk_bins_final_220/mash --cpus 35
 ```
 
 
