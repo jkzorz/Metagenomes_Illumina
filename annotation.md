@@ -162,6 +162,16 @@ for i in /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/dastool/drep_d
 ```
 Results now located at: ```/work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/dereplicated_genomes/kofamscan```
 
+**Select only significant hits**
+```
+#ran this on mac
+cd /Users/jkzorz/Documents/University of Calgary/PostDoc/Metagenomes/final_drep/kofamscan/kofamscan_significant
+
+for i in ../kofam_*.txt; do kegg=$(basename $i .txt); awk '{ if ($1 == "*") { print } }' $i > ${kegg}_significant.txt; done
+```
+
+
+
 **kofamscan on all final MAGs: mapper version for input to kegg mapper**
 ```
 #!/bin/bash
