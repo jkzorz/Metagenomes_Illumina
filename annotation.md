@@ -638,9 +638,9 @@ Then uploaded the zipped file to ARC and unzipped using:
 tar -xzvf signalp-6.0h.fast.tar.gz
 ```
 
-Then created a conda environment with python version 3.10 and pip already installed: 
+Then created a conda environment with python version 3.10, numpy version 1.23 and pip already installed: 
 ```
-mamba create -n signalP python=3.10 pip
+mamba create -n signalP python=3.10 numpy=1.23 pip
 conda activate signalP
 ```
 
@@ -654,13 +654,30 @@ Copy the models to the signalP conda environment location:
 cp /work/ebg_lab/referenceDatabases/SignalP/signalp6_fast/signalp-6-package/models/distilled_model_signalp6.pt /home/jacqueline.zorz/software/miniconda3/envs/signalP/lib/python3.10/site-packages/signalp/model_weights/
 ```
 
-Also needed to fix the numpy version: 
+Run signalP on all MAG genes as for loop 
 ```
-conda install numpy=1.23
-```
+#!/bin/bash
+###### Reserve computing resources ######
+#SBATCH --mail-user=jacqueline.zorz@ucalgary.ca
+#SBATCH --mail-type=ALL
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=30
+#SBATCH --mem=180GB
+#SBATCH --time=48:00:00
+#SBATCH --partition=bigmem,cpu2019,cpu2021,cpu2021-bf24
 
 
-Run signalP 
+###### Set environment variables ######
+echo "Starting run at : 'date'"
+source /home/jacqueline.zorz/software/miniconda3/etc/profile.d/conda.sh 
+conda activate signalP
+
+cd /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/annotation/signalp/
+
+
+for i in /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/dereplicated_genomes98/drep98_proteins/genes_protein/*.faa; do mag=$(basename $i .faa);  signalp6 --fastafile $i --output_dir signalp_{mag}/ --organism other -tt 20; done
+```
 
 
 
