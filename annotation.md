@@ -654,6 +654,12 @@ Copy the models to the signalP conda environment location:
 cp /work/ebg_lab/referenceDatabases/SignalP/signalp6_fast/signalp-6-package/models/distilled_model_signalp6.pt /home/jacqueline.zorz/software/miniconda3/envs/signalP/lib/python3.10/site-packages/signalp/model_weights/
 ```
 
+Also needed to fix the numpy version: 
+```
+conda install numpy=1.23
+```
+
+
 Run signalP 
 
 
