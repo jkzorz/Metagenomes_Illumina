@@ -676,7 +676,7 @@ conda activate signalP
 cd /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/annotation/signalp/
 
 
-for i in /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/dereplicated_genomes98/drep98_proteins/genes_protein/*.faa; do mag=$(basename $i .faa);  signalp6 --fastafile $i --output_dir signalp_$mag/ --organism other; done
+for i in /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/dereplicated_genomes98/drep98_proteins/genes_protein/*.faa; do mag=$(basename $i .faa);  signalp6 --fastafile $i --output_dir signalp_$mag/ --organism other --format none; done
 ```
 
 
