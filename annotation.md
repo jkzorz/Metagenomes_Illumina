@@ -664,8 +664,8 @@ Run signalP on all MAG genes as for loop
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=30
 #SBATCH --mem=180GB
-#SBATCH --time=48:00:00
-#SBATCH --partition=bigmem,cpu2019,cpu2021,cpu2021-bf24
+#SBATCH --time=24:00:00
+#SBATCH --partition=bigmem,cpu2019,cpu2021,cpu2021-bf24,cpu2023
 
 
 ###### Set environment variables ######
@@ -676,7 +676,7 @@ conda activate signalP
 cd /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/annotation/signalp/
 
 
-for i in /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/dereplicated_genomes98/drep98_proteins/genes_protein/*.faa; do mag=$(basename $i .faa);  signalp6 --fastafile $i --output_dir signalp_{mag}/ --organism other -tt 20; done
+for i in /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/dereplicated_genomes98/drep98_proteins/genes_protein/*.faa; do mag=$(basename $i .faa);  signalp6 --fastafile $i --output_dir signalp_{mag}/ --organism other; done
 ```
 
 
