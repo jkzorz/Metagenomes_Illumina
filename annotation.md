@@ -629,6 +629,31 @@ for i in /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/binning/dastool/drep_d
 
 ```
 
+## SignalP
+
+Needed to first download the "fast" signalP program by requesting access through here: https://services.healthtech.dtu.dk/cgi-bin/sw_request?software=signalp&version=6.0&packageversion=6.0h&platform=fast
+
+Then uploaded the zipped file to ARC and unzipped using: 
+```
+tar -xzvf signalp-6.0h.fast.tar.gz
+```
+
+Then created a conda environment with python version 3.10 and pip already installed: 
+```
+mamba create -n signalP python=3.10 pip
+conda activate signalP
+```
+
+Then ran the install command from the directory containing the unzipped signalP files: 
+```
+pip install signalp-6-package/
+```
+
+Run signalP 
+
+
+
+
 
 ## MetaErg 2.0
 
