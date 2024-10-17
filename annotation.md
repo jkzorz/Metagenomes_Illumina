@@ -407,6 +407,45 @@ cd /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/annotation/CAMPER
 camper_annotate -i '/work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/dereplicated_genomes98/drep98_proteins/genes_protein/*faa' -o /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/annotation/CAMPER/camper_results --threads 30
 ```
 
+Then run camper_distill: 
+
+```
+camper-distill -a annotations.tsv -o camper_distill_output.tsv
+```
+
+## FeGenie
+
+Use FeGenie to find enzymes/proteins associated with iron metabolism. 
+
+Install: 
+```
+mamba create -n fegenie -c conda-forge -c bioconda -c defaults fegenie=1.0 --yes
+```
+Run: 
+```
+#!/bin/bash
+###### Reserve computing resources ######
+#SBATCH --mail-user=jacqueline.zorz@ucalgary.ca
+#SBATCH --mail-type=ALL
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=20
+#SBATCH --mem=50GB
+#SBATCH --time=168:00:00
+#SBATCH --partition=cpu2019,cpu2021,cpu2023
+
+#set environmental parameters
+
+source /home/jacqueline.zorz/software/miniconda3/etc/profile.d/conda.sh 
+conda activate fegenie
+
+cd /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/annotation/fegenie
+
+FeGenie.py -bin_dir /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/dereplicated_genomes98/drep98_proteins/genes_protein -bin_ext faa -out fegenie_out --orfs -t 16 
+
+
+```
+
 
 ## Barrnap 
 Use barrnap to grab rRNA genes from bins 
