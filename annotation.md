@@ -760,7 +760,7 @@ for i in /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/dereplicated_genomes98
 
 Using HMMs to find eukaryotic and photosynthetic marker genes in assembled contigs in order to determine the types of eukaryotes and photosynthetic organisms that are in these marine sediment samples. 
 
-First need to predict genes in assembled contigs using **prodigal**: 
+First need to predict genes in assembled contigs using **prodigal**. Ran twice with translation table 11 (prokaryotes) and 1 (eukaryotes) 
 ```
 #!/bin/bash
 ###### Reserve computing resources ######
@@ -770,7 +770,7 @@ First need to predict genes in assembled contigs using **prodigal**:
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=20
 #SBATCH --mem=180GB
-#SBATCH --time=48:00:00
+#SBATCH --time=120:00:00
 #SBATCH --partition=cpu2019,cpu2021,cpu2023
 
 #set environmental parameters
@@ -780,7 +780,7 @@ conda activate prodigal
 
 cd /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/annotation/eukaryotic_genes/contig_proteins/
 
-for i in /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/megahit/megahit_hc_positive/*/final.contigs.fa; do sample=$(basename $(dirname $i)); prodigal -a ${sample}.faa -d ${sample}.fa -i $i -o ${sample}.out -p meta; done 
+for i in /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/megahit/megahit_hc_positive/*/final.contigs.fa; do sample=$(basename $(dirname $i)); prodigal -a ${sample}_tt11.faa -d ${sample}_tt11.fa -i $i -o ${sample}_tt11.out -g 11 -p meta; done 
 
 ```
 
