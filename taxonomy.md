@@ -51,6 +51,40 @@ phyloFlash.pl -lib Phylo_test_2AT_2428 -poscov -treemap -log -read1 /work/ebg_la
 
 ```
 
+For loop to run on all samples:
+```
+#!/bin/bash
+###### Reserve computing resources ######
+#SBATCH --mail-user=jacqueline.zorz@ucalgary.ca
+#SBATCH --mail-type=ALL
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=30
+#SBATCH --mem=180GB
+#SBATCH --time=72:00:00
+#SBATCH --partition=cpu2019,cpu2021,cpu2023
+
+###### Set environment variables ######
+echo "Starting run at : 'date'"
+source /home/jacqueline.zorz/software/miniconda3/etc/profile.d/conda.sh 
+conda activate phyloflash
+
+cd /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/taxonomy/PhyloFlash
+
+
+for x in /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/bbduk/cat_qc/*R1_QC.fastq.gz; 
+
+do 
+	R1=$x; 
+	R2=$(dirname $x)/$(basename $x R1_QC.fastq.gz)R2_QC.fastq.gz; 
+	reads=$(basename $x _R1_QC.fastq.gz); 
+	read_short=${reads%_Li*}; #eg JZ-Condor-2AT-700NW-B7-0-4
+	read_short2=${read_short:10};  #eg 2AT-700NW-B7-0-4
+
+		
+	phyloFlash.pl -lib Phylo_${read_short2} -poscov -treemap -log -read1 $R1 -read2 $R2 -readlength 150 -dbhome /home/jacqueline.zorz/software/miniconda3/envs/phyloflash/lib/phyloFlash/138.1/ ; done
+```
+
 
 ## FastTree 
 
