@@ -756,7 +756,33 @@ cd /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/annotation/signalp/
 for i in /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/dereplicated_genomes98/drep98_proteins/genes_protein/*.faa; do mag=$(basename $i .faa);  signalp6 --fastafile $i --output_dir signalp_$mag/ --organism other --format none; done
 ```
 
+## Finding Eukaryotic and photosynthetic marker genes in assembled contigs
 
+Using HMMs to find eukaryotic and photosynthetic marker genes in assembled contigs in order to determine the types of eukaryotes and photosynthetic organisms that are in these marine sediment samples. 
+
+First need to predict genes in assembled contigs using **prodigal**: 
+```
+#!/bin/bash
+###### Reserve computing resources ######
+#SBATCH --mail-user=jacqueline.zorz@ucalgary.ca
+#SBATCH --mail-type=ALL
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=20
+#SBATCH --mem=180GB
+#SBATCH --time=48:00:00
+#SBATCH --partition=cpu2019,cpu2021,cpu2023
+
+#set environmental parameters
+
+source /home/jacqueline.zorz/software/miniconda3/etc/profile.d/conda.sh 
+conda activate prodigal
+
+cd /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/annotation/eukaryotic_genes/contig_proteins/
+
+for i in /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/megahit/megahit_hc_positive/*/final.contigs.fa; do sample=$(basename $(dirname $i)); prodigal -a ${sample}.faa -d ${sample}.fa -i $i -o ${sample}.out -p meta; done 
+
+```
 
 
 
