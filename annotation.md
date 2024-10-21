@@ -788,6 +788,9 @@ Use kofamscan to look for specific KOs:
 - K02703: PsbA
 - K02706: PsbD
 - K02691: PsaC
+- K01601: rbcL
+- K01602: rbcS
+- K00855: prk
 
 **euk_KO_list.txt**
 - 
