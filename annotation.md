@@ -171,7 +171,6 @@ for i in ../kofam_*.txt; do kegg=$(basename $i .txt); awk '{ if ($1 == "*") { pr
 ```
 
 
-
 **kofamscan on all final MAGs: mapper version for input to kegg mapper**
 ```
 #!/bin/bash
@@ -784,6 +783,23 @@ for i in /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/megahit/megahit_hc_pos
 
 ```
 
+Use kofamscan to look for specific KOs:
+**photo_KO_list.txt**
+- K02703: PsbA
+- K02706: PsbD
+- K02691: PsaC
+
+**euk_KO_list.txt**
+- 
+
+```
+conda activate kofamscan
+
+for i in /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/annotation/eukaryotic_genes/contig_proteins/*.faa; do sample=$(basename $i .faa); ~/kofamscan/kofam_scan-1.3.0/exec_annotation -f detail-tsv -k photo_KO_list.txt -o photo_${sample}.tsv $i
+
+for i in /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/annotation/eukaryotic_genes/contig_proteins/*.faa; do sample=$(basename $i .faa); ~/kofamscan/kofam_scan-1.3.0/exec_annotation -f detail-tsv -k euk_KO_list.txt -o euk_${sample}.tsv $i
+
+```
 
 
 ## MetaErg 2.0
