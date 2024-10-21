@@ -82,7 +82,7 @@ do
 	read_short2=${read_short:10};  #eg 2AT-700NW-B7-0-4
 
 		
-	phyloFlash.pl -lib Phylo_${read_short2} -poscov -treemap -log -read1 $R1 -read2 $R2 -readlength 150 -dbhome /home/jacqueline.zorz/software/miniconda3/envs/phyloflash/lib/phyloFlash/138.1/ ; done
+	phyloFlash.pl -lib Phylo_${read_short2} -poscov -treemap -log -read1 $R1 -read2 $R2 -readlength 150 -dbhome /home/jacqueline.zorz/software/miniconda3/envs/phyloflash/lib/phyloFlash/138.1/ -taxlevel 6; done
 ```
 
 
