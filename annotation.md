@@ -783,7 +783,7 @@ for i in /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/megahit/megahit_hc_pos
 
 ```
 
-Use kofamscan to look for specific KOs:
+Use hmmer to look for specific KOs:
 **photo_KO_list.txt**
 - K02703: PsbA
 - K02706: PsbD
@@ -796,11 +796,10 @@ Use kofamscan to look for specific KOs:
 - 
 
 ```
-conda activate kofamscan
+conda activate hmmer
 
-for i in /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/annotation/eukaryotic_genes/contig_proteins/*.faa; do sample=$(basename $i .faa); ~/kofamscan/kofam_scan-1.3.0/exec_annotation -f detail-tsv -k photo_KO_list.txt -o photo_${sample}.tsv $i
+for i in contig_proteins/*t1.faa; do sample=$(basename $i .faa); sample2=${sample:18}; sample3=${sample2%_Li*}; hmmsearch --tblout kofam_test/psbA_${sample3}.tblout ~/kofamscan/profiles/K02703.hmm $i > kofam_test/psbA_${sample3}.out;done
 
-for i in /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/annotation/eukaryotic_genes/contig_proteins/*.faa; do sample=$(basename $i .faa); ~/kofamscan/kofam_scan-1.3.0/exec_annotation -f detail-tsv -k euk_KO_list.txt -o euk_${sample}.tsv $i
 
 ```
 
