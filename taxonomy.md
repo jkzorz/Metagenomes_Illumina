@@ -85,6 +85,20 @@ do
 	phyloFlash.pl -lib Phylo_${read_short2} -poscov -treemap -log -read1 $R1 -read2 $R2 -readlength 150 -dbhome /home/jacqueline.zorz/software/miniconda3/envs/phyloflash/lib/phyloFlash/138.1/ -taxlevel 6; done
 ```
 
+**Collect all assembled Eukaryotic rRNA sequences**
+
+```
+#search for Eukaryota in sequence taxonomy "libNAME.phyloFlash.extractedSSUclassifications.csv"
+grep "Eukaryota" *extracted* > Eukaryota_rRNA_list.txt
+
+#remove extra bits to get the header found in the fasta files 
+awk -F: '{split($2, a, ","); print a[1] "_"}' Eukaryota_rRNA_list.txt > Eukaryota_rRNA_list_short.txt
+
+#use grep to collect Eukaryotic sequences
+for i in *.fasta; do grep -A1 -f Eukaryota_rRNA_list_short.txt $i >> Eukaryota_seqs.fasta; done
+
+```
+
 
 ## FastTree 
 
