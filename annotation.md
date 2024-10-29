@@ -444,6 +444,14 @@ FeGenie.py -bin_dir /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/dereplicate
 
 
 ```
+## Plastics 
+Used the database of plastic degrading HMMs from: https://github.com/JanZrimec/Plastic_degrading_microbiome/tree/master/data 
+
+Used a file of all genes in MAGs concatenated with MAG name in header. 
+
+```
+hmmsearch --tblout plastic_hmms2.tblout Dataset_HMMs.hmm ../concatenated_genes.faa > plastic_hmms2.out
+```
 
 
 ## Barrnap 
