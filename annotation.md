@@ -450,7 +450,7 @@ Used the database of plastic degrading HMMs from: https://github.com/JanZrimec/P
 Used a file of all genes in MAGs concatenated with MAG name in header. 
 
 ```
-hmmsearch --tblout plastic_hmms2.tblout Dataset_HMMs.hmm ../concatenated_genes.faa > plastic_hmms2.out
+hmmsearch --incE 1e-50 --tblout plastic_hmms2.tblout Dataset_HMMs.hmm ../concatenated_genes.faa > plastic_hmms2.out
 ```
 
 
