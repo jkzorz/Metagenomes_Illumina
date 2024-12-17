@@ -154,7 +154,7 @@ For loop:
 ###### Set environment variables ######
 echo "Starting run at : 'date'"
 source /home/jacqueline.zorz/software/miniconda3/etc/profile.d/conda.sh 
-conda activate phyloflash
+conda activate singleM
 
 cd /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/taxonomy/singleM
 
@@ -166,7 +166,7 @@ do
 	R2=$(dirname $x)/$(basename $x R1_QC.fastq.gz)R2_QC.fastq.gz; 
 	reads=$(basename $x _R1_QC.fastq.gz); 
 	read_short=${reads%_Li*}; #eg JZ-Condor-2AT-700NW-B7-0-4
-	read_short2=${read_short:10};  #eg 2AT-700NW-B7-0-4
+	read_short2=${read_short:10}.tbl;  #eg 2AT-700NW-B7-0-4
 
 		
 	singlem pipe -1 $R1 -2 $R2 -p $read_short2 --threads 25 --taxonomic-profile-krona ${read_short2}_krona --metapackage ~/singleM_db/S4.3.0.GTDB_r220.metapackage_20240523.smpkg.zb 
@@ -178,8 +178,11 @@ done
 
 ```
 
+Create summary profiles at each taxonomic level of all output tables
 
-
+```
+for i in *.tbl; do singlem summarise --input-taxonomic-profile $i --output-species-by-site-relative-abundance-prefix $(basename $i .tbl); done
+```
 
 
 ## Kraken 
