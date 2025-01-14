@@ -184,6 +184,21 @@ Create summary profiles at each taxonomic level of all output tables
 for i in *.tbl; do singlem summarise --input-taxonomic-profile $i --output-species-by-site-relative-abundance-prefix $(basename $i .tbl); done
 ```
 
+## Whokaryote
+
+Whokaryote (https://github.com/LottePronk/whokaryote) is used to predict if a contig is prokaryotic or eukaryotic in origin. Running on samples with a high predicted eukaryotic content with hopes to identify contigs that could be used to create a eukaryotic bin.
+
+```
+#activate whokaryote environment
+conda activate whokaryote
+
+#runs fairly quickly - example with one assembly
+cd /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/taxonomy/whokaryote
+
+whokaryote.py --contigs 175NW_contigs/final.contigs.fa --outdir whokaryote_175NW_Illumina_contigs
+
+```
+
 
 ## Kraken 
 
