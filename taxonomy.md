@@ -35,9 +35,27 @@ GToTree -f bacteria_list.txt -H Bacteria -j 10 -n 3 -T IQ-TREE -B -G 0.3 -o gtot
 #archaea
 GToTree -f archaea_list.txt -H Archaea -j 10 -n 3 -T IQ-TREE -B -G 0.3 -o gtotree_tree_archaea2
 
+
 ```
 
 Can also just perform the multiple sequence alignment of marker genes by using -N flag. MSA can then be imported into another program (e.g., IQTree). -x Flag overrides the default super5 muscle sequence alignment algorithm used with many genomes. 
+
+**Also ran with drep 98% MAGs**. Will probably use this tree for manuscript: 
+```
+conda activate gtotree
+#version:  GToTree v1.8.3
+cd /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/dereplicated_genomes98
+
+#create list of MAG file paths
+ls *.fa > all_MAG_list98.txt
+
+#bacteria and archaea
+GToTree -f all_MAG_list98.txt -H Bacteria_and_Archaea -j 10 -n 3 -T IQ-TREE -B -G 0.3 -o gtotree_tree_all_bac_arc_drep98
+
+#bac and arch - Hug et al.
+GToTree -f all_MAG_list98.txt -H Universal_Hug_et_al -j 10 -n 3 -T IQ-TREE -B -G 0.3 -o gtotree_tree_all_hug_drep98
+
+```
 
 
 ## Phyloflash
