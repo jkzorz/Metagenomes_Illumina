@@ -56,6 +56,19 @@ GToTree -f all_MAG_list98.txt -H Bacteria_and_Archaea -j 10 -n 3 -T IQ-TREE -B -
 GToTree -f all_MAG_list98.txt -H Universal_Hug_et_al -j 10 -n 3 -T IQ-TREE -B -G 0.3 -o gtotree_tree_all_hug_drep98
 
 ```
+**Pull representative genomes from GTDB to make tree for novel phylum**
+
+```
+cd /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/dereplicated_genomes98
+
+#get bacterial gtdb representatives
+gtt-get-accessions-from-GTDB -t Bacteria --GTDB-representatives-only
+
+#subset to representatives from each class
+gtt-subset-GTDB-accessions -i GTDB-Bacteria-domain-GTDB-rep-metadata.tsv --get-only-individuals-for-the-rank class
+
+```
+
 
 
 ## Phyloflash
