@@ -416,6 +416,19 @@ Then run camper_distill:
 camper-distill -a annotations.tsv -o camper_distill_output.tsv
 ```
 
+## ISFinder
+
+Use blastp to search ISFinder database transposase genes in each of the MAGs. Downloaded the ISfinder protein sequences from here: https://github.com/thanhleviet/ISfinder-sequences/blob/master/IS.faa 
+```
+#run from mac terminal
+cd Documents/University\ of\ Calgary/PostDoc/Metagenomes/final_drep/isfinder 
+
+#run blastp as for loop - only keep hits with evalues < 1e-5
+for i in ../protein_files/*.faa; do print $i; blastp -query $i -db IS.faa.db -evalue 1e-5 -outfmt 6 -out $(basename $i .faa)_isfinder_blast.tblout;done
+```
+
+
+
 ## FeGenie
 
 Use FeGenie to find enzymes/proteins associated with iron metabolism. 
