@@ -426,7 +426,18 @@ cd Documents/University\ of\ Calgary/PostDoc/Metagenomes/final_drep/isfinder
 #run blastp as for loop - only keep hits with evalues < 1e-5
 for i in ../protein_files/*.faa; do print $i; blastp -query $i -db IS.faa.db -evalue 1e-5 -outfmt 6 -out $(basename $i .faa)_isfinder_blast.tblout;done
 ```
+Use a custom Python script (isfinder_blast_parse.py) to find the best blast hit for each gene: 
 
+```
+for i in *tblout; do python isfinder_blast_parse.py $i isfinder_nodups/$(basename $i .tblout)_nodups.tblout; done
+```
+Create a summary file that has the number of isfinder genes found per MAG:
+```
+ echo "File,Count" > isfinder_genes_per_MAG.csv  # Add header                                                     
+for i in isfinder_nodups/*.tblout; do
+    echo "$(basename $i),$(wc -l < "$i")" >> isfinder_genes_per_MAG.csv
+done
+```
 
 
 ## FeGenie
