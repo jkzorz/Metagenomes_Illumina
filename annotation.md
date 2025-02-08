@@ -433,7 +433,7 @@ for i in *tblout; do python isfinder_blast_parse.py $i isfinder_nodups/$(basenam
 ```
 Create a summary file that has the number of isfinder genes found per MAG:
 ```
- echo "File,Count" > isfinder_genes_per_MAG.csv  # Add header                                                     
+echo "File,Count" > isfinder_genes_per_MAG.csv                                                       
 for i in isfinder_nodups/*.tblout; do
     echo "$(basename $i),$(wc -l < "$i")" >> isfinder_genes_per_MAG.csv
 done
