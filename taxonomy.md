@@ -230,6 +230,32 @@ whokaryote.py --contigs 175NW_contigs/final.contigs.fa --outdir whokaryote_175NW
 
 ```
 
+## Eukaryote and Cyanobacteria ASVs
+
+Using phytoref database (http://phytoref.sb-roscoff.fr/downloads) to refine taxonomic classification of eukaryotic and cyanobacteria ASV sequences.
+
+```
+#pull all eukaryotic/cyano sequences from ASV fasta file
+conda activate seqkit 
+
+grep -f euk_asv_IDs.txt ~/Documents/University\ of\ Calgary/PostDoc/Atlantic\ Condor\ 2021/UofC_Analysis/Dec13/Condor_ASVseqs.fasta > eukaryotic_ASV_sequences.fasta
+
+```
+
+BLAST sequences against phytoref database (Cyanobacteria and PhytoRef databases concatenated)
+
+```
+cat phytoref_cyano_sequences.txt phytoref_euk_sequences.txt > phytoref_full_database.fasta
+
+#make blast db of phytoref sequences
+makeblastdb -in phytoref_full_database.fasta -out phytoref_full_database.db -dbtype nucl
+
+#blast using evalue cutoff 
+blastn -query eukaryotic_ASV_sequences.fasta -db phytoref_full_database.db -outfmt 6 -out blast_phytoref_asvs_results.tbl -evalue 1e-5 
+
+```
+
+
 
 ## Kraken 
 
