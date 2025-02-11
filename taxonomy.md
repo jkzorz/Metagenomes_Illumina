@@ -250,8 +250,9 @@ cat phytoref_cyano_sequences.txt phytoref_euk_sequences.txt > phytoref_full_data
 #make blast db of phytoref sequences
 makeblastdb -in phytoref_full_database.fasta -out phytoref_full_database.db -dbtype nucl
 
-#blast using evalue cutoff 
-blastn -query eukaryotic_ASV_sequences.fasta -db phytoref_full_database.db -outfmt 6 -out blast_phytoref_asvs_results.tbl -evalue 1e-5 
+#blast using evalue and perc_identity cutoff 
+lastn -query eukaryotic_ASV_sequences.fasta -db phytoref_full_database.db -outfmt 6 -out blast_phytoref_asvs_results.tbl -evalue 1e-20 -perc_identity 95
+
 
 ```
 
