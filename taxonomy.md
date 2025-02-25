@@ -69,7 +69,14 @@ gtt-subset-GTDB-accessions -i GTDB-Bacteria-domain-GTDB-rep-metadata.tsv --get-o
 
 ```
 
+**Run GToTree with PVC clade MAGs (dereplicated at 90%) and representative GTDB genomes to make tree for novel phylum** 
+```
+cd /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/dereplicated_genomes98
+#slurm script: gtotree_newphylum.slurm
 
+#gototree command: best-hit mode, needs 50% SCG to be included, GTDB taxonomy at Phylum level 
+GToTree -f PVC_new_phylum_MAG_list_90.txt -a subset-accessions.txt -H Bacteria -D -L Phylum -j 10 -n 3 -T IQ-TREE -B -G 0.5 -o gtotree_new_phylum_GTDB-drep90
+```
 
 ## Phyloflash
 
