@@ -78,6 +78,14 @@ cd /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/dereplicated_genomes98
 GToTree -f PVC_new_phylum_MAG_list_90.txt -a subset-accessions.txt -H Bacteria -D -L Phylum -j 10 -n 3 -T IQ-TREE -B -G 0.5 -o gtotree_new_phylum_GTDB-drep90
 ```
 
+## GTDB-TK de novo
+
+Use gtdbtk de novo workflow for assessing novel taxa? 
+```
+cd /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina_dereplicated_genomes98
+
+gtbtk de_novo_wf --genome_dir bacteria_mags_98 --bacteria -x fa --outgroup_taxon p__Patescibacteria --out_dir gtdbtk_de_novo_bac --prefix gtdbtk_denovo_bac --cpus 35
+```
 ## Phyloflash
 
 Use Phyloflash to assign taxonomy to full length 16S rRNA sequences 
