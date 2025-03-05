@@ -67,6 +67,9 @@ gtt-get-accessions-from-GTDB -t Bacteria --GTDB-representatives-only
 #subset to representatives from each class
 gtt-subset-GTDB-accessions -i GTDB-Bacteria-domain-GTDB-rep-metadata.tsv --get-only-individuals-for-the-rank class
 
+#subset to representatives from each order - class didn't make the best tree...
+gtt-subset-GTDB-accessions -i GTDB-Bacteria-domain-GTDB-rep-metadata.tsv --get-only-individuals-for-the-rank order -o order-subset-accessions
+
 ```
 
 **Run GToTree with PVC clade MAGs (dereplicated at 90%) and representative GTDB genomes to make tree for novel phylum** 
@@ -76,6 +79,13 @@ cd /work/ebg_lab/gm/gapp/jzorz/Metagenomes_Illumina/dereplicated_genomes98
 
 #gototree command: best-hit mode, needs 50% SCG to be included, GTDB taxonomy at Phylum level 
 GToTree -f PVC_new_phylum_MAG_list_90.txt -a subset-accessions.txt -H Bacteria -D -L Phylum -j 10 -n 3 -T IQ-TREE -B -G 0.5 -o gtotree_new_phylum_GTDB-drep90
+
+#try again with order level GTDB representatives and all bacterial MAGs at drep 98% - Bacteria markers
+GToTree -f mag_list_bacteria_drep98.txt -a order-subset-accessions.txt -H Bacteria -D -L Phylum -j 10 -n 3 -T IQ-TREE -B -G 0.5 -o gtotree_new_phylum_GTDB_order_drep98_bac_markers
+
+#try again with order level GTDB representatives and all bacterial MAGs at drep 98% - Hug ribosomal markers
+GToTree -f mag_list_bacteria_drep98.txt -a order-subset-accessions.txt -H Universal_Hug_et_al -D -L Phylum -j 10 -n 3 -T IQ-TREE -B -G 0.5 -o gtotree_new_phylum_GTDB_order_drep98_bac
+
 ```
 
 ## GTDB-TK de novo
