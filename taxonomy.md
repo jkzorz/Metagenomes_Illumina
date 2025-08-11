@@ -185,8 +185,11 @@ Using MetaCHIP (https://github.com/songweizhi/MetaCHIP?tab=readme-ov-file) to id
 #first filtered out contigs with < 2000 bp
 for i in selected_files/*.fa; do base=$(basename "$i"); seqkit seq -m 2000 $i > cleaned_2000bp_contigs/$base; done
 
+#added MAG names to headers to avoid potential issues with repeated contig headers
+mkdir -p cleaned_unique_ids && for f in cleaned_2000bp_contigs/*.fa; do base=$(basename "$f" .fa); awk -v prefix="$base" '/^>/ {print ">" prefix"_"substr($0,2)} !/^>/ {print}' "$f" > cleaned_unique_ids/"$base.fa"; done
+
 #run metachip 
-MetaCHIP PI -p metachip -r pcofg -t 10 -i cleaned_2000bp_contigs -x fa -taxon gtdbtk.bac_arc_summary.tsv -o metachip_out
+MetaCHIP PI -p metachip -r pcofg -t 10 -i cleaned_unique_ids -x fa -taxon gtdbtk.bac_arc_summary.tsv -o metachip_out
 
 MetaCHIP BP -p metachip -r pcofg -t 10 -o metachip_out
 
