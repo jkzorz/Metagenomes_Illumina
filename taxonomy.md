@@ -182,7 +182,11 @@ FastTree < gtdbtk.bac120.user_msa.fasta > gtdbtk.bac120.user_msa.tre
 Using MetaCHIP (https://github.com/songweizhi/MetaCHIP?tab=readme-ov-file) to identify instances of HGT in MAGs. 
 
 ```
-MetaCHIP PI -p metachip -r pcofg -t 10 -i selected_files -x fa -taxon gtdbtk.bac_arc_summary.tsv -o metachip_out
+#first filtered out contigs with < 1000 bp
+for i in selected_files/*.fa; do base=$(basename "$i"); seqkit seq -m 1000 $i > cleaned_1000bp_contigs/$base; done
+
+#run metachip 
+MetaCHIP PI -p metachip -r pcofg -t 10 -i cleaned_1000bp_contigs -x fa -taxon gtdbtk.bac_arc_summary.tsv -o metachip_out
 
 MetaCHIP BP -p metachip -r pcofg -t 10 -o metachip_out
 
