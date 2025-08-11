@@ -178,6 +178,17 @@ FastTree < gtdbtk.bac120.user_msa.fasta > gtdbtk.bac120.user_msa.tre
 
 ```
 
+## MetaCHIP 
+Using MetaCHIP (https://github.com/songweizhi/MetaCHIP?tab=readme-ov-file) to identify instances of HGT in MAGs. 
+
+```
+MetaCHIP PI -p metachip -r pcofg -t 10 -i selected_files -x fa -taxon gtdbtk.bac_arc_summary.tsv -o metachip_out
+
+MetaCHIP BP -p metachip -r pcofg -t 10 -o metachip_out
+
+```
+
+
 ## FastANI
 
 Use FastANI to determine relatedness between genomes 
