@@ -25,4 +25,30 @@ mmseqs easy-cluster all_mag_proteins_drep98_header.faa all_mag_proteins_drep98_c
 
 ```
 
+**Redo with 100 aa inclusion cutoff**
+Many small proteins invovled in protein translation were highly conserved. Adding a length filter of 100 aa to reduce the number of potential spurious overlap between phyla. 
+
+```
+#use seqkit to remove proteins with <100 aa
+conda activate seqkit
+
+for i in genes_protein_header/*.faa; do name=$(basename $i .faa); echo $name; seqkit seq -m 100 $i -o genes_protein_header_100aa/${name}_100.faa; done
+
+#condatenate files
+cat genes_protein_header_100aa/*.faa > all_mag_proteins_drep98_header_100aa.faa
+```
+
+Re-run mmseqs to cluster all proteins with >80% identity over 80% of protein. 
+```
+conda activate mmseqs
+
+#run mmseqs with easy-cluster
+#coverage mode 0: coverage of query and target
+mmseqs easy-cluster all_mag_proteins_drep98_header_100aa.faa all_mag_proteins_drep98_100aa_cov80_pc80 tmp --min-seq-id 0.8 -c 0.8 --cov-mode 0
+
+```
+
+
+
+
 
