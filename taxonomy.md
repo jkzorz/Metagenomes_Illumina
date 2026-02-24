@@ -196,15 +196,32 @@ MetaCHIP BP -p metachip -r pcofg -t 10 -o metachip_out
 ```
 ## CompareM
 
-Use CompareM (v0.1.2) to do AAI calculations betweeen MAGs. 
+Use CompareM (v0.1.2) to do AAI calculations betweeen MAGs. CompareM didn't work... tried EZAAI instead. 
 
 ```
 #running this on local computer
-cd ~/Documents/University\ of\ Calgary/PostDoc/Metagenomes/final_drep
+cd ~/Documents/University\ of\ Calgary/PostDoc/Metagenomes/final_drep/comparem
 
 comparem aai_wf -x fa ../backup_MAGS .
 ```
 
+## EZAAI 
+
+Use to calculate AAI between MAGs. Command failed when running using path with spaces in the name. Made a temp folder of MAGs on desktop and used that to run instead. 
+
+```
+#misspelled package
+conda activate eezai
+
+cd ~/Documents/University\ of\ Calgary/PostDoc/Metagenomes/final_drep/ezaai
+
+#first call genes
+ezaai extract -i ~/Desktop/MAGs_only/ -o ezaai_db
+
+#calculate aai 
+ezaai calculate -i ezaai_db -j ezaai_db -o ezaai_out.txt
+
+```
 
 ## FastANI
 
