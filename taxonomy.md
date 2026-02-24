@@ -207,7 +207,7 @@ comparem aai_wf -x fa ../backup_MAGS .
 
 ## EZAAI 
 
-Use to calculate AAI between MAGs. Command failed when running using path with spaces in the name. Made a temp folder of MAGs on desktop and used that to run instead. 
+Use to calculate AAI between MAGs. Command failed when running using path with spaces in the path. Made a temp folder of MAGs on desktop and used that to run instead. Also had to use a temp folder on desktop to run the calculate command because it also couldn't handle spaces in path. 
 
 ```
 #misspelled package
@@ -219,7 +219,7 @@ cd ~/Documents/University\ of\ Calgary/PostDoc/Metagenomes/final_drep/ezaai
 ezaai extract -i ~/Desktop/MAGs_only/ -o ezaai_db
 
 #calculate aai 
-ezaai calculate -i ezaai_db -j ezaai_db -o ezaai_out.txt
+ezaai calculate -i ~/Desktop/ezaai/ -j ~/Desktop/ezaai/ -o test.tsv
 
 ```
 
