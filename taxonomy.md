@@ -194,6 +194,16 @@ MetaCHIP PI -p metachip -r pcofg -t 10 -i cleaned_unique_ids -x fa -taxon gtdbtk
 MetaCHIP BP -p metachip -r pcofg -t 10 -o metachip_out
 
 ```
+## CompareM
+
+Use CompareM (v0.1.2) to do AAI calculations betweeen MAGs. 
+
+```
+#running this on local computer
+cd ~/Documents/University\ of\ Calgary/PostDoc/Metagenomes/final_drep
+
+comparem aai_wf -x fa ../backup_MAGS .
+```
 
 
 ## FastANI
