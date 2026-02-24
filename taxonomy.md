@@ -218,8 +218,11 @@ cd ~/Documents/University\ of\ Calgary/PostDoc/Metagenomes/final_drep/ezaai
 #first call genes
 ezaai extract -i ~/Desktop/MAGs_only/ -o ezaai_db
 
-#calculate aai 
-ezaai calculate -i ~/Desktop/ezaai/ -j ~/Desktop/ezaai/ -o test.tsv
+#calculate aai - all by all - takes waay too much time
+#ezaai calculate -i ~/Desktop/ezaai/ -j ~/Desktop/ezaai/ -o test.tsv
+
+#calculate aai - only new phylum nanopore bin
+ezaai calculate -i ~/Desktop/ezaai/Nanopore_2A1_C54_12-16_pilon_polish_bin.13.db -j ~/Desktop/ezaai/ -o nano_aai.tsv
 
 ```
 
