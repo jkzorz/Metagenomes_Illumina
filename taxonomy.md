@@ -224,6 +224,9 @@ ezaai extract -i ~/Desktop/MAGs_only/ -o ezaai_db
 #calculate aai - only new phylum nanopore bin
 ezaai calculate -i ~/Desktop/ezaai/Nanopore_2A1_C54_12-16_pilon_polish_bin.13.db -j ~/Desktop/ezaai/ -o nano_aai.tsv
 
+#calculate aai - only new phylum metabat bin
+ezaai calculate -i ~/Desktop/ezaai/bin_Hole_1216.85.db -j ~/Desktop/ezaai/ -o bin_aai.tsv
+
 ```
 
 ## FastANI
